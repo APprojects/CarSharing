@@ -33,7 +33,7 @@ services:
   
     #THE MYSQL SERVER
     mysql:  #name of container
-        image: mariadb:latest
+        image: postgres:latest
         expose:
             - 3306
         volumes:
