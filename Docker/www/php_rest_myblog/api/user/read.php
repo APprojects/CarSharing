@@ -9,12 +9,12 @@
 	//Instantiate DB & connect
 	$database = new Database();
 	$db = $database->connect();
-
+	
 	//Instantiate user objects
 	$user = new User($db);
 
 	//user query
-	$result = $post->read();
+	$result = $user->read();
 	//get row count
 	$num = $result->rowCount();
 

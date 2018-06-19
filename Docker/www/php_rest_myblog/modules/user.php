@@ -3,7 +3,7 @@
 	class User {
 		//DB stuff
 		private $conn;
-		private $table = 'user';
+		private $table = 'User';
 
 		//user properties
 		public $id;
@@ -19,21 +19,23 @@
 		public $value;
 
 		// Constructor with DB
-		public function __contruct($db){
+		public function __construct($db){
 			$this->conn = $db;
+			
 		}
 
 		// Get Posts
 		public function read() {
+			
 			// Create query
-			$query = 'SELECT * FROM' . $this->table;
-
+			$query = 'SELECT * FROM ' . $this->table;
+			
 			//Prepare statement
 			$stmt = $this->conn->prepare($query);
 
 			//Execute query
 			$stmt->execute();
-
+			//echo "dopo";
 			return $stmt;
 
 		}
