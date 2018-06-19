@@ -1,2 +1,2 @@
 # CarSharing
-Distributed Open Systems Project - Car Sharing web service supported by Docker
+Distributed Open Systems Project - Car Sharing web service using Docker

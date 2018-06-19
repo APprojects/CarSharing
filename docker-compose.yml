@@ -24,7 +24,7 @@ services:
     
     #THE PHP CONTAINER
     php:
-        image: php:fpm
+        build: ./php/
         volumes:
             - ./code:/code
         networks:
@@ -33,7 +33,7 @@ services:
   
     #THE MYSQL SERVER
     mysql:  #name of container
-        image: postgres:latest
+        image: mariadb:latest
         expose:
             - 3306
         volumes:
