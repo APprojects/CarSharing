@@ -3,9 +3,9 @@
 		//DB parameters
 		private $port = '3306';
 		private $host = '172.17.0.2';
-		private $db_name = 'test';
-		private $username = 'root';
-		private $password = 'root';
+		private $db_name = 'CarSharing';
+		private $username = 'carUser';
+		private $password = 'carPassword';
 		private $conn;
 
 		//DB connect
@@ -13,7 +13,7 @@
 			$this->conn = null;
 
 			try {
-				$this->conn = new PDO('mysql:host=' . $this->host . ';post=' . $this->port . ';dbname=' . $this->db_name, $this->username, $this->password);
+				$this->conn = new PDO('mysql:host=' . $this->host . ';port=' . $this->port . ';dbname=' . $this->db_name, $this->username, $this->password);
 				$this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			} catch(PDOException $e){
 				echo 'Connection Error: ' . $e->getMessage();
