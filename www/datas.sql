@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS User (
 );
 
 
+
 CREATE TABLE IF NOT EXISTS Car (
 	model varchar(50) PRIMARY KEY,
 	maxSpeed integer,
