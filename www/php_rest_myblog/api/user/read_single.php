@@ -14,7 +14,8 @@
 	$user = new User($db);
 
 	// Get ID 
-	$user->id = isset($_GET['id']) ? $_GET['id'] : die();
+//	$user->id = isset($_GET['id']) ? $_GET['id'] : die();
+	$user->id = (json_decode(file_get_contents('php://input'), true))->roles;
 
 	// get user 
 	$user->read_single();
@@ -36,4 +37,5 @@
 
 	// make JSON
 	print_r(json_encode($user_arr));
+	Response()
  ?>
