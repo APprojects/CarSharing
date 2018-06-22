@@ -1,7 +1,5 @@
 <?php
 
-	
-
 	$campi = array(
 	  'roles' => ($_POST['Roles']),
 	  'user' => ($_POST['User']),
