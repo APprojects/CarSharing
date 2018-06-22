@@ -44,13 +44,15 @@
 		public function read_single() {
 			
 			// Create query
-			$query = 'SELECT * FROM ' . $this->table . ' WHERE id = ? ';
+			$query = 'SELECT * FROM ' . $this->table . ' WHERE value = ? AND userName = ? AND  password = ?';
 			
 			//Prepare statement
 			$stmt = $this->conn->prepare($query);
 
 			// Bind ID
-			$stmt->bindParam(1, $this->id);
+			$stmt->bindParam(1, $this->value);
+			$stmt->bindParam(2, $this->userName);
+			$stmt->bindParam(3, $this->password);
 
 			// execute query
 			$stmt->execute();
@@ -58,6 +60,7 @@
 			$row = $stmt->fetch(PDO::FETCH_ASSOC);
 
 			// Set properties
+			$this->id = $row['id'];
 			$this->firstName = $row['firstName'];
 			$this->lastName = $row['lastName'];
 			$this->userName = $row['userName'];

@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS User (
 	id integer PRIMARY KEY, 
 	firstName varchar(50),
 	lastName varchar(50) ,
-	userName varchar(50),
+	userName varchar(50) UNIQUE,
 	password varchar(50),
 	address varchar(50),
 	city varchar(50),

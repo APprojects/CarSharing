@@ -13,10 +13,12 @@
 	//Instantiate user objects
 	$user = new User($db);
 
-	// Get ID 
+	// Get value, user name and password 
 //	$user->id = isset($_GET['id']) ? $_GET['id'] : die();
 	$json_input = json_decode(file_get_contents('php://input'), true);
-	$user->id = $json_input['roles'];
+	$user->value = $json_input['roles'];
+	$user->userName = $json_input['user'];
+	$user->password = $json_input['password'];
 
 	// get user 
 	$user->read_single();

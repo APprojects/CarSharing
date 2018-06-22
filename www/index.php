@@ -61,7 +61,7 @@
 			
 			<div class="row">
 				<div class="col-sm-4 col-xs-12">
-					<div id="gtco-logo"><a href="index.html">ESharing <em>.</em></a></div>
+					<div id="gtco-logo"><a href="index.php">ESharing <em>.</em></a></div>
 				</div>
 				<div class="col-xs-8 text-right menu-1">
 					<ul>
@@ -98,8 +98,9 @@
 				<h1 class="sign">Sign In</h1>
 
 				<form action="login.php" method="post">
-					
+
 					<div class="col-md-4">
+						
 						<div class="form-group">
 	  						<label for="role">Select Role:</label>
 	  							<select class="form-control" id="inputRole" name="Roles">
@@ -115,54 +116,64 @@
 						    <label for="password">Password</label>
 						    <input type="password" class="form-control" id="inputPassword1" placeholder="Enter password" name="Password" value="<?php echo $password;?>">
 						</div>
-						<button type="submit" name="Submit" class="btn btn-primary">Enter</button>
+						<button type="submit" name="Submit" class="btn btn-primary">Enter</button> 
+							<div id="error_login" class="errors">
+								<?php
+								  
+								  if(isset($_GET['error_login'])){
+								    echo "ERROR: " . $_GET['error_login'];
+								  }
+								?>
+							</div>
 					</div>
 				</form>		
 			</div>
+
+
 			<div class="col-sm-6">
 				<h1 class="sign">Sign Up</h1>
-				<form>
+				<form action="sign-up.php" method="post">
 				    <div class="col-md-4">
 						<div class="form-group">
 	  						<label for="role">Select Role:</label>
-	  							<select class="form-control" id="inputRole">
+	  							<select class="form-control" id="inputRole" name="Roles1">
 	    							<option>Customer</option>
 	    							<option>Seller</option>
 	    						</select>
 						</div> 
 						<div class="form-group">
 		    				<label for="firstname1">First Name</label>
-		   					<input class="form-control" id="inputFirstName1" placeholder="Enter first name">
+		   					<input class="form-control" id="inputFirstName1" placeholder="Enter first name" name="FirstName">
 		 				</div>
 		 				<div class="form-group">
 		    				<label for="lastname1">Last Name</label>
-		   					<input class="form-control" id="inputLastName1" placeholder="Enter last name">
+		   					<input class="form-control" id="inputLastName1" placeholder="Enter last name" name="LastName">
 	 					</div>
 	 					<div class="form-group">
 		    				<label for="user" id=labelUser>User</label>
-		   					<input class="form-control" id="inputUser" placeholder="Choose a user name">
+		   					<input class="form-control" id="inputUser" placeholder="Choose a user name" name="UserName">
 	 					</div>
 	 					<div class="form-group">
 						    <label for="password">Password</label>
-						    <input type="password" class="form-control" id="inputPassword" placeholder="Choose a password">
+						    <input type="password" class="form-control" id="inputPassword" placeholder="Choose a password" name="Password1">
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-2">
 		    					<label for="address" id="labelAddress">Address</label>
-		   						<input class="form-control" id="inputAddress" placeholder="Enter Address">
+		   						<input class="form-control" id="inputAddress" placeholder="Enter Address" name="Address">
 		   					</div>
 		   					<div class="col-sm-2">	
 		   						<label for="city" id="labelCity">City</label>
-		   						<input class="form-control" id="inputCity" placeholder="Enter City">
+		   						<input class="form-control" id="inputCity" placeholder="Enter City" name="City">
 		 					</div>
 		 					<div class="col-sm-2">	
 		   						<label for="state" id="labelState">State</label>
-		   						<input class="form-control" id="inputState" placeholder="Enter State">
+		   						<input class="form-control" id="inputState" placeholder="Enter State" name="State">
 		 					</div>
 	 					</div>
 	 					<div class="form-group">
   							<label for="gender">Gender:</label>
-  							<select class="form-control" id="inputGender">
+  							<select class="form-control" id="inputGender" name="Gender">
     							<option>M</option>
     							<option>F</option>
     						</select>
@@ -170,11 +181,11 @@
 						<div class="form-group row">
 							<div class="col-sm-2">
 		    					<label for="prefix1" id="labelPrefix">Prefix</label>
-		   						<input class="form-control" id="inputPrefix1" placeholder="Enter Prefix">
+		   						<input class="form-control" id="inputPrefix1" placeholder="Enter Prefix" name="Prefix">
 	   						</div>
 		   					<div class="col-sm-4">	
 		   						<label for="number" id="labelNumber">Number</label>
-		   						<input class="form-control" id="inputNumber" placeholder="Enter Number">
+		   						<input class="form-control" id="inputNumber" placeholder="Enter Number" name="Number">
 		 					</div>
 	 				</div>	
 
