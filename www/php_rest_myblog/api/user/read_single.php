@@ -4,7 +4,7 @@
 	header('Content-Type: application/json');
 
 	include_once '../../config/Database.php';
-	include_once '../../modules/user.php';
+	include_once '../../modules/User.php';
 
 	//Instantiate DB & connect
 	$database = new Database();
@@ -16,7 +16,7 @@
 	// Get value, user name and password 
 	$json_input = json_decode(file_get_contents('php://input'), true);
 
-	$user->value = $json_input['roles'];
+	$user->value 	= $json_input['roles'];
 	$user->userName = $json_input['user'];
 	$user->password = $json_input['password'];
 
@@ -25,18 +25,18 @@
 
 	// create array
 	$user_arr = array(
-		'id' => $user->id,
-		'firstName' => $user->firstName,
-		'lastName' => $user->lastName,
-		'userName' => $user->userName,
-		'password' => $user->password,
-		'address' => $user->address,
-		'city' => $user->city,
-		'state' => $user->state,
-		'gender' => $user->gender,
-		'prefix' => $user->prefix,
-		'phoneNumber' => $user->phoneNumber,
-		'value' => $user->value
+		'id' 			=> $user->id,
+		'firstName' 	=> $user->firstName,
+		'lastName' 		=> $user->lastName,
+		'userName' 		=> $user->userName,
+		'password' 		=> $user->password,
+		'address' 		=> $user->address,
+		'city' 			=> $user->city,
+		'state' 		=> $user->state,
+		'gender' 		=> $user->gender,
+		'prefix' 		=> $user->prefix,
+		'phoneNumber' 	=> $user->phoneNumber,
+		'value' 		=> $user->value
 	);
 
 	// make JSON

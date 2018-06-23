@@ -4,7 +4,7 @@
 	header('Content-Type: application/json');
 
 	include_once '../../config/Database.php';
-	include_once '../../modules/user.php';
+	include_once '../../modules/User.php';
 
 	//Instantiate DB & connect
 	$database = new Database();
@@ -28,17 +28,17 @@
 			extract($row);
 
 			$user_item = array(
-				'id' => $id,
-				'firstName' => $firstName,
-				'lastName' => $lastName,
-				'userName' => $userName,
-				'address' => $address,
-				'city' => $city,
-				'state' => $state,
-				'gender' => $gender,
-				'prefix' => $prefix,
-				'phoneNumber' => $phoneNumber,
-				'value' => $value		
+				'id' 			=> $id,
+				'firstName' 	=> $firstName,
+				'lastName' 		=> $lastName,
+				'userName' 		=> $userName,
+				'address' 		=> $address,
+				'city' 			=> $city,
+				'state' 		=> $state,
+				'gender' 		=> $gender,
+				'prefix' 		=> $prefix,
+				'phoneNumber' 	=> $phoneNumber,
+				'value' 		=> $value		
 			);
 
 			// Push to "data"

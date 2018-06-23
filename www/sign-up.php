@@ -71,17 +71,18 @@
 		curl_close($ch);
 		
 		session_start();
-		$_SESSION['roles'] = $campi['roles'];
-		$_SESSION['fname'] = $campi['fname'];
-		$_SESSION['lname'] = $campi['lname'];
-		$_SESSION['uname'] = $campi['uname'];
-		$_SESSION['pword'] = $campi['pword'];
-		$_SESSION['address'] = $campi['address'];
-		$_SESSION['city'] = $campi['city'];
-		$_SESSION['state'] = $campi['state'];
-		$_SESSION['gender'] = $campi['gender'];
-		$_SESSION['prefix'] = $campi['prefix'];
-		$_SESSION['number'] = $campi['number'];
+		$_SESSION['roles'] 		= $response['roles'];
+		$_SESSION['fname'] 		= $response['fname'];
+		$_SESSION['lname'] 		= $response['lname'];
+		$_SESSION['uname'] 		= $response['uname'];
+		$_SESSION['pword'] 		= $response['pword'];
+		$_SESSION['address'] 	= $response['address'];
+		$_SESSION['city'] 		= $response['city'];
+		$_SESSION['state'] 		= $response['state'];
+		$_SESSION['gender'] 	= $response['gender'];
+		$_SESSION['prefix'] 	= $response['prefix'];
+		$_SESSION['number'] 	= $response['number'];
+		$_SESSION['id'] 		= $response['id'];
 		
 		header("location: new_user.php");
 	}		

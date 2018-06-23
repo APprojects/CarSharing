@@ -45,11 +45,18 @@
 
 		if(!is_null($response['id'])){
 			session_start();
-			$_SESSION['roles'] = $campi['roles'];
-			$_SESSION['user'] = $campi['user'];
-			$_SESSION['password'] = $campi['password'];
-			$_SESSION['firstName'] = $response['firstName'];
-			$_SESSION['lastName'] = $response['lastName'];
+			$_SESSION['roles'] 		= $response['roles'];
+			$_SESSION['fname'] 		= $response['fname'];
+			$_SESSION['lname'] 		= $response['lname'];
+			$_SESSION['uname'] 		= $response['uname'];
+			$_SESSION['pword'] 		= $response['pword'];
+			$_SESSION['address'] 	= $response['address'];
+			$_SESSION['city'] 		= $response['city'];
+			$_SESSION['state'] 		= $response['state'];
+			$_SESSION['gender'] 	= $response['gender'];
+			$_SESSION['prefix'] 	= $response['prefix'];
+			$_SESSION['number'] 	= $response['number'];
+			$_SESSION['id'] 		= $response['id'];
 
 			if($_SESSION['roles']== 1)
 				header("location: welcomeSeller.php");

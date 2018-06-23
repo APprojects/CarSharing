@@ -60,6 +60,10 @@
 
 	</head>
 	<body>
+	<?php
+		include_once("./utilityFunctions.php");
+	?>
+	
 		<div class="row form-group">
 				<div class="col-md-12">
 					<button type="button" id="blogout" class="btn btn-info" onclick="go_home()" value="Log Out">Log Out</button>
@@ -79,14 +83,11 @@
 														<div class="col-md-12">
 															<label for="sourceBasement">Source Basement</label>
 															<select name="#" id="sourceBasement" class="form-control" name="sbase">
-																<option value="">source basement</option>
-																<option value="">O'Connell Street</option>
-																<option value="">Temple Bar</option>
-																<option value="">Clontarf</option>
-																<option value="">Ballsbridge</option>
-																<option value="">Rathmines</option>
-																<option value="">S.Patrick's Cathedral</option>
-																<option value="">Docklands</option>
+															<?php
+																foreach(getBasements()['basements'] as &$basement){
+																	echo "<option>" . $basement['name'] . "</option>\n";
+																}
+															?>
 															</select>
 														</div>
 													</div>
@@ -139,13 +140,11 @@
 														<div class="col-md-12">
 															<label for="destination">Destination Basement</label>
 															<select name="dbase" id="destinationBasement" class="form-control">
-																<option value="">O'Connell Street</option>
-																<option value="">Temple Bar</option>
-																<option value="">Clontarf</option>
-																<option value="">Ballsbridge</option>
-																<option value="">Rathmines</option>
-																<option value="">S.Patrick's Cathedral</option>
-																<option value="">Docklands</option>
+																<?php
+																foreach(getBasements()['basements'] as &$basement){
+																	echo "<option>" . $basement['name'] . "</option>\n";
+																}
+															?>
 															</select>
 														</div>
 													</div>

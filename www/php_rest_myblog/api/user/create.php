@@ -6,7 +6,7 @@
 	header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
 	include_once '../../config/Database.php';
-	include_once '../../modules/user.php';
+	include_once '../../modules/User.php';
 
 	//Instantiate DB & connect
 	$database = new Database();
@@ -31,16 +31,27 @@
 	$user->phoneNumber 	= $json_input['number'];
 	$user->value 		= $json_input['roles'];
 	
-	// create user
-	if($user->create()) {
-		$message = array('message' => 'user Created');
-	}	
-	else {
-		$message =  array('message' => 'user not Created');
-	}
+	$user->create();
+	$user->read_single();
+	
+	// create array
+	$user_arr = array(
+		'id' => $user->id,
+		'firstName' 	=> $user->firstName,
+		'lastName' 		=> $user->lastName,
+		'userName' 		=> $user->userName,
+		'password' 		=> $user->password,
+		'address' 		=> $user->address,
+		'city' 			=> $user->city,
+		'state' 		=> $user->state,
+		'gender' 		=> $user->gender,
+		'prefix' 		=> $user->prefix,
+		'phoneNumber' 	=> $user->phoneNumber,
+		'value' 		=> $user->value
+	);
 
-	print_r(json_encode($message));
-
+	// make JSON
+	print_r(json_encode($user_arr));
 ?>
 
 		

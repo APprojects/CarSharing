@@ -2,35 +2,40 @@
 	// header
 	header('Access-Control-Allow-Origin: *');
 	header('Content-Type: application/json');
-	header('Access-Control-Allow-Methods: DELETE');
+	header('Access-Control-Allow-Methods: PUT');
 	header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
 	include_once '../../config/Database.php';
-	include_once '../../modules/User.php';
+	include_once '../../modules/Basement.php';
 
 	//Instantiate DB & connect
 	$database = new Database();
 	$db = $database->connect();
 	
-	//Instantiate user objects
-	$user = new User($db);
+	//Instantiate basement objects
+	$basement = new Basement($db);
 
-	// get raw user json_input
+	// get raw basement json_input
 	$json_input = json_decode(file_get_contents("php://input"));
 
 	
-	// set ID  to update
-	$user->id = $json_input->id;
+	// set oldName  to update
+	$basement->id = $json_input->name;
 
-	// Delete user
-	if($user->delete()) {
+	//new values
+	$basement->name = $json_input->name;
+	$basement->address = $json_input->address;
+	
+
+	// update user
+	if($basement->update()) {
 		echo json_encode(
-			array('message' => 'user deleted')
+			array('message' => 'basement updated')
 		);
 	}	
 	else {
 			echo json_encode(
-				array('message' => 'user not deleted')
+				array('message' => 'basement not updated')
 			);
 	}
 

@@ -6,7 +6,7 @@
 	header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
 	include_once '../../config/Database.php';
-	include_once '../../modules/user.php';
+	include_once '../../modules/User.php';
 
 	//Instantiate DB & connect
 	$database = new Database();
@@ -15,23 +15,24 @@
 	//Instantiate user objects
 	$user = new User($db);
 
-	// get raw user data
-	$data = json_decode(file_get_contents("php://input"));
+	// get raw user json_input
+	$json_input = json_decode(file_get_contents("php://input"));
 
 	
 	// set ID  to update
-	$user->id = $data->id;
+	$user->id = $json_input->id;
 
-	$user->firstName = $data->firstName;
-	$user->lastName = $data->lastName;
-	$user->userName = $data->userName;
-	$user->address = $data->address;
-	$user->city = $data->city;
-	$user->state = $data->state;
-	$user->gender = $data->gender;
-	$user->prefix = $data->prefix;
-	$user->phoneNumber = $data->phoneNumber;
-	$user->value = $data->value;
+	//new values
+	$user->firstName 	= $json_input->firstName;
+	$user->lastName 	= $json_input->lastName;
+	$user->userName 	= $json_input->userName;
+	$user->address 		= $json_input->address;
+	$user->city 		= $json_input->city;
+	$user->state 		= $json_input->state;
+	$user->gender 		= $json_input->gender;
+	$user->prefix 		= $json_input->prefix;
+	$user->phoneNumber 	= $json_input->phoneNumber;
+	$user->value 		= $json_input->value;
 	
 
 	// update user
