@@ -1,6 +1,6 @@
 <?php
 
-	$campi1 = array(
+	$campi = array(
 	  'roles1' => ($_POST['Roles1']),
 	  'fname' => ($_POST['FirstName']),
 	  'lname' => ($_POST['LastName']),
@@ -16,28 +16,28 @@
 	);
 
 
-if (((empty($campi1["fname"])) || (empty($campi1["lname"]))) || ((empty($campi1["uname"])) || (empty($campi1["pword"]))) || ((empty($campi1["address"])) || (empty($campi1["city"]))) || ((empty($campi1["state"])) || (empty($campi1["gender"]))) || ((empty($campi1["prefix"])) || (empty($campi1["number"])))) {	
+if (((empty($campi["fname"])) || (empty($campi["lname"]))) || ((empty($campi["uname"])) || (empty($campi["pword"]))) || ((empty($campi["address"])) || (empty($campi["city"]))) || ((empty($campi["state"])) || (empty($campi["gender"]))) || ((empty($campi["prefix"])) || (empty($campi["number"])))) {	
 	
 	$string_error ="";
-	if ((empty($campi1['fname'])))		
+	if ((empty($campi['fname'])))		
 		$string_error .= " first name ";
-	if ((empty($campi1['lname'])))			
+	if ((empty($campi['lname'])))			
 		$string_error .= " last name ";
-	if ((empty($campi1['uname'])))			
+	if ((empty($campi['uname'])))			
 		$string_error .= " user name ";
-	if ((empty($campi1['pword'])))			
+	if ((empty($campi['pword'])))			
 		$string_error .= " password ";
-	if ((empty($campi1['address'])))			
+	if ((empty($campi['address'])))			
 		$string_error .= " address ";
-	if ((empty($campi1['city'])))			
+	if ((empty($campi['city'])))			
 		$string_error .= " city ";
-	if ((empty($campi1['state'])))			
+	if ((empty($campi['state'])))			
 		$string_error .= " state ";
-	if ((empty($campi1['gender'])))			
+	if ((empty($campi['gender'])))			
 		$string_error .= " gender ";
 	if ((empty($camp1i['prefix'])))			
 		$string_error .= " prefix ";
-	if ((empty($campi1['number'])))			
+	if ((empty($campi['number'])))			
 		$string_error .= " number ";
 
 	$string_error .= "not entered";
