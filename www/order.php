@@ -14,9 +14,9 @@
 	print "user : "  . $campi['user'] . "<br>";
 	print "password : "  . $campi['password'] . "<br>";*/
 
-if (((empty($campi["sbase"])) || (empty($campi["date-start"]))) || ((empty($campi["wtime"])) || (empty($campi["dbase"]))) || ((empty($campi["date-end"])) || (empty($campi["dtime"]))) ||  (empty($campi["model"]))))  {	
+if (((empty($campi["sbase"])) || (empty($campi["date-start"]))) || ((empty($campi["wtime"])) || (empty($campi["dbase"]))) || ((empty($campi["date-end"])) || (empty($campi["dtime"]))) ||  (empty($campi["model"])))  {	
 
-	header ("location: welcome.php");
+	header ("location: welcomeCustomer.php");
 	
 	
 //	header('Location: http://www.example.com/');

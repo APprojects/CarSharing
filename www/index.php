@@ -190,6 +190,14 @@
 	 				</div>	
 
 	  				<button type="submit" class="btn btn-primary">Submit</button>
+	  				<div id="error_reg" class="errors">
+		  				<?php
+									  
+									  if(isset($_GET['error_registration'])){
+									    echo "ERROR: " . $_GET['error_registration'];
+									  }
+						?>
+					</div>
 				</form> 
 	 				</div>
 	 			</form>	

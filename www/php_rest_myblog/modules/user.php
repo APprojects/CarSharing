@@ -10,6 +10,7 @@
 		public $firstName;
 		public $lastName;
 		public $userName;
+		public $password;
 		public $address;
 		public $city;
 		public $state;
@@ -49,7 +50,7 @@
 			//Prepare statement
 			$stmt = $this->conn->prepare($query);
 
-			// Bind ID
+			// Bind value, userName and password
 			$stmt->bindParam(1, $this->value);
 			$stmt->bindParam(2, $this->userName);
 			$stmt->bindParam(3, $this->password);
@@ -64,6 +65,7 @@
 			$this->firstName = $row['firstName'];
 			$this->lastName = $row['lastName'];
 			$this->userName = $row['userName'];
+			$this->password = $row['password'];
 			$this->address = $row['address'];
 			$this->city = $row['city'];
 			$this->state = $row['state'];
@@ -84,6 +86,7 @@
 					firstName = :firstName,
 					lastName = :lastName,
 					userName = :userName,
+					password = :password,
 					address = :address,
 					city = :city,
 					state = :state,
@@ -98,7 +101,8 @@
 			// clean data
 			$this->firstName = htmlspecialchars(strip_tags($this->firstName));	
 			$this->lastName = htmlspecialchars(strip_tags($this->lastName));	
-			$this->userName = htmlspecialchars(strip_tags($this->userName));	
+			$this->userName = htmlspecialchars(strip_tags($this->userName));
+			$this->password = htmlspecialchars(strip_tags($this->password));	
 			$this->address = htmlspecialchars(strip_tags($this->address));	
 			$this->city = htmlspecialchars(strip_tags($this->city));		
 			$this->state = htmlspecialchars(strip_tags($this->state));	
@@ -111,6 +115,7 @@
 			$stmt->bindParam(':firstName', $this->firstName);
 			$stmt->bindParam(':lastName', $this->lastName);
 			$stmt->bindParam(':userName', $this->userName);
+			$stmt->bindParam(':password', $this->password);
 			$stmt->bindParam(':address', $this->address);
 			$stmt->bindParam(':city', $this->city);
 			$stmt->bindParam(':state', $this->state);

@@ -16,19 +16,20 @@
 	$user = new User($db);
 
 	// get raw user data
-	$data = json_decode(file_get_contents("php://input"));
-
+	$dati1 = json_decode(file_get_contents("php://input"), true);
+	  
 	
-	$user->firstName = $data->firstName;
-	$user->lastName = $data->lastName;
-	$user->userName = $data->userName;
-	$user->address = $data->address;
-	$user->city = $data->city;
-	$user->state = $data->state;
-	$user->gender = $data->gender;
-	$user->prefix = $data->prefix;
-	$user->phoneNumber = $data->phoneNumber;
-	$user->value = $data->value;
+	$user->firstName = $dati1['fname'];
+	$user->lastName = $dati1['lname'];
+	$user->userName = $dati1['uname'];
+	$user->password = $dati1['pword'];
+	$user->address = $dati1['address'];
+	$user->city = $dati1['city'];
+	$user->state = $dati1['state'];
+	$user->gender = $dati1['gender'];
+	$user->prefix = $dati1['prefix'];
+	$user->phoneNumber = $dati1['number'];
+	$user->value = $dati1['roles1'];
 	
 
 	// create user

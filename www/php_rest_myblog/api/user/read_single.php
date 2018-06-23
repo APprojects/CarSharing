@@ -29,6 +29,7 @@
 		'firstName' => $user->firstName,
 		'lastName' => $user->lastName,
 		'userName' => $user->userName,
+		'password' => $user->password,
 		'address' => $user->address,
 		'city' => $user->city,
 		'state' => $user->state,
@@ -40,5 +41,4 @@
 
 	// make JSON
 	print_r(json_encode($user_arr));
-
  ?>

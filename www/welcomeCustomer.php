@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	echo "Welcome " . $_SESSION['user'] . "!";
+	echo "Welcome " . $_SESSION['firstName'] . " " . $_SESSION['lastName'] . "!";
 	
 ?>		
 
@@ -73,7 +73,7 @@
 										<div class="tab-content">
 											<div class="tab-content-inner active" data-content="signup">
 												<h3>Book Your Electric Car!</h3>
-												<form action="order.php">
+												<form action="order.php" method="post">
 													
 													<div class="row form-group">
 														<div class="col-md-12">
