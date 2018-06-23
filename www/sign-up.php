@@ -1,7 +1,7 @@
 <?php
 
 	$campi1 = array(
-	  'roles1' => ($_POST['Roles']),
+	  'roles1' => ($_POST['Roles1']),
 	  'fname' => ($_POST['FirstName']),
 	  'lname' => ($_POST['LastName']),
 	  'uname' => ($_POST['UserName']),
@@ -88,7 +88,7 @@ else {
 		$_SESSION['prefix'] = $campi1['prefix'];
 		$_SESSION['number'] = $campi1['number'];
 	
-//		header("location: new_user.php");
+	//	header("location: new_user.php");
 }
 
    
