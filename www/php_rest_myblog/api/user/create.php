@@ -33,12 +33,12 @@
 
 	// create user
 	if($user->create()) {
-		echo json_encode(
+		print_r json_encode(
 			array('message' => 'user Created')
 		);
 	}	
 	else {
-			echo json_encode(
+			print_r json_encode(
 				array('message' => 'user not Created')
 			);
 	}
