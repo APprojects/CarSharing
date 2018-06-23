@@ -1,17 +1,17 @@
 <?php
 
 	$campi = array(
-	  'roles1' => ($_POST['Roles1']),
-	  'fname' => ($_POST['FirstName']),
-	  'lname' => ($_POST['LastName']),
-	  'uname' => ($_POST['UserName']),
-	  'pword' => ($_POST['Password1']),
-	  'address' => ($_POST['Address']),
-	  'city' => ($_POST['City']),
-	  'state' => ($_POST['State']),
-	  'gender' => ($_POST['Gender']),
-	  'prefix' => ($_POST['Prefix']),
-	  'number' => ($_POST['Number'])
+	  'roles' => ($_POST['RolesR']),
+	  'fname' => ($_POST['FirstNameR']),
+	  'lname' => ($_POST['LastNameR']),
+	  'uname' => ($_POST['UserNameR']),
+	  'pword' => ($_POST['PasswordR']),
+	  'address' => ($_POST['AddressR']),
+	  'city' => ($_POST['CityR']),
+	  'state' => ($_POST['StateR']),
+	  'gender' => ($_POST['GenderR']),
+	  'prefix' => ($_POST['PrefixR']),
+	  'number' => ($_POST['NumberR'])
 	  
 	);
 
@@ -72,11 +72,11 @@ else {
 
 		// eseguo la chiamata
 		$response = json_decode(curl_exec($ch), true);
-		dump_var($response);
+		
 		// chiudo
 		curl_close($ch);
 		
-		$_SESSION['roles1'] = $campi['roles1'];
+		$_SESSION['roles'] = $campi['roles'];
 		$_SESSION['fname'] = $campi['fname'];
 		$_SESSION['lname'] = $campi['lname'];
 		$_SESSION['uname'] = $campi['uname'];

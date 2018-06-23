@@ -136,44 +136,44 @@
 				    <div class="col-md-4">
 						<div class="form-group">
 	  						<label for="role">Select Role:</label>
-	  							<select class="form-control" id="inputRole" name="Roles1">
+	  							<select class="form-control" id="inputRole" name="RolesR">
 	    							<option>Customer</option>
 	    							<option>Seller</option>
 	    						</select>
 						</div> 
 						<div class="form-group">
 		    				<label for="firstname1">First Name</label>
-		   					<input class="form-control" id="inputFirstName1" placeholder="Enter first name" name="FirstName">
+		   					<input class="form-control" id="inputFirstName1" placeholder="Enter first name" name="FirstNameR">
 		 				</div>
 		 				<div class="form-group">
 		    				<label for="lastname1">Last Name</label>
-		   					<input class="form-control" id="inputLastName1" placeholder="Enter last name" name="LastName">
+		   					<input class="form-control" id="inputLastName1" placeholder="Enter last name" name="LastNameR">
 	 					</div>
 	 					<div class="form-group">
 		    				<label for="user" id=labelUser>User</label>
-		   					<input class="form-control" id="inputUser" placeholder="Choose a user name" name="UserName">
+		   					<input class="form-control" id="inputUser" placeholder="Choose a user name" name="UserNameR">
 	 					</div>
 	 					<div class="form-group">
 						    <label for="password">Password</label>
-						    <input type="password" class="form-control" id="inputPassword" placeholder="Choose a password" name="Password1">
+						    <input type="password" class="form-control" id="inputPassword" placeholder="Choose a password" name="PasswordR">
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-2">
 		    					<label for="address" id="labelAddress">Address</label>
-		   						<input class="form-control" id="inputAddress" placeholder="Enter Address" name="Address">
+		   						<input class="form-control" id="inputAddress" placeholder="Enter Address" name="AddressR">
 		   					</div>
 		   					<div class="col-sm-2">	
 		   						<label for="city" id="labelCity">City</label>
-		   						<input class="form-control" id="inputCity" placeholder="Enter City" name="City">
+		   						<input class="form-control" id="inputCity" placeholder="Enter City" name="CityR">
 		 					</div>
 		 					<div class="col-sm-2">	
 		   						<label for="state" id="labelState">State</label>
-		   						<input class="form-control" id="inputState" placeholder="Enter State" name="State">
+		   						<input class="form-control" id="inputState" placeholder="Enter State" name="StateR">
 		 					</div>
 	 					</div>
 	 					<div class="form-group">
   							<label for="gender">Gender:</label>
-  							<select class="form-control" id="inputGender" name="Gender">
+  							<select class="form-control" id="inputGender" name="GenderR">
     							<option>M</option>
     							<option>F</option>
     						</select>
@@ -181,11 +181,11 @@
 						<div class="form-group row">
 							<div class="col-sm-2">
 		    					<label for="prefix1" id="labelPrefix">Prefix</label>
-		   						<input class="form-control" id="inputPrefix1" placeholder="Enter Prefix" name="Prefix">
+		   						<input class="form-control" id="inputPrefix1" placeholder="Enter Prefix" name="PrefixR">
 	   						</div>
 		   					<div class="col-sm-4">	
 		   						<label for="number" id="labelNumber">Number</label>
-		   						<input class="form-control" id="inputNumber" placeholder="Enter Number" name="Number">
+		   						<input class="form-control" id="inputNumber" placeholder="Enter Number" name="NumberR">
 		 					</div>
 	 				</div>	
 
