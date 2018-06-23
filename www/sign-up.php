@@ -51,7 +51,7 @@ if (((empty($campi1["fname"])) || (empty($campi1["lname"]))) || ((empty($campi1[
 else {
 		session_start();
 		// trasformo la mia array in JSON
-		$dati1 = json_encode($campi1);
+		$dati = json_encode($campi);
 
 		// inizializzo curl
 		$ch = curl_init();
@@ -62,31 +62,31 @@ else {
 		// preparo l'invio dei dati col metodo POST
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_POST, true);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $dati1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $dati);
 
 		// imposto gli header correttamente
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 		  'Content-Type: application/json',
-		  'Content-Length: ' . strlen($dati1))
+		  'Content-Length: ' . strlen($dati))
 		);
 
 		// eseguo la chiamata
 		$response = json_decode(curl_exec($ch), true);
-		
+		dump_var($response);
 		// chiudo
 		curl_close($ch);
 		
-		$_SESSION['roles1'] = $campi1['roles1'];
-		$_SESSION['fname'] = $campi1['fname'];
-		$_SESSION['lname'] = $campi1['lname'];
-		$_SESSION['uname'] = $campi1['uname'];
-		$_SESSION['pword'] = $campi1['pword'];
-		$_SESSION['address'] = $campi1['address'];
-		$_SESSION['city'] = $campi1['city'];
-		$_SESSION['state'] = $campi1['state'];
-		$_SESSION['gender'] = $campi1['gender'];
-		$_SESSION['prefix'] = $campi1['prefix'];
-		$_SESSION['number'] = $campi1['number'];
+		$_SESSION['roles1'] = $campi['roles1'];
+		$_SESSION['fname'] = $campi['fname'];
+		$_SESSION['lname'] = $campi['lname'];
+		$_SESSION['uname'] = $campi['uname'];
+		$_SESSION['pword'] = $campi['pword'];
+		$_SESSION['address'] = $campi['address'];
+		$_SESSION['city'] = $campi['city'];
+		$_SESSION['state'] = $campi['state'];
+		$_SESSION['gender'] = $campi['gender'];
+		$_SESSION['prefix'] = $campi['prefix'];
+		$_SESSION['number'] = $campi['number'];
 	
 	//	header("location: new_user.php");
 }
