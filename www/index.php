@@ -137,8 +137,8 @@
 						<div class="form-group">
 	  						<label for="role">Select Role:</label>
 	  							<select class="form-control" id="inputRole" name="RolesR">
-	    							<option>Customer</option>
-	    							<option>Seller</option>
+	    							<option value="0">Customer</option>
+	    							<option value="1">Seller</option>
 	    						</select>
 						</div> 
 						<div class="form-group">

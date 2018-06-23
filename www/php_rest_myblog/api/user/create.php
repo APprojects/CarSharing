@@ -11,38 +11,35 @@
 	//Instantiate DB & connect
 	$database = new Database();
 	$db = $database->connect();
-	
+
 	//Instantiate user objects
 	$user = new User($db);
 
-	// get raw user data
-	$dati = json_decode(file_get_contents("php://input"), true);
-	  
+	// Get value, user name and password 
+	$json_input = json_decode(file_get_contents('php://input'), true);
 	
-	$user->firstName = $dati['fname'];
-	$user->lastName = $dati['lname'];
-	$user->userName = $dati['uname'];
-	$user->password = $dati['pword'];
-	$user->address = $dati['address'];
-	$user->city = $dati['city'];
-	$user->state = $dati['state'];
-	$user->gender = $dati['gender'];
-	$user->prefix = $dati['prefix'];
-	$user->phoneNumber = $dati['number'];
-	$user->value = $dati['roles1'];
+	//Set user variable
+	$user->firstName 	= $json_input['fname'];
+	$user->lastName 	= $json_input['lname'];
+	$user->userName 	= $json_input['uname'];
+	$user->password 	= $json_input['pword'];
+	$user->address 		= $json_input['address'];
+	$user->city 		= $json_input['city'];
+	$user->state 		= $json_input['state'];
+	$user->gender 		= $json_input['gender'];
+	$user->prefix 		= $json_input['prefix'];
+	$user->phoneNumber 	= $json_input['number'];
+	$user->value 		= $json_input['roles'];
 	
-
 	// create user
 	if($user->create()) {
-		print_r json_encode(
-			array('message' => 'user Created')
-		);
+		$message = array('message' => 'user Created');
 	}	
 	else {
-			print_r json_encode(
-				array('message' => 'user not Created')
-			);
+		$message =  array('message' => 'user not Created');
 	}
+
+	print_r(json_encode($message));
 
 ?>
 

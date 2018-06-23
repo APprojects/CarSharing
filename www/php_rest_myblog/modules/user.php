@@ -22,12 +22,10 @@
 		// Constructor with DB
 		public function __construct($db){
 			$this->conn = $db;
-			
 		}
 
 		// Get Users
 		public function read() {
-			
 			// Create query
 			$query = 'SELECT * FROM ' . $this->table;
 			
@@ -38,12 +36,10 @@
 			$stmt->execute();
 			//echo "dopo";
 			return $stmt;
-
 		}
 
 		// get single user
 		public function read_single() {
-			
 			// Create query
 			$query = 'SELECT * FROM ' . $this->table . ' WHERE value = ? AND userName = ? AND  password = ?';
 			
@@ -73,13 +69,11 @@
 			$this->prefix = $row['prefix'];
 			$this->phoneNumber = $row['phoneNumber'];
 			$this->value = $row['value'];
-
 		}
 
 		// Create a user
 
 		public function create() {
-
 			//create query
 			$query = 'INSERT INTO ' . $this->table . '
 				SET
@@ -137,7 +131,6 @@
 		// Update a user
 
 		public function update() {
-
 			//create query
 			$query = 'UPDATE ' . $this->table . '
 				SET
@@ -217,8 +210,6 @@
 
 			printf("Error: %s. \n", $stmt->error);
 			return false;
-		
-
 		}
 
 	}

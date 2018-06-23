@@ -22,8 +22,10 @@
 
 		// inizializzo curl
 		$ch = curl_init();
+		
 		// imposto la URl del web-service remoto
 		curl_setopt($ch, CURLOPT_URL, 'localhost/php_rest_myblog/api/user/read_single.php');
+		
 		// preparo l'invio dei dati col metodo POST
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);	
 		curl_setopt($ch, CURLOPT_POST, true);
@@ -58,7 +60,7 @@
 		else {
 			header("location: index.php?error_login=".urlencode('user not registered'));
 
-		}	
+		}
 	}
 
 			
