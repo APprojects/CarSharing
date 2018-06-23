@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	echo "Welcome " . $_SESSION['user'] . "!";
+	echo "Welcome " . $_SESSION['firstName'] . " " . $_SESSION['lastName'] . "!";
 	
 ?>		
 

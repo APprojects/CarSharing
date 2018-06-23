@@ -61,9 +61,9 @@
 				$_SESSION['firstName'] = $response['firstName'];
 				$_SESSION['lastName'] = $response['lastName'];
 
-				//if($_SESSION['roles']== 1)
+				if($_SESSION['roles']== 1)
 					header("location: welcomeSeller.php");
-				//else if($_SESSION['roles'] == 0)
+				else if($_SESSION['roles'] == 0)
 					header("location: welcomeCustomer.php");
 			}
 			
