@@ -36,7 +36,7 @@
 			);
 
 			// Push to "data"
-			array_push($cars_arr['data'], $car_item);
+			array_push($cars_arr['cars'], $car_item);
 		}
 
 		// turn to JSON & output
