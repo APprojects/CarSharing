@@ -20,12 +20,13 @@ CREATE TABLE IF NOT EXISTS Car (
 	model varchar(50),
 	maxSpeed integer,
 	numberOfPassengers integer,
-	seller integer FOREIGN KEY User(id)
+	seller integer REFERENCES User(id)
 );
 
 CREATE TABLE IF NOT EXISTS Basement (
 	name  varchar(50) PRIMARY KEY,
-	address varchar(50)
+	address varchar(50),
+	seller integer REFERENCES User(id)
 );
 
 CREATE TABLE IF NOT EXISTS BasementsCars (
@@ -48,18 +49,19 @@ CREATE TABLE IF NOT EXISTS History (
 );
 
 INSERT INTO User VALUES (1,'Luisa','Piersanti','admin','admin','via delle rose', 'parma','italy','F','+39','333333333','0');
-INSERT INTO Car VALUES ('Smart EQ fortwo',130,2);
-INSERT INTO Car VALUES ('Nissan LEAF',144,5);
-INSERT INTO Car VALUES ('Renault Zoe',135,5);
-INSERT INTO Car VALUES ('Renault Twizy',45,2);
-INSERT INTO Car VALUES ('Toyota Yaris',155,5);
-INSERT INTO Car VALUES ('Toyota c-hr',170,5);
-INSERT INTO Car VALUES ('Kia Niro',162,5);
-INSERT INTO Basement VALUES ('O Connell Street', 'Parnell Street');
-INSERT INTO Basement VALUES ('Temple Bar', 'Parliament Street');
-INSERT INTO Basement VALUES ('Clontarf', 'Castle Avenue');
-INSERT INTO Basement VALUES ('Ballsbridge', 'Ballsbridge Avenue');
-INSERT INTO Basement VALUES ('Rathmines', 'Cambridge Road');
-INSERT INTO Basement VALUES ('St. Patricks Cathedral', 'Patrick Street');
-INSERT INTO Basement VALUES ('Docklands', 'Dame Street');
+INSERT INTO User VALUES (2,'Matteo','Piersanti','matteo','matteo','via delle rose', 'parma','italy','F','+39','333333333','1');
+INSERT INTO Car VALUES (123,'Smart EQ fortwo',130,2,2);
+-- INSERT INTO Car VALUES ('Nissan LEAF',144,5);
+-- INSERT INTO Car VALUES ('Renault Zoe',135,5);
+-- INSERT INTO Car VALUES ('Renault Twizy',45,2);
+-- INSERT INTO Car VALUES ('Toyota Yaris',155,5);
+-- INSERT INTO Car VALUES ('Toyota c-hr',170,5);
+-- INSERT INTO Car VALUES ('Kia Niro',162,5);
+INSERT INTO Basement VALUES ('O Connell Street', 'Parnell Street',2);
+INSERT INTO Basement VALUES ('Temple Bar', 'Parliament Street',2);
+INSERT INTO Basement VALUES ('Clontarf', 'Castle Avenue',2);
+INSERT INTO Basement VALUES ('Ballsbridge', 'Ballsbridge Avenue',2);
+INSERT INTO Basement VALUES ('Rathmines', 'Cambridge Road',2);
+INSERT INTO Basement VALUES ('St. Patricks Cathedral', 'Patrick Street',2);
+INSERT INTO Basement VALUES ('Docklands', 'Dame Street',2);
 
