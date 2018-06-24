@@ -29,19 +29,14 @@ CREATE TABLE IF NOT EXISTS Basement (
 	seller integer REFERENCES User(id)
 );
 
-CREATE TABLE IF NOT EXISTS BasementsCars (
-	idCar integer REFERENCES Car(id),
-	basement varchar(50) REFERENCES Basement(name),
-	PRIMARY KEY(idCar,basement)
-);
-
 CREATE TABLE IF NOT EXISTS History (
 	idHistory integer PRIMARY KEY,
-	idCar integer,
-	basement varchar(50),
-	user integer REFERENCES User(id),
+	idCar integer REFERENCES Car(id),
+	customer integer REFERENCES User(id),
+	basementStart varchar(50) REFERENCES Basement(name),
 	PickUpDay date,
 	PickUpHour time,
+	basementEnd varchar(50) REFERENCES Basement(name),
 	DeliveryDay date,
 	DeliveryHour time,
 	FOREIGN KEY (idCar, basement) REFERENCES BasementsCars(idCar, basement)
