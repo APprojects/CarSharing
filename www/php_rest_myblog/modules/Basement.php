@@ -95,6 +95,7 @@
 			// prepare statement
 					$stmt = $this->conn->prepare($query);
 
+					
 			// clean data
 			$id = htmlspecialchars(strip_tags($id));
 			$name = htmlspecialchars(strip_tags($name));
