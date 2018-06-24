@@ -73,30 +73,24 @@
 			$stmt = $this->conn->prepare($query);
 
 			// clean data
-			$firstName       = htmlspecialchars(strip_tags($firstName));	
-			$lastName        = htmlspecialchars(strip_tags($lastName));	
-			$username        = htmlspecialchars(strip_tags($username));
-			$password        = htmlspecialchars(strip_tags($password));	
-			$address         = htmlspecialchars(strip_tags($address));	
-			$city            = htmlspecialchars(strip_tags($city));		
-			$state           = htmlspecialchars(strip_tags($state));	
-			$gender          = htmlspecialchars(strip_tags($gender));	
-			$prefix          = htmlspecialchars(strip_tags($prefix));	
-			$phoneNumber     = htmlspecialchars(strip_tags($phoneNumber));	
-			$role            = htmlspecialchars(strip_tags($role));
+			$idCar           = htmlspecialchars(strip_tags($idCar));	
+			$customer        = htmlspecialchars(strip_tags($customer));	
+			$basementStart   = htmlspecialchars(strip_tags($basementStart));
+			$PickUpDay       = htmlspecialchars(strip_tags($PickUpDay));	
+			$PickUpHour      = htmlspecialchars(strip_tags($PickUpHour));	
+			$basementEnd     = htmlspecialchars(strip_tags($basementEnd));		
+			$DeliveryDay     = htmlspecialchars(strip_tags($DeliveryDay));	
+			$DeliveryHour    = htmlspecialchars(strip_tags($DeliveryHour));
 
 			// bind data
-			$stmt->bindParam(':firstName', 		$firstName);
-			$stmt->bindParam(':lastName', 		$lastName);
-			$stmt->bindParam(':username', 		$username);
-			$stmt->bindParam(':password', 		$password);
-			$stmt->bindParam(':address', 		$address);
-			$stmt->bindParam(':city', 			$city);
-			$stmt->bindParam(':state', 			$state);
-			$stmt->bindParam(':gender', 		$gender);
-			$stmt->bindParam(':prefix', 		$prefix);
-			$stmt->bindParam(':phoneNumber',	$phoneNumber);
-			$stmt->bindParam(':role', 			$role);
+			$stmt->bindParam(':idCar', 		    $idCar);
+			$stmt->bindParam(':customer', 		$customer);
+			$stmt->bindParam(':basementStart', 	$basementStart);
+			$stmt->bindParam(':PickUpDay', 		$PickUpDay);
+			$stmt->bindParam(':PickUpHour', 	$PickUpHour);
+			$stmt->bindParam(':basementEnd', 	$basementEnd);
+			$stmt->bindParam(':DeliveryDay', 	$DeliveryDay);
+			$stmt->bindParam(':DeliveryHour', 	$DeliveryHour);
 
 			// execute query
 			if($stmt->execute()) {

@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS Basement (
 );
 
 CREATE TABLE IF NOT EXISTS History (
-	idHistory integer PRIMARY KEY,
+	idHistory integer PRIMARY KEY  AUTO_INCREMENT,
 	idCar integer REFERENCES Car(id),
 	customer integer REFERENCES User(id),
 	basementStart varchar(50) REFERENCES Basement(name),
@@ -39,18 +39,19 @@ CREATE TABLE IF NOT EXISTS History (
 	PickUpHour time,
 	basementEnd varchar(50) REFERENCES Basement(name),
 	DeliveryDay date,
-	DeliveryHour time
+	DeliveryHour time,
+	CONSTRAINT UC_Person UNIQUE (idCar, PickUpDay, PickUpHour)
 );
 
 INSERT INTO User VALUES (1,'Luisa','Piersanti','admin','admin','via delle rose', 'parma','italy','F','+39','333333333','0');
 INSERT INTO User VALUES (2,'Matteo','Azzarelli','matteo','matteo','via degli ulivi', 'pisa','italy','M','+39','333333333','1');
 INSERT INTO Car VALUES (123,'Smart EQ fortwo',130,2,2);
--- INSERT INTO Car VALUES ('Nissan LEAF',144,5);
--- INSERT INTO Car VALUES ('Renault Zoe',135,5);
--- INSERT INTO Car VALUES ('Renault Twizy',45,2);
--- INSERT INTO Car VALUES ('Toyota Yaris',155,5);
--- INSERT INTO Car VALUES ('Toyota c-hr',170,5);
--- INSERT INTO Car VALUES ('Kia Niro',162,5);
+# INSERT INTO Car VALUES ('Nissan LEAF',144,5);
+# INSERT INTO Car VALUES ('Renault Zoe',135,5);
+# INSERT INTO Car VALUES ('Renault Twizy',45,2);
+# INSERT INTO Car VALUES ('Toyota Yaris',155,5);
+# INSERT INTO Car VALUES ('Toyota c-hr',170,5);
+# INSERT INTO Car VALUES ('Kia Niro',162,5);
 INSERT INTO Basement VALUES ('O Connell Street', 'Parnell Street',2);
 INSERT INTO Basement VALUES ('Temple Bar', 'Parliament Street',2);
 INSERT INTO Basement VALUES ('Clontarf', 'Castle Avenue',2);
