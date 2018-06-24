@@ -20,7 +20,9 @@
 
 	
 	// set ID  to update
-	$user->id = $json_input->id;
+	$user->id = $json_input['id'];
+	$user->userName = $json_input['userName'];
+	$user->password = $json_input['password'];
 
 	// Delete user
 	if($user->delete()) {

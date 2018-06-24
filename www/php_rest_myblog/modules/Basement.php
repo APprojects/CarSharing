@@ -8,6 +8,7 @@
 		//basement properties
 		public $name;
 		public $address;
+		public $seller;
 
 		// Constructor with DB
 		public function __construct($db){
@@ -47,6 +48,7 @@
 			// Set properties
 			$this->name = $row['id'];
 			$this->address = $row['address'];
+			$this->seller = $row['seller'];
 		}
 
 		// Create a basement
@@ -56,18 +58,22 @@
 			$query = 'INSERT INTO ' . $this->table . '
 				SET
 					name = :name,
-					address = :address';
+					address = :address
+					seller = :seller';
+					
 
 			// prepare statement
 			$stmt = $this->conn->prepare($query);
 
 			// clean data
 			$this->name = htmlspecialchars(strip_tags($this->name));	
-			$this->address = htmlspecialchars(strip_tags($this->address));	
+			$this->address = htmlspecialchars(strip_tags($this->address));
+			$this->seller = htmlspecialchars(strip_tags($this->seller));
 
 			// bind data
 			$stmt->bindParam(':name', $this->name);
 			$stmt->bindParam(':address', $this->address);
+			$stmt->bindParam(':seller', $this->seller);
 
 			// execute query
 			if($stmt->execute()) {
@@ -86,6 +92,7 @@
 				SET
 					name = :name,
 					address = :address
+					seller = :seller
 				WHERE
 					name = :oldName'	;
 
@@ -95,10 +102,13 @@
 			// clean data
 			$this->name = htmlspecialchars(strip_tags($this->name));
 			$this->address = htmlspecialchars(strip_tags($this->address));
+			$this->seller = htmlspecialchars(strip_tags($this->seller));
+			$oldName = htmlspecialchars(strip_tags($oldName));
 
 			// bind data
 			$stmt->bindParam(':name', $this->name);
 			$stmt->bindParam(':address', $this->address);
+			$stmt->bindParam(':seller', $this->seller);
 			$stmt->bindPatam(':oldName', $oldName);
 
 			// execute query

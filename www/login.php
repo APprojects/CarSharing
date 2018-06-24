@@ -1,10 +1,6 @@
 <?php
 	$campi = array(
-<<<<<<< HEAD
-	  'roles' => ($_POST['Roles']),
-=======
 	  'role' => ($_POST['Roles']),
->>>>>>> 45101cc9642efda8de61036d568f5f8978f056ab
 	  'userName' => ($_POST['User']),
 	  'password' => ($_POST['Password'])
 	);
