@@ -11,14 +11,14 @@
 	$db = $database->connect();
 
 	//Instantiate user objects
-	$user = new Car($db);
+	$car = new Car($db);
 
 	// Get id car  
 	$json_input = json_decode(file_get_contents('php://input'), true);
 
 
 	// get car 
-	$car_arr = $user->read_single($json_input['id']);
+	$car_arr = $car->read_single($json_input['id']);
 
 	// make JSON
 	print_r(json_encode($car_arr));

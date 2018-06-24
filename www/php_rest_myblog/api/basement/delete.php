@@ -19,22 +19,7 @@
 	$json_input = json_decode(file_get_contents("php://input"));
 
 	
-	// set ID  to update
-	$basement->name = $json_input->name;
-
+	echo json_encode($basement->delete($json_input['id'], $json_input['seller']));
 	
-	
-
-	// Delete user
-	if($basement->delete()) {
-		echo json_encode(
-			array('message' => 'user deleted')
-		);
-	}	
-	else {
-			echo json_encode(
-				array('message' => 'user not deleted')
-			);
-	}
 
 ?>

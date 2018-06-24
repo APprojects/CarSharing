@@ -13,14 +13,14 @@
 	$db = $database->connect();
 	
 	//Instantiate user objects
-	$user = new Car($db);
+	$car = new Car($db);
 
 	// get raw user json_input
 	$json_input = json_decode(file_get_contents("php://input"));
 	
 
 	// update user
-	echo json_encode($user->update($json_input['id'],$json_input['model'],$json_input['maxSpeed'],$json_input['numberOfPassengers'],$json_input['seller']));
+	echo json_encode($car->update($json_input['id'],$json_input['model'],$json_input['maxSpeed'],$json_input['numberOfPassengers'],$json_input['seller']));
 	 
 
 ?>

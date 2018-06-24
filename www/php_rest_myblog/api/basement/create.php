@@ -18,21 +18,11 @@
 	// Get value, basement name and password 
 	$json_input = json_decode(file_get_contents('php://input'), true);
 	
-	//Set user variable
-	$basement->name 	= $json_input['name'];
-	$basement->address 	= $json_input['address'];
 	
-	$basement->create();
-	$basement->read_single();
-	
-	// create array
-	$user_arr = array(
-		'name' => $basement->name,
-		'address' => $basement->address
-	);
+	$basement_arr = $basement->create($json_input['name'], $json_input['address'],$json_input['seller']);
 
-	// make JSON
-	print_r(json_encode($user_arr));
+	
+	echo(json_encode($basement_arr));
 ?>
 
 		
