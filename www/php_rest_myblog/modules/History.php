@@ -25,18 +25,16 @@
 		}
 
 		// get single user
-		public function read_single($role, $username, $password) {
+		public function read_single($id) {
 			// Create query
-			$query = 'SELECT * FROM ' . $this->table . ' WHERE role = :role AND username = :username AND  password = :password';
+			$query = 'SELECT * FROM ' . $this->table . ' WHERE idHistory = :id';
 			
 			//Prepare statement
 			$stmt = $this->conn->prepare($query);
 
 			// Bind rules, username and password
-			$stmt->bindParam(':role', $role);
-			$stmt->bindParam(':username', $username);
-			$stmt->bindParam(':password', $password);
-
+			$stmt->bindParam(':id', $id);
+			
 			// execute query
 			$stmt->execute();
 
@@ -44,38 +42,32 @@
 
 			// Set properties
 			return array(
-			    'id' 			=> $row->id,
-			    'firstName' 	=> $row->firstName,
-			    'lastName' 		=> $row->lastName,
-			    'username' 		=> $row->username,
-			    'password' 		=> $row->password,
-			    'address' 		=> $row->address,
-			    'city' 			=> $row->city,
-			    'state' 		=> $row->state,
-			    'gender' 		=> $row->gender,
-			    'prefix' 		=> $row->prefix,
-			    'phoneNumber' 	=> $row->phoneNumber,
-			    'role' 		    => $row->role
-			);		
+			    'id' 			=> $row->idHistory,
+			    'idCar' 	    => $row->idCar,
+			    'customer' 		=> $row->customer,
+			    'basementStart' => $row->basementStart,
+			    'PickUpDay' 	=> $row->PickUpDay,
+			    'PickUpHour' 	=> $row->PickUpHour,
+			    'basementEnd' 	=> $row->basementEnd,
+			    'DeliveryDay' 	=> $row->DeliveryDay,
+			    'DeliveryHour' 	=> $row->DeliveryHour
+			);
 		}
 
 		// Create a user
 
-		public function create($firstName, $lastName, $username, $password, $address, $city, $state, $gender, $prefix, $phoneNumber, $role) {
+		public function create($idCar, $customer, $basementStart, $PickUpDay, $PickUpHour, $basementEnd, $DeliveryDay, $DeliveryHour) {
 			//create query
 			$query = 'INSERT INTO ' . $this->table . '
 				SET
-					firstName 		= :firstName,
-					lastName 		= :lastName,
-					username 		= :username,
-					password 		= :password,
-					address			= :address,
-					city 			= :city,
-					state 			= :state,
-					gender 			= :gender,
-					prefix 			= :prefix,
-					phoneNumber 	= :phoneNumber,
-					role 			= :role';
+					idCar 		    = :idCar,
+					customer 		= :customer,
+					basementStart 	= :basementStart,
+					PickUpDay 		= :PickUpDay,
+					PickUpHour		= :PickUpHour,
+					basementEnd 	= :basementEnd,
+					DeliveryDay 	= :DeliveryDay,
+					DeliveryHour 	= :DeliveryHour';
 
 			// prepare statement
 			$stmt = $this->conn->prepare($query);
