@@ -62,13 +62,14 @@
 				header("location: welcomeSeller.php");
 			else if($_SESSION['role'] == 0)
 				header("location: welcomeCustomer.php");
-		}
+		
 
 		else {
 			header("location: index.php?error_login=".urlencode('user not registered'));
 
 		}
 	}
+}
 
 			
 ?>
