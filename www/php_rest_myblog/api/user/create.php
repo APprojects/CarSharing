@@ -28,7 +28,7 @@
 	$user->state 		= $json_input['state'];
 	$user->gender 		= $json_input['gender'];
 	$user->prefix 		= $json_input['prefix'];
-	$user->phoneNumber 	= $json_input['number'];
+	$user->phoneNumber 	= $json_input['phoneNumber'];
 	$user->role 		= $json_input['role'];
 	
 	$user->create();

@@ -10,11 +10,11 @@
 	  'state' => ($_POST['StateR']),
 	  'gender' => ($_POST['GenderR']),
 	  'prefix' => ($_POST['PrefixR']),
-	  'number' => ($_POST['NumberR'])
+	  'phoneNumber' => ($_POST['NumberR'])
 	  
 	);
 
-	if (((empty($campi["firstName"])) || (empty($campi["lastName"]))) || ((empty($campi["userName"])) || (empty($campi["password"]))) || ((empty($campi["address"])) || (empty($campi["city"]))) || ((empty($campi["state"])) || (empty($campi["gender"]))) || ((empty($campi["prefix"])) || (empty($campi["number"])))) {	
+	if (((empty($campi["firstName"])) || (empty($campi["lastName"]))) || ((empty($campi["userName"])) || (empty($campi["password"]))) || ((empty($campi["address"])) || (empty($campi["city"]))) || ((empty($campi["state"])) || (empty($campi["gender"]))) || ((empty($campi["prefix"])) || (empty($campi["phoneNumber"])))) {	
 		
 		$string_error ="";
 		if ((empty($campi['firstName'])))		
@@ -35,8 +35,8 @@
 			$string_error .= " gender ";
 		if ((empty($campi['prefix'])))			
 			$string_error .= " prefix ";
-		if ((empty($campi['number'])))			
-			$string_error .= " number ";
+		if ((empty($campi['phoneNumber'])))			
+			$string_error .= " phoneNumber ";
 
 		$string_error .= "not entered";
 		
@@ -81,7 +81,7 @@
 		$_SESSION['state'] 		= $response['state'];
 		$_SESSION['gender'] 	= $response['gender'];
 		$_SESSION['prefix'] 	= $response['prefix'];
-		$_SESSION['number'] 	= $response['number'];
+		$_SESSION['phoneNumber'] 	= $response['phoneNumber'];
 		$_SESSION['id'] 		= $response['id'];
 		
 		header("location: new_user.php");
