@@ -16,8 +16,8 @@
 	// Get value, user name and password 
 	$json_input = json_decode(file_get_contents('php://input'), true);
 
-	$user->rules 	= $json_input['roles'];
-	$user->userName = $json_input['user'];
+	$user->role 	= $json_input['role'];
+	$user->userName = $json_input['userName'];
 	$user->password = $json_input['password'];
 
 	// get user 
@@ -36,7 +36,7 @@
 		'gender' 		=> $user->gender,
 		'prefix' 		=> $user->prefix,
 		'phoneNumber' 	=> $user->phoneNumber,
-		'rules' 		=> $user->rules
+		'role' 		=> $user->role
 	);
 
 	// make JSON

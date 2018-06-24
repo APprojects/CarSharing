@@ -17,7 +17,7 @@
 		public $gender;
 		public $prefix;
 		public $phoneNumber;
-		public $rules;
+		public $role;
 
 		// Constructor with DB
 		public function __construct($db){
@@ -41,13 +41,13 @@
 		// get single user
 		public function read_single() {
 			// Create query
-			$query = 'SELECT * FROM ' . $this->table . ' WHERE rules = ? AND userName = ? AND  password = ?';
+			$query = 'SELECT * FROM ' . $this->table . ' WHERE role = ? AND userName = ? AND  password = ?';
 			
 			//Prepare statement
 			$stmt = $this->conn->prepare($query);
 
 			// Bind rules, userName and password
-			$stmt->bindParam(1, $this->rules);
+			$stmt->bindParam(1, $this->role);
 			$stmt->bindParam(2, $this->userName);
 			$stmt->bindParam(3, $this->password);
 
@@ -68,7 +68,7 @@
 			$this->gender 		= $row['gender'];
 			$this->prefix 		= $row['prefix'];
 			$this->phoneNumber 	= $row['phoneNumber'];
-			$this->rules 		= $row['rules'];
+			$this->role 		= $row['role'];
 		}
 
 		// Create a user
@@ -87,7 +87,7 @@
 					gender 			= :gender,
 					prefix 			= :prefix,
 					phoneNumber 	= :phoneNumber,
-					rules 			= :rules';
+					role 			= :role';
 
 			// prepare statement
 			$stmt = $this->conn->prepare($query);
@@ -103,7 +103,7 @@
 			$this->gender 		= htmlspecialchars(strip_tags($this->gender));	
 			$this->prefix 		= htmlspecialchars(strip_tags($this->prefix));	
 			$this->phoneNumber 	= htmlspecialchars(strip_tags($this->phoneNumber));	
-			$this->rules 		= htmlspecialchars(strip_tags($this->rules));
+			$this->role 		= htmlspecialchars(strip_tags($this->role));
 
 			// bind data
 			$stmt->bindParam(':firstName', 		$this->firstName);
@@ -116,7 +116,7 @@
 			$stmt->bindParam(':gender', 		$this->gender);
 			$stmt->bindParam(':prefix', 		$this->prefix);
 			$stmt->bindParam(':phoneNumber',	$this->phoneNumber);
-			$stmt->bindParam(':rules', 			$this->rules);
+			$stmt->bindParam(':role', 			$this->role);
 
 			// execute query
 			if($stmt->execute()) {
@@ -143,7 +143,7 @@
 					gender 			= :gender,
 					prefix 			= :prefix,
 					phoneNumber 	= :phoneNumber,
-					rules 			= :rules
+					role 			= :role
 				WHERE
 					id = :id'	;
 
@@ -161,7 +161,7 @@
 			$this->gender 		= htmlspecialchars(strip_tags($this->gender));	
 			$this->prefix 		= htmlspecialchars(strip_tags($this->prefix));	
 			$this->phoneNumber 	= htmlspecialchars(strip_tags($this->phoneNumber));	
-			$this->rules 		= htmlspecialchars(strip_tags($this->rules));
+			$this->role 		= htmlspecialchars(strip_tags($this->role));
 
 			// bind data
 			$stmt->bindParam(':id', 			$this->id);
@@ -174,7 +174,7 @@
 			$stmt->bindParam(':gender', 		$this->gender);
 			$stmt->bindParam(':prefix', 		$this->prefix);
 			$stmt->bindParam(':phoneNumber', 	$this->phoneNumber);
-			$stmt->bindParam(':rules', 			$this->rules);
+			$stmt->bindParam(':role', 			$this->role);
 
 			// execute query
 			if($stmt->execute()) {
