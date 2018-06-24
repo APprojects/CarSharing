@@ -28,8 +28,10 @@
 			extract($row);
 
 			$basement_item = array(
-				'name' => $name,
-				'address' => $address
+				'id' => $id,
+			    'name' => $name,
+				'address' => $address,
+			    'seller' => $seller
 			);
 
 			// Push to "basements"
@@ -43,7 +45,7 @@
 	else {
 		 //no users
 		echo json_encode(
-			array('message' => 'no users found')
+			array('message' => 'no basement found')
 		);
 	}
 
