@@ -1,6 +1,10 @@
 <?php
 	$campi = array(
+<<<<<<< HEAD
 	  'roles' => ($_POST['Roles']),
+=======
+	  'role' => ($_POST['Roles']),
+>>>>>>> 45101cc9642efda8de61036d568f5f8978f056ab
 	  'userName' => ($_POST['User']),
 	  'password' => ($_POST['Password'])
 	);
@@ -56,19 +60,20 @@
 			$_SESSION['gender'] 		= $response['gender'];
 			$_SESSION['prefix'] 		= $response['prefix'];
 			$_SESSION['phoneNumber'] 	= $response['phoneNumber'];
-			$_SESSION['roles'] 			= $response['roles'];
+			$_SESSION['role'] 			= $response['role'];
 
-			if($_SESSION['roles']== 1)
+			if($_SESSION['role']== 1)
 				header("location: welcomeSeller.php");
-			else if($_SESSION['roles'] == 0)
+			else if($_SESSION['role'] == 0)
 				header("location: welcomeCustomer.php");
-		}
+		
 
 		else {
 			header("location: index.php?error_login=".urlencode('user not registered'));
 
 		}
 	}
+}
 
 			
 ?>

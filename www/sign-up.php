@@ -45,10 +45,10 @@
 			$string_error .= " state ";
 		if ((empty($campi['gender'])))			
 			$string_error .= " gender ";
-		if ((empty($camp1i['prefix'])))			
+		if ((empty($campi['prefix'])))			
 			$string_error .= " prefix ";
-		if ((empty($campi['number'])))			
-			$string_error .= " number ";
+		if ((empty($campi['phoneNumber'])))			
+			$string_error .= " phoneNumber ";
 
 		$string_error .= "not entered";
 		
