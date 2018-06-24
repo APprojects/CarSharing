@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS History (
 );
 
 INSERT INTO User VALUES (1,'Luisa','Piersanti','admin','admin','via delle rose', 'parma','italy','F','+39','333333333','0');
-INSERT INTO User VALUES (2,'Matteo','Piersanti','matteo','matteo','via delle rose', 'parma','italy','F','+39','333333333','1');
+INSERT INTO User VALUES (2,'Matteo','Azzarelli','matteo','matteo','via degli ulivi', 'pisa','italy','M','+39','333333333','1');
 INSERT INTO Car VALUES (123,'Smart EQ fortwo',130,2,2);
 -- INSERT INTO Car VALUES ('Nissan LEAF',144,5);
 -- INSERT INTO Car VALUES ('Renault Zoe',135,5);
