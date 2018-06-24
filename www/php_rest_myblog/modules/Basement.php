@@ -25,16 +25,16 @@
 		}
 
 		// get single basement
-		public function read_single($name) {
+		public function read_single($name, $seller) {
 			// Create query
-			$query = 'SELECT * FROM ' . $this->table . ' WHERE name = :name';
+			$query = 'SELECT * FROM ' . $this->table . ' WHERE name = :name and seller = :seller';
 			
 			//Prepare statement
 			$stmt = $this->conn->prepare($query);
 
 			// Bind the name of basement
 			$stmt->bindParam(':name', $name);
-			
+			$stmt->bindParam(':seller', $seller);
 			// execute query
 			$stmt->execute();
 
