@@ -23,6 +23,7 @@
 	    $json_input['address'], $json_input['city'], $json_input['state'], $json_input['gender'], $json_input['prefix'],
 	    $json_input['phoneNumber'], $json_input['role']);
 
+	
 	// make JSON
 	echo json_encode($user_arr);
 ?>
