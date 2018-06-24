@@ -16,9 +16,11 @@ CREATE TABLE IF NOT EXISTS User (
 
 
 CREATE TABLE IF NOT EXISTS Car (
-	model varchar(50) PRIMARY KEY,
+	id integer PRIMARY KEY,
+	model varchar(50),
 	maxSpeed integer,
-	numberOfPassengers integer
+	numberOfPassengers integer,
+	seller integer FOREIGN KEY User(id)
 );
 
 CREATE TABLE IF NOT EXISTS Basement (
@@ -27,22 +29,24 @@ CREATE TABLE IF NOT EXISTS Basement (
 );
 
 CREATE TABLE IF NOT EXISTS BasementsCars (
+	id integer REFERENCES Car(id),
 	model varchar(50) REFERENCES Car(model),
 	basement varchar(50) REFERENCES Basement(name),
 	no integer,
-	PRIMARY KEY(model,basement)
+	PRIMARY KEY(id,basement)
 );
 
 CREATE TABLE IF NOT EXISTS History (
-	id integer PRIMARY KEY,
-	model varchar(50),
+	idHistory integer PRIMARY KEY,
+	idCar integer,
+	model varchar(50) REFERENCES BasementsCars(model),
 	basement varchar(50),
 	user integer REFERENCES User(id),
 	PickUpDay date,
 	PickUpHour time,
 	DeliveryDay date,
 	DeliveryHour time,
-	FOREIGN KEY (model, basement) REFERENCES BasementsCars(model, basement)
+	FOREIGN KEY (idCar, basement) REFERENCES BasementsCars(id, basement)
 );
 
 INSERT INTO User VALUES (1,'Luisa','Piersanti','admin','admin','via delle rose', 'parma','italy','F','+39','333333333','0');
