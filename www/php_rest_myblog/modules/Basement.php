@@ -41,6 +41,7 @@
 			$row = $stmt->fetch(PDO::FETCH_ASSOC);
             
 			return array(
+			    'id' => $row->id,
 			    'name' => $row->name,
 			    'address' => $row->address,
 			    'seller' => $row->seller
@@ -74,37 +75,35 @@
 
 			// execute query
 			if($stmt->execute()) {
-			    return array(
-			        'name' => $row->name,
-			        'address' => $row->address,
-			        'seller' => $row->seller
-			    );
+			    return $this->read_single($name,$seller);
+			    
 			}
 
 			return array('message', "creation failed");
 		}
 
 		// Update a basement
-		public function update($name, $seller) {
+		public function update($id, $name, $address, $seller) {
 			//create query
 			$query = 'UPDATE ' . $this->table . '
 				SET
 					name = :name,
 					address = :address
-					seller = :seller
 				WHERE
-					name = :name AND seller = :seller'	;
+					id = :id AND seller = :seller'	;
 
 			// prepare statement
 					$stmt = $this->conn->prepare($query);
 
 			// clean data
+			$id = htmlspecialchars(strip_tags($id));
 			$name = htmlspecialchars(strip_tags($name));
 			$address = htmlspecialchars(strip_tags($address));
 			$seller = htmlspecialchars(strip_tags($seller));
 			
 
 			// bind data
+			$stmt->bindParam(':id', $id);
 			$stmt->bindParam(':name', $name);
 			$stmt->bindParam(':address', $address);
 			$stmt->bindParam(':seller', $seller);
@@ -113,6 +112,7 @@
 			// execute query
 			if($stmt->execute()) {
 			    return array(
+			        'id' => $row->id,
 			        'name' => $row->name,
 			        'address' => $row->address,
 			        'seller' => $row->seller
@@ -125,19 +125,19 @@
 		}
 
 		// Delete a basement
-		public function delete($name, $seller) {
+		public function delete($id, $seller) {
 			//create query 
-			$query = 'DELETE FROM ' . $this->table . ' WHERE name = :name AND seller = :seller';
+			$query = 'DELETE FROM ' . $this->table . ' WHERE id = :id AND seller = :seller';
 
 			// prepare statement
 			$stmt = $this->conn->prepare($query);
 
 			// clean data
-			$name = htmlspecialchars(strip_tags($name));
+			$id = htmlspecialchars(strip_tags($id));
 			$seller = htmlspecialchars(strip_tags($seller));
 			
 			// bind data
-			$stmt->bindParam(':name', $name);
+			$stmt->bindParam(':id', $id);
 			$stmt->bindParam(':seller', $seller);
 			
 			// execute query
