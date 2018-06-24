@@ -45,10 +45,10 @@
 			    'id' 			=> $row->idHistory,
 			    'idCar' 	    => $row->idCar,
 			    'customer' 		=> $row->customer,
-			    'basementStart' => $row->basementStart,
+			    'idBasementStart' => $row->idBasementStart,
 			    'PickUpDay' 	=> $row->PickUpDay,
 			    'PickUpHour' 	=> $row->PickUpHour,
-			    'basementEnd' 	=> $row->basementEnd,
+			    'idBasementEnd' 	=> $row->idBasementEnd,
 			    'DeliveryDay' 	=> $row->DeliveryDay,
 			    'DeliveryHour' 	=> $row->DeliveryHour
 			);
@@ -56,7 +56,7 @@
 
 		// Create a user
 
-		public function create($idCar, $customer, $basementStart, $PickUpDay, $PickUpHour, $basementEnd, $DeliveryDay, $DeliveryHour) {
+		public function create($idCar, $customer, $idBasementStart, $PickUpDay, $PickUpHour, $idBasementEnd, $DeliveryDay, $DeliveryHour) {
 			//create query
 			$query = 'INSERT INTO ' . $this->table . '
 				SET
@@ -65,7 +65,7 @@
 					basementStart 	= :basementStart,
 					PickUpDay 		= :PickUpDay,
 					PickUpHour		= :PickUpHour,
-					basementEnd 	= :basementEnd,
+					idBasementEnd 	= :idBasementEnd,
 					DeliveryDay 	= :DeliveryDay,
 					DeliveryHour 	= :DeliveryHour';
 
@@ -75,20 +75,20 @@
 			// clean data
 			$idCar           = htmlspecialchars(strip_tags($idCar));	
 			$customer        = htmlspecialchars(strip_tags($customer));	
-			$basementStart   = htmlspecialchars(strip_tags($basementStart));
+			$idBasementStart   = htmlspecialchars(strip_tags($idBasementStart));
 			$PickUpDay       = htmlspecialchars(strip_tags($PickUpDay));	
 			$PickUpHour      = htmlspecialchars(strip_tags($PickUpHour));	
-			$basementEnd     = htmlspecialchars(strip_tags($basementEnd));		
+			$idBasementEnd     = htmlspecialchars(strip_tags($idBasementEnd));		
 			$DeliveryDay     = htmlspecialchars(strip_tags($DeliveryDay));	
 			$DeliveryHour    = htmlspecialchars(strip_tags($DeliveryHour));
 
 			// bind data
 			$stmt->bindParam(':idCar', 		    $idCar);
 			$stmt->bindParam(':customer', 		$customer);
-			$stmt->bindParam(':basementStart', 	$basementStart);
+			$stmt->bindParam(':idBasementStart', 	$idBasementStart);
 			$stmt->bindParam(':PickUpDay', 		$PickUpDay);
 			$stmt->bindParam(':PickUpHour', 	$PickUpHour);
-			$stmt->bindParam(':basementEnd', 	$basementEnd);
+			$stmt->bindParam(':idBasementEnd', 	$idBasementEnd);
 			$stmt->bindParam(':DeliveryDay', 	$DeliveryDay);
 			$stmt->bindParam(':DeliveryHour', 	$DeliveryHour);
 
