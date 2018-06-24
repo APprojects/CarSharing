@@ -18,25 +18,8 @@
 	// get raw basement json_input
 	$json_input = json_decode(file_get_contents("php://input"));
 
+    echo json_encode($basement->update($json_input['id'], $json_input['name'], $json_input['address'],$json_input['seller']));
+			
 	
-	// set oldName  to update
-	$oldName = $json_input->oldName;
-
-	//new values
-	$basement->name = $json_input->name;
-	$basement->address = $json_input->address;
-	
-
-	// update user
-	if($basement->update($oldName)) {
-		echo json_encode(
-			array('message' => 'basement updated')
-		);
-	}	
-	else {
-			echo json_encode(
-				array('message' => 'basement not updated')
-			);
-	}
 
 ?>
