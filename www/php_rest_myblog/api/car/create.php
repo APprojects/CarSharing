@@ -13,12 +13,12 @@
 	$db = $database->connect();
 
 	//Instantiate car object
-	$car = new Car($db);
+	$user = new Car($db);
 
 	// Get value, user name and password 
 	$json_input = json_decode(file_get_contents('php://input'), true);
 
-	$car_arr = $car->create($json_input['id'],$json_input['model'],$json_input['maxSpeed'],$json_input['numberOfPassengers'],$json_input['seller']);
+	$car_arr = $user->create($json_input['id'],$json_input['model'],$json_input['maxSpeed'],$json_input['numberOfPassengers'],$json_input['seller']);
 
 	// make JSON
 	echo(json_encode($car_arr));

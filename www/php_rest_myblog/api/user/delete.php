@@ -13,19 +13,19 @@
 	$db = $database->connect();
 	
 	//Instantiate user objects
-	$car = new User($db);
+	$user = new User($db);
 
 	// get raw user json_input
 	$json_input = json_decode(file_get_contents("php://input"));
 
 	
 	// set ID  to update
-	$car->id = $json_input['id'];
-	$car->username = $json_input['username'];
-	$car->password = $json_input['password'];
+	$user->id = $json_input['id'];
+	$user->username = $json_input['username'];
+	$user->password = $json_input['password'];
 
 	// Delete user
-	if($car->delete()) {
+	if($user->delete()) {
 		echo json_encode(
 			array('message' => 'user deleted')
 		);
