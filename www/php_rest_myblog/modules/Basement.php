@@ -80,7 +80,6 @@
 		}
 
 		// Update a basement
-
 		public function update(String $oldName) {
 			//create query
 			$query = 'UPDATE ' . $this->table . '
