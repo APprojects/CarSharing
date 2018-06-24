@@ -5,11 +5,6 @@
 		private $conn;
 		private $table = 'Basement';
 
-		//basement properties
-		public $name;
-		public $address;
-		public $seller;
-
 		// Constructor with DB
 		public function __construct($db){
 			$this->conn = $db;
@@ -30,30 +25,32 @@
 		}
 
 		// get single basement
-		public function read_single() {
+		public function read_single($name) {
 			// Create query
-			$query = 'SELECT * FROM ' . $this->table . ' WHERE name = ?';
+			$query = 'SELECT * FROM ' . $this->table . ' WHERE name = :name';
 			
 			//Prepare statement
 			$stmt = $this->conn->prepare($query);
 
 			// Bind the name of basement
-			$stmt->bindParam(1, $this->name);
+			$stmt->bindParam(':name', $name);
 			
 			// execute query
 			$stmt->execute();
 
 			$row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-			// Set properties
-			$this->name = $row['id'];
-			$this->address = $row['address'];
-			$this->seller = $row['seller'];
+            
+			return array(
+			    'name' => $row->name,
+			    'address' => $row->address,
+			    'seller' => $row->seller
+			);
+			
 		}
 
 		// Create a basement
 
-		public function create() {
+		public function create($name, $address, $seller) {
 			//create query
 			$query = 'INSERT INTO ' . $this->table . '
 				SET
@@ -66,27 +63,29 @@
 			$stmt = $this->conn->prepare($query);
 
 			// clean data
-			$this->name = htmlspecialchars(strip_tags($this->name));	
-			$this->address = htmlspecialchars(strip_tags($this->address));
-			$this->seller = htmlspecialchars(strip_tags($this->seller));
+			$name = htmlspecialchars(strip_tags($name));	
+			$address = htmlspecialchars(strip_tags($address));
+			$seller = htmlspecialchars(strip_tags($seller));
 
 			// bind data
-			$stmt->bindParam(':name', $this->name);
-			$stmt->bindParam(':address', $this->address);
-			$stmt->bindParam(':seller', $this->seller);
+			$stmt->bindParam(':name', $name);
+			$stmt->bindParam(':address', $address);
+			$stmt->bindParam(':seller', $seller);
 
 			// execute query
 			if($stmt->execute()) {
-				return true;
+			    return array(
+			        'name' => $row->name,
+			        'address' => $row->address,
+			        'seller' => $row->seller
+			    );
 			}
 
-			// print error if something goes wrong 
-			printf("Error: %s. \n", $stmt->error);
-			return false;
+			return array('message', "creation failed");
 		}
 
 		// Update a basement
-		public function update(String $oldName) {
+		public function update($name, $seller) {
 			//create query
 			$query = 'UPDATE ' . $this->table . '
 				SET
@@ -94,57 +93,61 @@
 					address = :address
 					seller = :seller
 				WHERE
-					name = :oldName'	;
+					name = :name AND seller = :seller'	;
 
 			// prepare statement
 					$stmt = $this->conn->prepare($query);
 
 			// clean data
-			$this->name = htmlspecialchars(strip_tags($this->name));
-			$this->address = htmlspecialchars(strip_tags($this->address));
-			$this->seller = htmlspecialchars(strip_tags($this->seller));
-			$oldName = htmlspecialchars(strip_tags($oldName));
+			$name = htmlspecialchars(strip_tags($name));
+			$address = htmlspecialchars(strip_tags($address));
+			$seller = htmlspecialchars(strip_tags($seller));
+			
 
 			// bind data
-			$stmt->bindParam(':name', $this->name);
-			$stmt->bindParam(':address', $this->address);
-			$stmt->bindParam(':seller', $this->seller);
-			$stmt->bindPatam(':oldName', $oldName);
+			$stmt->bindParam(':name', $name);
+			$stmt->bindParam(':address', $address);
+			$stmt->bindParam(':seller', $seller);
+			
 
 			// execute query
 			if($stmt->execute()) {
-				return true;
+			    return array(
+			        'name' => $row->name,
+			        'address' => $row->address,
+			        'seller' => $row->seller
+			    );
 			}
 
 			// print error if something goes wrong 
 
-			printf("Error: %s. \n", $stmt->error);
-			return false;
+			return array('message', "update failed");
 		}
 
 		// Delete a basement
-		public function delete() {
+		public function delete($name, $seller) {
 			//create query 
-			$query = 'DELETE FROM ' . $this->table . ' WHERE name = :name';
+			$query = 'DELETE FROM ' . $this->table . ' WHERE name = :name AND seller = :seller';
 
 			// prepare statement
 			$stmt = $this->conn->prepare($query);
 
 			// clean data
-			$this->name = htmlspecialchars(strip_tags($this->name));
-
+			$name = htmlspecialchars(strip_tags($name));
+			$seller = htmlspecialchars(strip_tags($seller));
+			
 			// bind data
-			$stmt->bindParam(':name', $this->name);
-
+			$stmt->bindParam(':name', $name);
+			$stmt->bindParam(':seller', $seller);
+			
 			// execute query
 			if($stmt->execute()) {
-				return true;
+			    return  array('message', "delete completed");
 			}
 
 			// print error if something goes wrong 
 
-			printf("Error: %s. \n", $stmt->error);
-			return false;
+			return array('message', "delete failed");
 		}
 
 	}
