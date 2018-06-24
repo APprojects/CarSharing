@@ -32,7 +32,6 @@ CREATE TABLE IF NOT EXISTS Basement (
 CREATE TABLE IF NOT EXISTS BasementsCars (
 	idCar integer REFERENCES Car(id),
 	basement varchar(50) REFERENCES Basement(name),
-	no integer,
 	PRIMARY KEY(idCar,basement)
 );
 
