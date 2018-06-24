@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS User (
 	id integer PRIMARY KEY AUTO_INCREMENT, 
 	firstName varchar(50),
 	lastName varchar(50) ,
-	userName varchar(50) UNIQUE,
+	username varchar(50) UNIQUE,
 	password varchar(50),
 	address varchar(50),
 	city varchar(50),
@@ -38,8 +38,7 @@ CREATE TABLE IF NOT EXISTS History (
 	PickUpHour time,
 	basementEnd varchar(50) REFERENCES Basement(name),
 	DeliveryDay date,
-	DeliveryHour time,
-	FOREIGN KEY (idCar, basement) REFERENCES BasementsCars(idCar, basement)
+	DeliveryHour time
 );
 
 INSERT INTO User VALUES (1,'Luisa','Piersanti','admin','admin','via delle rose', 'parma','italy','F','+39','333333333','0');

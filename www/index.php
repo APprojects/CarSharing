@@ -110,11 +110,11 @@
 						</div> 
 						<div class="form-group">
 		    				<label for="user" id=labelUser1>User</label>
-		   					<input class="form-control" id="inputUser1" placeholder="Enter user name" name="UsernameL" value="<?php echo $user;?>">
+		   					<input class="form-control" id="inputUser1" placeholder="Enter user name" name="UsernameL">
 	 					</div>
 	 					<div class="form-group">
 						    <label for="password">Password</label>
-						    <input type="password" class="form-control" id="inputPassword1" placeholder="Enter password" name="PasswordL" value="<?php echo $password;?>">
+						    <input type="password" class="form-control" id="inputPassword1" placeholder="Enter password" name="PasswordL">
 						</div>
 						<button type="submit" name="Submit" class="btn btn-primary">Enter</button> 
 							<div id="error_login" class="errors">
