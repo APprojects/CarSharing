@@ -20,7 +20,7 @@
 
 	
 	// set oldName  to update
-	$basement->id = $json_input->name;
+	$oldName = $json_input->oldName;
 
 	//new values
 	$basement->name = $json_input->name;
@@ -28,7 +28,7 @@
 	
 
 	// update user
-	if($basement->update()) {
+	if($basement->update($oldName)) {
 		echo json_encode(
 			array('message' => 'basement updated')
 		);
