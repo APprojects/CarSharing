@@ -6,7 +6,7 @@
 		// imposto la URl del web-service remoto
 		curl_setopt($ch, CURLOPT_URL, 'localhost/php_rest_myblog/api/basement/read.php');
 		
-		// preparo l'invio dei dati col metodo POST
+		// Chiamo l'API  tramite PUT
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);	
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
 
