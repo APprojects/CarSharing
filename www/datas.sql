@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS History (
 INSERT INTO User VALUES (1,'Luisa','Piersanti','admin','admin','via delle rose', 'parma','italy','F','+39','333333333','0');
 INSERT INTO User VALUES (2,'Matteo','Azzarelli','matteo','matteo','via degli ulivi', 'pisa','italy','M','+39','333333333','1');
 INSERT INTO Car VALUES (123,'Smart EQ fortwo',130,2,2);
-# INSERT INTO Car VALUES ('Nissan LEAF',144,5);
+INSERT INTO Car VALUES (1234, 'Nissan LEAF',144,5, 2);
 # INSERT INTO Car VALUES ('Renault Zoe',135,5);
 # INSERT INTO Car VALUES ('Renault Twizy',45,2);
 # INSERT INTO Car VALUES ('Toyota Yaris',155,5);
@@ -60,3 +60,5 @@ INSERT INTO Basement VALUES (5,'Rathmines', 'Cambridge Road',2);
 INSERT INTO Basement VALUES (6,'St. Patricks Cathedral', 'Patrick Street',2);
 INSERT INTO Basement VALUES (7,'Docklands', 'Dame Street',2);
 
+INSERT INTO History VALUES (1, '123', 1, 1, '2018-12-22', '08:30:00', 2, '2018-12-23', '08:30:00');
+INSERT INTO History VALUES (2, '1234', 1, 1, '2018-12-22', '08:30:00', 2, '2018-12-23', '08:30:00');
