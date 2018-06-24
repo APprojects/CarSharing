@@ -38,7 +38,7 @@
 				'gender' 		=> $gender,
 				'prefix' 		=> $prefix,
 				'phoneNumber' 	=> $phoneNumber,
-				'value' 		=> $value		
+				'rules' 		=> $rules		
 			);
 
 			// Push to "data"

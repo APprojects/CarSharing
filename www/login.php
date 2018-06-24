@@ -45,18 +45,18 @@
 
 		if(!is_null($response['id'])){
 			session_start();
-			$_SESSION['roles'] 		= $response['roles'];
-			$_SESSION['fname'] 		= $response['fname'];
-			$_SESSION['lname'] 		= $response['lname'];
-			$_SESSION['uname'] 		= $response['uname'];
-			$_SESSION['pword'] 		= $response['pword'];
-			$_SESSION['address'] 	= $response['address'];
-			$_SESSION['city'] 		= $response['city'];
-			$_SESSION['state'] 		= $response['state'];
-			$_SESSION['gender'] 	= $response['gender'];
-			$_SESSION['prefix'] 	= $response['prefix'];
-			$_SESSION['number'] 	= $response['number'];
-			$_SESSION['id'] 		= $response['id'];
+			$_SESSION['id'] 			= $response['id'];
+			$_SESSION['firstName'] 		= $response['firstName'];
+			$_SESSION['lastName'] 		= $response['lastName'];
+			$_SESSION['userName'] 		= $response['userName'];
+			$_SESSION['password'] 		= $response['password'];
+			$_SESSION['address'] 		= $response['address'];
+			$_SESSION['city'] 			= $response['city'];
+			$_SESSION['state'] 			= $response['state'];
+			$_SESSION['gender'] 		= $response['gender'];
+			$_SESSION['prefix'] 		= $response['prefix'];
+			$_SESSION['phoneNumber'] 	= $response['phoneNumber'];
+			$_SESSION['roles'] 			= $response['roles'];
 
 			if($_SESSION['roles']== 1)
 				header("location: welcomeSeller.php");

@@ -1,10 +1,4 @@
-<?php
-	session_start();
-	echo "Welcome " . $_SESSION['firstName'] . " " . $_SESSION['lastName'] . "!";
-	
-?>		
-
-
+<?php session_start(); ?>
 <html>
 <head>
 <meta charset="utf-8">
@@ -61,7 +55,13 @@
 	</head>
 	<body>
 	<?php
+		
 		include_once("./utilityFunctions.php");
+	?>
+	<?php
+		echo '<div class="welcome">';
+			echo "Welcome " . $_SESSION['firstName'] . " " . $_SESSION['lastName'] . "!";
+		echo '</div>';
 	?>
 	
 		<div class="row form-group">

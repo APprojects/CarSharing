@@ -29,7 +29,7 @@
 	$user->gender 		= $json_input['gender'];
 	$user->prefix 		= $json_input['prefix'];
 	$user->phoneNumber 	= $json_input['number'];
-	$user->value 		= $json_input['roles'];
+	$user->rules 		= $json_input['roles'];
 	
 	$user->create();
 	$user->read_single();
@@ -47,7 +47,7 @@
 		'gender' 		=> $user->gender,
 		'prefix' 		=> $user->prefix,
 		'phoneNumber' 	=> $user->phoneNumber,
-		'value' 		=> $user->value
+		'rules' 		=> $user->rules
 	);
 
 	// make JSON
