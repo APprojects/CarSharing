@@ -1,6 +1,6 @@
 <?php
 	$campi = array(
-	  'roles' => ($_POST['RolesR']),
+	  'role' => ($_POST['RolesR']),
 	  'fname' => ($_POST['FirstNameR']),
 	  'lname' => ($_POST['LastNameR']),
 	  'uname' => ($_POST['UserNameR']),
@@ -71,7 +71,7 @@
 		curl_close($ch);
 		
 		session_start();
-		$_SESSION['roles'] 		= $response['roles'];
+		$_SESSION['role'] 		= $response['role'];
 		$_SESSION['fname'] 		= $response['fname'];
 		$_SESSION['lname'] 		= $response['lname'];
 		$_SESSION['uname'] 		= $response['uname'];

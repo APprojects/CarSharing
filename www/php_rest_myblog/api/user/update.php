@@ -32,7 +32,7 @@
 	$user->gender 		= $json_input->gender;
 	$user->prefix 		= $json_input->prefix;
 	$user->phoneNumber 	= $json_input->phoneNumber;
-	$user->rules 		= $json_input->rules;
+	$user->role 		= $json_input->role;
 	
 
 	// update user

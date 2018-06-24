@@ -19,17 +19,17 @@
 	$json_input = json_decode(file_get_contents('php://input'), true);
 	
 	//Set user variable
-	$user->firstName 	= $json_input['fname'];
-	$user->lastName 	= $json_input['lname'];
-	$user->userName 	= $json_input['uname'];
-	$user->password 	= $json_input['pword'];
+	$user->firstName 	= $json_input['firstName'];
+	$user->lastName 	= $json_input['lastName'];
+	$user->userName 	= $json_input['userName'];
+	$user->password 	= $json_input['password'];
 	$user->address 		= $json_input['address'];
 	$user->city 		= $json_input['city'];
 	$user->state 		= $json_input['state'];
 	$user->gender 		= $json_input['gender'];
 	$user->prefix 		= $json_input['prefix'];
 	$user->phoneNumber 	= $json_input['number'];
-	$user->rules 		= $json_input['roles'];
+	$user->role 		= $json_input['role'];
 	
 	$user->create();
 	$user->read_single();
@@ -47,7 +47,7 @@
 		'gender' 		=> $user->gender,
 		'prefix' 		=> $user->prefix,
 		'phoneNumber' 	=> $user->phoneNumber,
-		'rules' 		=> $user->rules
+		'role' 		=> $user->role
 	);
 
 	// make JSON

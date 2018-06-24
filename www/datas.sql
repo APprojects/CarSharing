@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS User (
 	gender varchar(10) CHECK (gender='M' or gender='F'),
 	prefix varchar(10),
 	phoneNumber varchar(50),
-	rules integer CHECK (rules=0 OR rules=1 OR rules=2)
+	role integer CHECK (role=0 OR role=1 OR role=2)
 );
 
 

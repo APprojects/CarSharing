@@ -1,6 +1,6 @@
 <?php
 	$campi = array(
-	  'roles' => ($_POST['Roles']),
+	  'role' => ($_POST['Roles']),
 	  'user' => ($_POST['User']),
 	  'password' => ($_POST['Password'])
 	);
@@ -56,11 +56,11 @@
 			$_SESSION['gender'] 		= $response['gender'];
 			$_SESSION['prefix'] 		= $response['prefix'];
 			$_SESSION['phoneNumber'] 	= $response['phoneNumber'];
-			$_SESSION['roles'] 			= $response['roles'];
+			$_SESSION['role'] 			= $response['role'];
 
-			if($_SESSION['roles']== 1)
+			if($_SESSION['role']== 1)
 				header("location: welcomeSeller.php");
-			else if($_SESSION['roles'] == 0)
+			else if($_SESSION['role'] == 0)
 				header("location: welcomeCustomer.php");
 		}
 
