@@ -52,11 +52,11 @@ INSERT INTO Car VALUES (123,'Smart EQ fortwo',130,2,2);
 # INSERT INTO Car VALUES ('Toyota Yaris',155,5);
 # INSERT INTO Car VALUES ('Toyota c-hr',170,5);
 # INSERT INTO Car VALUES ('Kia Niro',162,5);
-INSERT INTO Basement VALUES ('O Connell Street', 'Parnell Street',2);
-INSERT INTO Basement VALUES ('Temple Bar', 'Parliament Street',2);
-INSERT INTO Basement VALUES ('Clontarf', 'Castle Avenue',2);
-INSERT INTO Basement VALUES ('Ballsbridge', 'Ballsbridge Avenue',2);
-INSERT INTO Basement VALUES ('Rathmines', 'Cambridge Road',2);
-INSERT INTO Basement VALUES ('St. Patricks Cathedral', 'Patrick Street',2);
-INSERT INTO Basement VALUES ('Docklands', 'Dame Street',2);
+INSERT INTO Basement VALUES (1,'O Connell Street', 'Parnell Street',2);
+INSERT INTO Basement VALUES (2,'Temple Bar', 'Parliament Street',2);
+INSERT INTO Basement VALUES (3,'Clontarf', 'Castle Avenue',2);
+INSERT INTO Basement VALUES (4,'Ballsbridge', 'Ballsbridge Avenue',2);
+INSERT INTO Basement VALUES (5,'Rathmines', 'Cambridge Road',2);
+INSERT INTO Basement VALUES (6,'St. Patricks Cathedral', 'Patrick Street',2);
+INSERT INTO Basement VALUES (7,'Docklands', 'Dame Street',2);
 
