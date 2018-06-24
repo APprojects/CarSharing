@@ -18,22 +18,6 @@
 	// get raw user json_input
 	$json_input = json_decode(file_get_contents("php://input"));
 
-	
-	// set ID  to update
-	$user->id = $json_input['id'];
-	$user->username = $json_input['username'];
-	$user->password = $json_input['password'];
-
-	// Delete user
-	if($user->delete()) {
-		echo json_encode(
-			array('message' => 'user deleted')
-		);
-	}	
-	else {
-			echo json_encode(
-				array('message' => 'user not deleted')
-			);
-	}
-
+   // Delete user
+	echo json_encode($user->delete($json_input['id'], $json_input['username'], $json_input['password']));
 ?>

@@ -16,28 +16,8 @@
 	// Get value, user name and password 
 	$json_input = json_decode(file_get_contents('php://input'), true);
 
-	$user->role 	= $json_input['role'];
-	$user->username = $json_input['username'];
-	$user->password = $json_input['password'];
-
 	// get user 
-	$user->read_single();
-
-	// create array
-	$user_arr = array(
-		'id' 			=> $user->id,
-		'firstName' 	=> $user->firstName,
-		'lastName' 		=> $user->lastName,
-		'username' 		=> $user->username,
-		'password' 		=> $user->password,
-		'address' 		=> $user->address,
-		'city' 			=> $user->city,
-		'state' 		=> $user->state,
-		'gender' 		=> $user->gender,
-		'prefix' 		=> $user->prefix,
-		'phoneNumber' 	=> $user->phoneNumber,
-		'role' 		=> $user->role
-	);
+	$user_arr = $user->read_single($json_input['role'], $json_input['username'], $json_input['password']);
 
 	// make JSON
 	print_r(json_encode($user_arr));
