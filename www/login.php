@@ -42,7 +42,7 @@
 
 		// chiudo
 		curl_close($ch);
-    var_dump($response);
+
 		if(!is_null($response['id'])){
 			session_start();
 			$_SESSION['id'] 			= $response['id'];

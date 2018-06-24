@@ -11,32 +11,32 @@
 	$db = $database->connect();
 
 	//Instantiate user objects
-	$user = new User($db);
+	$car = new User($db);
 
 	// Get value, user name and password 
 	$json_input = json_decode(file_get_contents('php://input'), true);
 
-	$user->role 	= $json_input['role'];
-	$user->username = $json_input['username'];
-	$user->password = $json_input['password'];
+	$car->role 	= $json_input['role'];
+	$car->username = $json_input['username'];
+	$car->password = $json_input['password'];
 
 	// get user 
-	$user->read_single();
+	$car->read_single();
 
 	// create array
 	$user_arr = array(
-		'id' 			=> $user->id,
-		'firstName' 	=> $user->firstName,
-		'lastName' 		=> $user->lastName,
-		'username' 		=> $user->username,
-		'password' 		=> $user->password,
-		'address' 		=> $user->address,
-		'city' 			=> $user->city,
-		'state' 		=> $user->state,
-		'gender' 		=> $user->gender,
-		'prefix' 		=> $user->prefix,
-		'phoneNumber' 	=> $user->phoneNumber,
-		'role' 		=> $user->role
+		'id' 			=> $car->id,
+		'firstName' 	=> $car->firstName,
+		'lastName' 		=> $car->lastName,
+		'username' 		=> $car->username,
+		'password' 		=> $car->password,
+		'address' 		=> $car->address,
+		'city' 			=> $car->city,
+		'state' 		=> $car->state,
+		'gender' 		=> $car->gender,
+		'prefix' 		=> $car->prefix,
+		'phoneNumber' 	=> $car->phoneNumber,
+		'role' 		=> $car->role
 	);
 
 	// make JSON
