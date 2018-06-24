@@ -9,7 +9,7 @@
 		public $id;
 		public $firstName;
 		public $lastName;
-		public $userName;
+		public $username;
 		public $password;
 		public $address;
 		public $city;
@@ -41,14 +41,14 @@
 		// get single user
 		public function read_single() {
 			// Create query
-			$query = 'SELECT * FROM ' . $this->table . ' WHERE role = ? AND userName = ? AND  password = ?';
+			$query = 'SELECT * FROM ' . $this->table . ' WHERE role = ? AND username = ? AND  password = ?';
 			
 			//Prepare statement
 			$stmt = $this->conn->prepare($query);
 
-			// Bind rules, userName and password
+			// Bind rules, username and password
 			$stmt->bindParam(1, $this->role);
-			$stmt->bindParam(2, $this->userName);
+			$stmt->bindParam(2, $this->username);
 			$stmt->bindParam(3, $this->password);
 
 			// execute query
@@ -60,7 +60,7 @@
 			$this->id 			= $row['id'];
 			$this->firstName 	= $row['firstName'];
 			$this->lastName 	= $row['lastName'];
-			$this->userName 	= $row['userName'];
+			$this->username 	= $row['username'];
 			$this->password 	= $row['password'];
 			$this->address 		= $row['address'];
 			$this->city 		= $row['city'];
@@ -79,7 +79,7 @@
 				SET
 					firstName 		= :firstName,
 					lastName 		= :lastName,
-					userName 		= :userName,
+					username 		= :username,
 					password 		= :password,
 					address			= :address,
 					city 			= :city,
@@ -95,7 +95,7 @@
 			// clean data
 			$this->firstName	 = htmlspecialchars(strip_tags($this->firstName));	
 			$this->lastName 	= htmlspecialchars(strip_tags($this->lastName));	
-			$this->userName 	= htmlspecialchars(strip_tags($this->userName));
+			$this->username 	= htmlspecialchars(strip_tags($this->username));
 			$this->password 	= htmlspecialchars(strip_tags($this->password));	
 			$this->address 		= htmlspecialchars(strip_tags($this->address));	
 			$this->city 		= htmlspecialchars(strip_tags($this->city));		
@@ -108,7 +108,7 @@
 			// bind data
 			$stmt->bindParam(':firstName', 		$this->firstName);
 			$stmt->bindParam(':lastName', 		$this->lastName);
-			$stmt->bindParam(':userName', 		$this->userName);
+			$stmt->bindParam(':username', 		$this->username);
 			$stmt->bindParam(':password', 		$this->password);
 			$stmt->bindParam(':address', 		$this->address);
 			$stmt->bindParam(':city', 			$this->city);
@@ -136,7 +136,7 @@
 				SET
 					firstName 		= :firstName,
 					lastName 		= :lastName,
-					userName 		= :userName,
+					username 		= :username,
 					address 		= :address,
 					city 			= :city,
 					state 			= :state,
@@ -154,7 +154,7 @@
 			$this->id 			= htmlspecialchars(strip_tags($this->id));
 			$this->firstName 	= htmlspecialchars(strip_tags($this->firstName));	
 			$this->lastName 	= htmlspecialchars(strip_tags($this->lastName));	
-			$this->userName 	= htmlspecialchars(strip_tags($this->userName));	
+			$this->username 	= htmlspecialchars(strip_tags($this->username));	
 			$this->address 		= htmlspecialchars(strip_tags($this->address));	
 			$this->city 		= htmlspecialchars(strip_tags($this->city));		
 			$this->state 		= htmlspecialchars(strip_tags($this->state));	
@@ -167,7 +167,7 @@
 			$stmt->bindParam(':id', 			$this->id);
 			$stmt->bindParam(':firstName', 		$this->firstName);
 			$stmt->bindParam(':lastName', 		$this->lastName);
-			$stmt->bindParam(':userName', 		$this->userName);
+			$stmt->bindParam(':username', 		$this->username);
 			$stmt->bindParam(':address', 		$this->address);
 			$stmt->bindParam(':city', 			$this->city);
 			$stmt->bindParam(':state', 			$this->state);

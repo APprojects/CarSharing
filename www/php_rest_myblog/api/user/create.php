@@ -21,7 +21,7 @@
 	//Set user variable
 	$user->firstName 	= $json_input['firstName'];
 	$user->lastName 	= $json_input['lastName'];
-	$user->userName 	= $json_input['userName'];
+	$user->username 	= $json_input['username'];
 	$user->password 	= $json_input['password'];
 	$user->address 		= $json_input['address'];
 	$user->city 		= $json_input['city'];
@@ -39,7 +39,7 @@
 		'id' => $user->id,
 		'firstName' 	=> $user->firstName,
 		'lastName' 		=> $user->lastName,
-		'userName' 		=> $user->userName,
+		'username' 		=> $user->username,
 		'password' 		=> $user->password,
 		'address' 		=> $user->address,
 		'city' 			=> $user->city,

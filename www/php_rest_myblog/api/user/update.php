@@ -25,7 +25,7 @@
 	//new values
 	$user->firstName 	= $json_input->firstName;
 	$user->lastName 	= $json_input->lastName;
-	$user->userName 	= $json_input->userName;
+	$user->username 	= $json_input->username;
 	$user->address 		= $json_input->address;
 	$user->city 		= $json_input->city;
 	$user->state 		= $json_input->state;

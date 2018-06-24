@@ -103,18 +103,18 @@
 						
 						<div class="form-group">
 	  						<label for="role">Select Role:</label>
-	  							<select class="form-control" id="inputRole" name="Roles">
+	  							<select class="form-control" id="inputRole" name="RolesL">
 	    							<option value="0">Customer</option>
 	    							<option value="1">Seller</option>
 	    						</select>
 						</div> 
 						<div class="form-group">
 		    				<label for="user" id=labelUser1>User</label>
-		   					<input class="form-control" id="inputUser1" placeholder="Enter user name" name="User" value="<?php echo $user;?>">
+		   					<input class="form-control" id="inputUser1" placeholder="Enter user name" name="UsernameL" value="<?php echo $user;?>">
 	 					</div>
 	 					<div class="form-group">
 						    <label for="password">Password</label>
-						    <input type="password" class="form-control" id="inputPassword1" placeholder="Enter password" name="Password" value="<?php echo $password;?>">
+						    <input type="password" class="form-control" id="inputPassword1" placeholder="Enter password" name="PasswordL" value="<?php echo $password;?>">
 						</div>
 						<button type="submit" name="Submit" class="btn btn-primary">Enter</button> 
 							<div id="error_login" class="errors">
@@ -151,7 +151,7 @@
 	 					</div>
 	 					<div class="form-group">
 		    				<label for="user" id=labelUser>User</label>
-		   					<input class="form-control" id="inputUser" placeholder="Choose a user name" name="UserNameR">
+		   					<input class="form-control" id="inputUser" placeholder="Choose a user name" name="UsernameR">
 	 					</div>
 	 					<div class="form-group">
 						    <label for="password">Password</label>

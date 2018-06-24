@@ -3,7 +3,7 @@
 	  'role' => ($_POST['RolesR']),
 	  'firstName' => ($_POST['FirstNameR']),
 	  'lastName' => ($_POST['LastNameR']),
-	  'userName' => ($_POST['UserNameR']),
+	  'username' => ($_POST['UsernameR']),
 	  'password' => ($_POST['PasswordR']),
 	  'address' => ($_POST['AddressR']),
 	  'city' => ($_POST['CityR']),
@@ -14,14 +14,14 @@
 	);
 
 
-	if (((empty($campi["firstName"])) || (empty($campi["lastName"]))) || ((empty($campi["userName"])) || (empty($campi["password"]))) || ((empty($campi["address"])) || (empty($campi["city"]))) || ((empty($campi["state"])) || (empty($campi["gender"]))) || ((empty($campi["prefix"])) || (empty($campi["phoneNumber"])))) {	
+	if (((empty($campi["firstName"])) || (empty($campi["lastName"]))) || ((empty($campi["username"])) || (empty($campi["password"]))) || ((empty($campi["address"])) || (empty($campi["city"]))) || ((empty($campi["state"])) || (empty($campi["gender"]))) || ((empty($campi["prefix"])) || (empty($campi["phoneNumber"])))) {	
 	
 		$string_error ="";
 		if ((empty($campi['firstName'])))		
 			$string_error .= " first name ";
 		if ((empty($campi['lastName'])))			
 			$string_error .= " last name ";
-		if ((empty($campi['userName'])))			
+		if ((empty($campi['username'])))			
 			$string_error .= " user name ";
 		if ((empty($campi['password'])))			
 			$string_error .= " password ";
@@ -75,7 +75,7 @@
 		$_SESSION['role'] 		= $response['role'];
 		$_SESSION['firstName'] 		= $response['firstName'];
 		$_SESSION['lastName'] 		= $response['lastName'];
-		$_SESSION['userName'] 		= $response['userName'];
+		$_SESSION['username'] 		= $response['username'];
 		$_SESSION['password'] 		= $response['password'];
 		$_SESSION['address'] 	= $response['address'];
 		$_SESSION['city'] 		= $response['city'];

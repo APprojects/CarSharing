@@ -1,15 +1,15 @@
 <?php
 	$campi = array(
-	  'role' => ($_POST['Roles']),
-	  'userName' => ($_POST['User']),
-	  'password' => ($_POST['Password'])
+	  'role' => ($_POST['RolesL']),
+	  'username' => ($_POST['UsernameL']),
+	  'password' => ($_POST['PasswordL'])
 	);
 
 
 
-	if (empty($campi['userName']) && empty($campi['password'])){
+	if (empty($campi['username']) && empty($campi['password'])){
 		header ("location: index.php?error_login=".urlencode('user name and password not entered'));
-	}else if (empty($campi["userName"])){
+	}else if (empty($campi["username"])){
 		header ("location: index.php?error_login=".urlencode('user name not entered'));
 	}else if  (empty($campi["password"])){
 		header ("location: index.php?error_login=".urlencode('password not entered'));
@@ -48,7 +48,7 @@
 			$_SESSION['id'] 			= $response['id'];
 			$_SESSION['firstName'] 		= $response['firstName'];
 			$_SESSION['lastName'] 		= $response['lastName'];
-			$_SESSION['userName'] 		= $response['userName'];
+			$_SESSION['username'] 		= $response['username'];
 			$_SESSION['password'] 		= $response['password'];
 			$_SESSION['address'] 		= $response['address'];
 			$_SESSION['city'] 			= $response['city'];

@@ -17,7 +17,7 @@
 	$json_input = json_decode(file_get_contents('php://input'), true);
 
 	$user->role 	= $json_input['role'];
-	$user->userName = $json_input['userName'];
+	$user->username = $json_input['username'];
 	$user->password = $json_input['password'];
 
 	// get user 
@@ -28,7 +28,7 @@
 		'id' 			=> $user->id,
 		'firstName' 	=> $user->firstName,
 		'lastName' 		=> $user->lastName,
-		'userName' 		=> $user->userName,
+		'username' 		=> $user->username,
 		'password' 		=> $user->password,
 		'address' 		=> $user->address,
 		'city' 			=> $user->city,

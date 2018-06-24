@@ -37,7 +37,7 @@
 			//Prepare statement
 			$stmt = $this->conn->prepare($query);
 
-			// Bind value, userName and password
+			// Bind the name of basement
 			$stmt->bindParam(1, $this->name);
 			
 			// execute query

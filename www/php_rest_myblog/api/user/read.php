@@ -31,7 +31,7 @@
 				'id' 			=> $id,
 				'firstName' 	=> $firstName,
 				'lastName' 		=> $lastName,
-				'userName' 		=> $userName,
+				'username' 		=> $username,
 				'address' 		=> $address,
 				'city' 			=> $city,
 				'state' 		=> $state,
