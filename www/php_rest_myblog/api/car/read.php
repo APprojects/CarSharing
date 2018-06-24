@@ -11,10 +11,10 @@
 	$db = $database->connect();
 	
 	//Instantiate car object
-	$car = new Car($db);
+	$user = new Car($db);
 
 	//car query
-	$result = $car->read();
+	$result = $user->read();
 	//get row count
 	$num = $result->rowCount();
 
