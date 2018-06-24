@@ -39,7 +39,7 @@
 
 		// eseguo la chiamata
 		$response = json_decode(curl_exec($ch), true);
-
+var_dump($response);
 		// chiudo
 		curl_close($ch);
 

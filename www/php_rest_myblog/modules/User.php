@@ -27,36 +27,37 @@
 		// get single user
 		public function read_single($role, $username, $password) {
 			// Create query
-			$query = 'SELECT * FROM ' . $this->table . ' WHERE role = :role AND username = :username AND  password = :password';
+			$query = 'SELECT * FROM ' . $this->table . ' WHERE role = ? AND username = ? AND  password = ?';
 			
 			//Prepare statement
 			$stmt = $this->conn->prepare($query);
 
 			// Bind rules, username and password
-			$stmt->bindParam(':role', $role);
-			$stmt->bindParam(':username', $username);
-			$stmt->bindParam(':password', $password);
+			$stmt->bindParam(1, $role);
+			$stmt->bindParam(2, $username);
+			$stmt->bindParam(3, $password);
 
 			// execute query
 			$stmt->execute();
 
 			$row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-			// Set properties
-			return array(
-			    'id' 			=> $row->id,
-			    'firstName' 	=> $row->firstName,
-			    'lastName' 		=> $row->lastName,
-			    'username' 		=> $row->username,
-			    'password' 		=> $row->password,
-			    'address' 		=> $row->address,
-			    'city' 			=> $row->city,
-			    'state' 		=> $row->state,
-			    'gender' 		=> $row->gender,
-			    'prefix' 		=> $row->prefix,
-			    'phoneNumber' 	=> $row->phoneNumber,
-			    'role' 		    => $row->role
+			
+			$user_arr = array(
+			    'id' 			=> $row['id'],
+			    'firstName' 	=> $row['firstName'],
+			    'lastName' 		=> $row['lastName'],
+			    'username' 		=> $row['username'],
+			    'password' 		=> $row['password'],
+			    'address' 		=> $row['address'],
+			    'city' 			=> $row['city'],
+			    'state' 		=> $row['state'],
+			    'gender' 		=> $row['gender'],
+			    'prefix' 		=> $row['prefix'],
+			    'phoneNumber' 	=> $row['phoneNumber'],
+			    'role' 		    => $row['role']
 			);		
+			// Set properties
+			return $user_arr;
 		}
 
 		// Create a user
