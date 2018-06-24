@@ -1,9 +1,9 @@
 <?php
 
-	class User {
+	class History {
 		//DB stuff
 		private $conn;
-		private $table = 'User';
+		private $table = 'History';
 
 		// Constructor with DB
 		public function __construct($db){

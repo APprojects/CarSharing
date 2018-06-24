@@ -24,7 +24,8 @@ CREATE TABLE IF NOT EXISTS Car (
 );
 
 CREATE TABLE IF NOT EXISTS Basement (
-	name  varchar(50) PRIMARY KEY,
+	id integer PRIMARY KEY AUTO_INCREMENT, 
+	name  varchar(50) UNIQUE,
 	address varchar(50),
 	seller integer REFERENCES User(id)
 );
