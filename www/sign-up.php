@@ -1,29 +1,28 @@
 <?php
 	$campi = array(
 	  'roles' => ($_POST['RolesR']),
-	  'fname' => ($_POST['FirstNameR']),
-	  'lname' => ($_POST['LastNameR']),
-	  'uname' => ($_POST['UserNameR']),
-	  'pword' => ($_POST['PasswordR']),
+	  'firstName' => ($_POST['firstNameR']),
+	  'lastName' => ($_POST['LastNameR']),
+	  'userName' => ($_POST['UserNameR']),
+	  'password' => ($_POST['PasswordR']),
 	  'address' => ($_POST['AddressR']),
 	  'city' => ($_POST['CityR']),
 	  'state' => ($_POST['StateR']),
 	  'gender' => ($_POST['GenderR']),
 	  'prefix' => ($_POST['PrefixR']),
 	  'number' => ($_POST['NumberR'])
-	  
 	);
 
-	if (((empty($campi["fname"])) || (empty($campi["lname"]))) || ((empty($campi["uname"])) || (empty($campi["pword"]))) || ((empty($campi["address"])) || (empty($campi["city"]))) || ((empty($campi["state"])) || (empty($campi["gender"]))) || ((empty($campi["prefix"])) || (empty($campi["number"])))) {	
+	if (((empty($campi["firstName"])) || (empty($campi["lastName"]))) || ((empty($campi["userName"])) || (empty($campi["password"]))) || ((empty($campi["address"])) || (empty($campi["city"]))) || ((empty($campi["state"])) || (empty($campi["gender"]))) || ((empty($campi["prefix"])) || (empty($campi["number"])))) {	
 		
 		$string_error ="";
-		if ((empty($campi['fname'])))		
+		if ((empty($campi['firstName'])))		
 			$string_error .= " first name ";
-		if ((empty($campi['lname'])))			
+		if ((empty($campi['lastName'])))			
 			$string_error .= " last name ";
-		if ((empty($campi['uname'])))			
+		if ((empty($campi['userName'])))			
 			$string_error .= " user name ";
-		if ((empty($campi['pword'])))			
+		if ((empty($campi['password'])))			
 			$string_error .= " password ";
 		if ((empty($campi['address'])))			
 			$string_error .= " address ";
@@ -71,18 +70,18 @@
 		curl_close($ch);
 		
 		session_start();
-		$_SESSION['roles'] 		= $response['roles'];
-		$_SESSION['fname'] 		= $response['fname'];
-		$_SESSION['lname'] 		= $response['lname'];
-		$_SESSION['uname'] 		= $response['uname'];
-		$_SESSION['pword'] 		= $response['pword'];
-		$_SESSION['address'] 	= $response['address'];
-		$_SESSION['city'] 		= $response['city'];
-		$_SESSION['state'] 		= $response['state'];
-		$_SESSION['gender'] 	= $response['gender'];
-		$_SESSION['prefix'] 	= $response['prefix'];
-		$_SESSION['number'] 	= $response['number'];
-		$_SESSION['id'] 		= $response['id'];
+		$_SESSION['roles'] 			= $response['roles'];
+		$_SESSION['firstName'] 		= $response['firstName'];
+		$_SESSION['lastName'] 		= $response['lastName'];
+		$_SESSION['userName'] 		= $response['userName'];
+		$_SESSION['password'] 		= $response['password'];
+		$_SESSION['address'] 		= $response['address'];
+		$_SESSION['city'] 			= $response['city'];
+		$_SESSION['state'] 			= $response['state'];
+		$_SESSION['gender'] 		= $response['gender'];
+		$_SESSION['prefix'] 		= $response['prefix'];
+		$_SESSION['number'] 		= $response['number'];
+		$_SESSION['id'] 			= $response['id'];
 		
 		header("location: new_user.php");
 	}		

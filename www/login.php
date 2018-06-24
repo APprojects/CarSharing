@@ -1,15 +1,15 @@
 <?php
 	$campi = array(
 	  'roles' => ($_POST['Roles']),
-	  'user' => ($_POST['User']),
+	  'userName' => ($_POST['User']),
 	  'password' => ($_POST['Password'])
 	);
 
 
 
-	if (empty($campi['user']) && empty($campi['password'])){
+	if (empty($campi['userName']) && empty($campi['password'])){
 		header ("location: index.php?error_login=".urlencode('user name and password not entered'));
-	}else if (empty($campi["user"])){
+	}else if (empty($campi["userName"])){
 		header ("location: index.php?error_login=".urlencode('user name not entered'));
 	}else if  (empty($campi["password"])){
 		header ("location: index.php?error_login=".urlencode('password not entered'));
