@@ -4,16 +4,16 @@
 	header('Content-Type: application/json');
 
 	include_once '../../config/Database.php';
-	include_once '../../modules/User.php';
+	include_once '../../modules/Car.php';
 
 	//Instantiate DB & connect
 	$database = new Database();
 	$db = $database->connect();
 	
-	//Instantiate user objects
-	$car = new User($db);
+	//Instantiate car object
+	$car = new Car($db);
 
-	//user query
+	//car query
 	$result = $car->read();
 	//get row count
 	$num = $result->rowCount();
@@ -21,38 +21,32 @@
 	// check if any user
 	if($num > 0){
 		// users array
-		$users_arr = array();
-		$users_arr['data'] = array();
+		$cars_arr = array();
+		$cars_arr['cars'] = array();
 
 		while($row = $result->fetch(PDO::FETCH_ASSOC)) {
 			extract($row);
 
-			$user_item = array(
+			$car_item = array(
 				'id' 			=> $id,
-				'firstName' 	=> $firstName,
-				'lastName' 		=> $lastName,
-				'username' 		=> $username,
-				'address' 		=> $address,
-				'city' 			=> $city,
-				'state' 		=> $state,
-				'gender' 		=> $gender,
-				'prefix' 		=> $prefix,
-				'phoneNumber' 	=> $phoneNumber,
-				'role' 		=> $role		
+				'model' 	    => $model,
+				'maxSpeed' 		=> $maxSpeed,
+				'numberOfPassengers' 		=> $numberOfPassengers,
+				'seller' 		=> $seller
 			);
 
 			// Push to "data"
-			array_push($users_arr['data'], $user_item);
+			array_push($cars_arr['data'], $car_item);
 		}
 
 		// turn to JSON & output
-		echo json_encode($users_arr);
+		echo json_encode($cars_arr);
 	}
 
 	else {
 		 //no users
 		echo json_encode(
-			array('message' => 'no users found')
+			array('message' => 'no cars found')
 		);
 	}
 

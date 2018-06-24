@@ -6,21 +6,21 @@
 	header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
 	include_once '../../config/Database.php';
-	include_once '../../modules/User.php';
+	include_once '../../modules/Car.php';
 
 	//Instantiate DB & connect
 	$database = new Database();
 	$db = $database->connect();
 	
 	//Instantiate user objects
-	$car = new User($db);
+	$car = new Car($db);
 
 	// get raw user json_input
 	$json_input = json_decode(file_get_contents("php://input"));
 	
 
 	// update user
-    echo json_encode($user->update($json_input['id'], $json_input['firstName'], $json_input['lastName'], $json_input['username'], $json_input['password'],
-	        $json_input['address'], $json_input['city'], $json_input['state'], $json_input['gender'], $json_input['prefix'],
-	        $json_input['phoneNumber'], $json_input['role']));
+	echo json_encode($car->update($json_input['id'],$json_input['model'],$json_input['maxSpeed'],$json_input['numberOfPassengers'],$json_input['seller']));
+	 
+
 ?>

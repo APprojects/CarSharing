@@ -5,13 +5,6 @@
 		private $conn;
 		private $table = 'Car';
 
-		//car properties
-		public $id;
-		public $model;
-		public $maxSpeed;
-		public $numberOfPassengers;
-		public $seller;
-
 		// Constructor with DB
 		public function __construct($db){
 			$this->conn = $db;
@@ -32,15 +25,15 @@
 		}
 
 		// get single car
-		public function read_single() {
+		public function read_single($id) {
 			// Create query
-			$query = 'SELECT * FROM ' . $this->table . ' WHERE id = ?';
+			$query = 'SELECT * FROM ' . $this->table . ' WHERE id = :id';
 			
 			//Prepare statement
 			$stmt = $this->conn->prepare($query);
 
 			// Bind model 
-			$stmt->bindParam(1, $this->id);
+			$stmt->bindParam(':id', $id);
 			
 			// execute query
 			$stmt->execute();
@@ -48,16 +41,19 @@
 			$row = $stmt->fetch(PDO::FETCH_ASSOC);
 
 			// Set properties
-			$this->id = $row['id'];
-			$this->model = $row['model'];
-			$this->maxSpeed = $row['maxSpeed'];
-			$this->numberOfPassengers = $row['numberOfPassengers'];
-			$this->seller = $row['seller'];
+			return array(
+			    'id' 			=> $row->id,
+			    'model' 	=> $row->model,
+			    'maxSpeed' 		=> $row->maxSpeed,
+			    'numberOfPassengers' => $row->numberOfPassengers,
+			    'seller' 		=> $row->seller
+			);
+			
 		}
 
-		// Create a basement
+		// Create a car
 
-		public function create() {
+		public function create($id, $model, $maxSpeed, $numberOfPassengers, $seller) {
 			//create query
 			$query = 'INSERT INTO ' . $this->table . '
 				SET
@@ -71,32 +67,38 @@
 			$stmt = $this->conn->prepare($query);
 
 			// clean data
-			$this->id = htmlspecialchars(strip_tags($this->id));
-			$this->model = htmlspecialchars(strip_tags($this->model));	
-			$this->maxSpeed = htmlspecialchars(strip_tags($this->maxSpeed));	
-			$this->numberOfPassengers = htmlspecialchars(strip_tags($this->numberOfPassengers));
-			$this->seller = htmlspecialchars(strip_tags($this->seller));
+			$id = htmlspecialchars(strip_tags($id));
+			$model = htmlspecialchars(strip_tags($model));	
+			$maxSpeed = htmlspecialchars(strip_tags($maxSpeed));	
+			$numberOfPassengers = htmlspecialchars(strip_tags($numberOfPassengers));
+			$seller = htmlspecialchars(strip_tags($seller));
 
 			// bind data
-			$stmt->bindParam(':id', $this->id);
-			$stmt->bindParam(':model', $this->model);
-			$stmt->bindParam(':maxSpeed', $this->maxSpeed);
-			$stmt->bindParam(':numberOfPassengers', $this->numberOfPassengers);
-			$stmt->bindParam(':seller', $this->seller);
+			$stmt->bindParam(':id', $id);
+			$stmt->bindParam(':model', $model);
+			$stmt->bindParam(':maxSpeed', $maxSpeed);
+			$stmt->bindParam(':numberOfPassengers', $numberOfPassengers);
+			$stmt->bindParam(':seller', $seller);
 
 			// execute query
 			if($stmt->execute()) {
-				return true;
+			    return array(
+			        'id' 			=> $id,
+			        'model' 	=> $model,
+			        'maxSpeed' 		=> $maxSpeed,
+			        'numberOfPassengers' => $numberOfPassengers,
+			        'seller' 		=> $seller
+			    );
+			    
 			}
 
-			// print error if something goes wrong 
-			printf("Error: %s. \n", $stmt->error);
-			return false;
+	
+			return array('message', "creation failed");
 		}
 
-		// Update a basement
+		// Update a car
 
-		public function update() {
+		public function update($id, $model, $maxSpeed, $numberOfPassengers, $seller) {
 			//create query
 			$query = 'UPDATE ' . $this->table . '
 				SET
@@ -104,61 +106,64 @@
 					maxSpeed = :maxSpeed,
 					numberOfPassengers = :numberOfPassengers
 				WHERE
-					id = :id'	;
-
-			// prepare statement
-					$stmt = $this->conn->prepare($query);
-
-			// clean data
-			$this->id = htmlspecialchars(strip_tags($this->id));
-			$this->model = htmlspecialchars(strip_tags($this->model));
-			$this->maxSpeed = htmlspecialchars(strip_tags($this->maxSpeed));
-			$this->numberOfPassengers = htmlspecialchars(strip_tags($this->numberOfPassengers));
-			$this->seller = htmlspecialchars(strip_tags($this->seller));
-
-			// bind data
-			$stmt->bindParam(':id', $this->id);
-			$stmt->bindParam(':model', $this->model);
-			$stmt->bindPatam(':maxSpeed', $this->maxSpeed);
-			$stmt->bindPatam(':numberOfPassengers', $this->numberOfPassengers);
-			$stmt->bindPatam(':seller', $this->seller);
-
-			
-
-			// execute query
-			if($stmt->execute()) {
-				return true;
-			}
-
-			// print error if something goes wrong 
-
-			printf("Error: %s. \n", $stmt->error);
-			return false;
-		}
-
-		// Delete a basement
-		public function delete() {
-			//create query 
-			$query = 'DELETE FROM ' . $this->table . ' WHERE id = :id';
+					id = :id AND seller = :seller' ;
 
 			// prepare statement
 			$stmt = $this->conn->prepare($query);
 
 			// clean data
-			$this->id = htmlspecialchars(strip_tags($this->id));
+			$id = htmlspecialchars(strip_tags($id));
+			$model = htmlspecialchars(strip_tags($model));
+			$maxSpeed = htmlspecialchars(strip_tags($maxSpeed));
+			$numberOfPassengers = htmlspecialchars(strip_tags($numberOfPassengers));
+			$seller = htmlspecialchars(strip_tags($seller));
 
 			// bind data
-			$stmt->bindParam(':id', $this->id);
+			$stmt->bindParam(':id', $id);
+			$stmt->bindParam(':model', $model);
+			$stmt->bindPatam(':maxSpeed', $maxSpeed);
+			$stmt->bindPatam(':numberOfPassengers', $numberOfPassengers);
+			$stmt->bindPatam(':seller', $seller);
 
 			// execute query
 			if($stmt->execute()) {
-				return true;
+			    return array(
+			        'id' 			=> $id,
+			        'model' 	=> $model,
+			        'maxSpeed' 		=> $maxSpeed,
+			        'numberOfPassengers' => $numberOfPassengers,
+			        'seller' 		=> $seller
+			    );
+			}
+
+			// print error if something goes wrong 
+            return array('message', "update failed");
+		}
+
+		// Delete a car
+		public function delete($id, $seller) {
+			//create query 
+			$query = 'DELETE FROM ' . $this->table . ' WHERE id = :id and seller = :seller)';
+
+			// prepare statement
+			$stmt = $this->conn->prepare($query);
+
+			// clean data
+			$id = htmlspecialchars(strip_tags($id));
+			$seller = htmlspecialchars(strip_tags($seller));
+			
+			// bind data
+			$stmt->bindParam(':id', $id);
+			$stmt->bindParam(':seller', $seller);
+
+			// execute query
+			if($stmt->execute()) {
+			    return  array('message', "delete completed");
 			}
 
 			// print error if something goes wrong 
 
-			printf("Error: %s. \n", $stmt->error);
-			return false;
+			return array('message', "delete failed");
 		}
 
 	}
