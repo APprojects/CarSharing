@@ -14,7 +14,7 @@
 	  
 	);
 
-	if (((empty($campi["fname"])) || (empty($campi["lname"]))) || ((empty($campi["uname"])) || (empty($campi["pword"]))) || ((empty($campi["address"])) || (empty($campi["city"]))) || ((empty($campi["state"])) || (empty($campi["gender"]))) || ((empty($campi["prefix"])) || (empty($campi["number"])))) {	
+	if (((empty($campi["firstName"])) || (empty($campi["lastName"]))) || ((empty($campi["userName"])) || (empty($campi["password"]))) || ((empty($campi["address"])) || (empty($campi["city"]))) || ((empty($campi["state"])) || (empty($campi["gender"]))) || ((empty($campi["prefix"])) || (empty($campi["number"])))) {	
 		
 		$string_error ="";
 		if ((empty($campi['firstName'])))		
@@ -33,7 +33,7 @@
 			$string_error .= " state ";
 		if ((empty($campi['gender'])))			
 			$string_error .= " gender ";
-		if ((empty($camp1i['prefix'])))			
+		if ((empty($campi['prefix'])))			
 			$string_error .= " prefix ";
 		if ((empty($campi['number'])))			
 			$string_error .= " number ";
