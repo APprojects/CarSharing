@@ -16,7 +16,7 @@
 	$car = new Car($db);
 
 	// get raw user json_input
-	$json_input = json_decode(file_get_contents("php://input"));
+	$json_input = json_decode(file_get_contents("php://input"),true);
 	
 
 	// update user

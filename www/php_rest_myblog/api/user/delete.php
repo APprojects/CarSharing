@@ -16,7 +16,7 @@
 	$user = new User($db);
 
 	// get raw user json_input
-	$json_input = json_decode(file_get_contents("php://input"));
+	$json_input = json_decode(file_get_contents("php://input"),true);
 
    // Delete user
 	echo json_encode($user->delete($json_input['id'], $json_input['username'], $json_input['password']));

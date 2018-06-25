@@ -16,7 +16,7 @@
 	$basement = new Basement($db);
 
 	// get raw basement json_input
-	$json_input = json_decode(file_get_contents("php://input"));
+	$json_input = json_decode(file_get_contents("php://input"),true);
 
     echo json_encode($basement->update($json_input['id'], $json_input['name'], $json_input['address'],$json_input['seller']));
 			

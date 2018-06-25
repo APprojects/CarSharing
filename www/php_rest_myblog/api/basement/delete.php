@@ -16,10 +16,14 @@
 	$basement = new Basement($db);
 
 	// get raw basement json_input
-	$json_input = json_decode(file_get_contents("php://input"));
-
+	$json_input = json_decode(file_get_contents("php://input"),true);
 	
-	echo json_encode($basement->delete($json_input['id'], $json_input['seller']));
+	$id = $json_input["id"];
+	$seller = $json_input["seller"];
+	
+	$message = $basement->delete($id, $seller);
+	
+	echo json_encode($message);
 	
 
 ?>

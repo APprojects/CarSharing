@@ -16,7 +16,7 @@
 	$history = new History($db);
 
 	// get raw user json_input
-	$json_input = json_decode(file_get_contents("php://input"));
+	$json_input = json_decode(file_get_contents("php://input"),true);
 
    // Delete user
 	echo json_encode($history->delete($json_input['idCar'], $json_input['user']));
