@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS History (
 	idBasementEnd integer REFERENCES Basement(name),
 	DeliveryDay date,
 	DeliveryHour time,
-	CONSTRAINT UC_Person UNIQUE (idCar, PickUpDay, PickUpHour)
+	CONSTRAINT UC_Person UNIQUE (idCar, DeliveryDay, DeliveryHour)
 );
 
 INSERT INTO User VALUES (1,'Luisa','Piersanti','admin','admin','via delle rose', 'parma','italy','F','+39','333333333','0');
