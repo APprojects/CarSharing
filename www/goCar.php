@@ -104,8 +104,9 @@
               
 							
 							<?php
-							
-							foreach(getCars()['cars'] as &$car){
+							$cars = getCars()['cars'];
+							if(!is_null($cars)>0){
+							foreach($cars as $car){
 								    
 								    if($car['seller']==$_SESSION['id']){
 								        $_SESSION['idCar']=$car['id'];
@@ -113,7 +114,7 @@
 												    "<div class="."col-sm-7"."> <button type="."button"." id="."deleteC"." class="."btn btn-info"." onclick="."delete_car(".$car['id'].",".$_SESSION['id'].") value="."Delete Car".">Delete Car</button>" .
 								                    "<button type="."button"." id="."updateC"." class="."btn btn-info"." onclick="."update_car(".$car['id'].",".$_SESSION['id'].") value="."Update Car".">Update Car</button>	"."</div><div class="."clearfix"."></div>"."<div class="."bot-border"."></div>";
 								    }
-								}
+							}}
 							?>
 							
 							
