@@ -143,7 +143,7 @@
 		// Delete a car
 		public function delete($id, $seller) {
 			//create query 
-			$query = 'DELETE FROM ' . $this->table . ' WHERE id = :id and seller = :seller)';
+			$query = 'DELETE FROM ' . $this->table . ' WHERE id = :id and seller = :seller';
 
 			// prepare statement
 			$stmt = $this->conn->prepare($query);
