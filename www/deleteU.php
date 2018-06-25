@@ -1,4 +1,45 @@
-<?php session_start();?>
+<?php 
+session_start();
+
+$campi = array(
+    'id' => ($_GET['idU']),
+    'seller' => ($_GET['idU'])
+    
+);
+
+// trasformo la mia array in JSON
+$dati = json_encode($campi);
+
+// inizializzo curl
+$ch = curl_init();
+
+// imposto la URl del web-service remoto
+curl_setopt($ch, CURLOPT_URL, 'localhost/php_rest_myblog/api/basement/delete.php');
+
+// preparo l'invio dei dati col metodo POST
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $dati);
+
+// imposto gli header correttamente
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+    'Content-Type: application/json',
+    'Content-Length: ' . strlen($dati))
+    );
+
+// eseguo la chiamata
+$response = json_decode(curl_exec($ch), true);
+
+
+
+
+// chiudo
+curl_close($ch);
+
+
+?>
+
+
 
 <!DOCTYPE HTML>
 <!--
@@ -40,7 +81,7 @@
 	<link rel="stylesheet" href="css/owl.theme.default.min.css">
 
 	<!-- Theme style  -->
-	
+	<link rel="stylesheet" href="css/style1.css">
 	<link rel="stylesheet" href="css/style.css">
 
 	<!-- Modernizr JS -->
@@ -49,7 +90,7 @@
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
-<link rel="stylesheet" href="css/style1.css">
+
 	</head>
 	<body>
 	
@@ -64,9 +105,9 @@
     			
     			<div class="row">
     				<div class="col-xs-12 menu-1" >
-    					<button type="button" id="basement" class="btn btn-info" onclick="add_order()" value="order">Book your car!</button>	
-    					 <button type="button" id="updateU" class="btn btn-info" onclick="updateU()" value="Update User">Update User</button>
-    					 <button type="button" id="deleteU" class="btn btn-info" onclick="deleteU()" value="Delete User">Delete User</button>
+    					<button type="button" id="basement" class="btn btn-info" onclick="go_basement()" value="Basement">Basement</button>	
+    					 <button type="button" id="car" class="btn btn-info" onclick="go_car()" value="Car">Car</button>
+    					
     				</div>
     			</div>
     		</div>	
@@ -89,66 +130,9 @@
     				</div>
     			</div>
    				<div class="panel-body" id="bodyP">
-       
-    				<div class="box box-info">
-        
-            			<div class="box-body">
-                    		<div class="col-sm-6">
-                     			
-                              	<br>
-                            <!-- /input-group -->
-          					 </div>
-           					<div class="col-sm-6">
-           						            
-            				</div>
-            				<div class="clearfix"></div>
-            				<hr style="margin:5px 0 5px 0;">
-    
-              
-							<div class="col-sm-5 col-xs-6 tital " >First Name:</div><div class="col-sm-7 col-xs-6 "><?php echo $_SESSION['firstName'] ?></div>
-     						<div class="clearfix"></div>
-							<div class="bot-border"></div>
-
-							<div class="col-sm-5 col-xs-6 tital " >Last Name:</div><div class="col-sm-7"> <?php echo $_SESSION['lastName'] ?></div>
-  							<div class="clearfix"></div>
-							<div class="bot-border"></div>
-
-							<div class="col-sm-5 col-xs-6 tital " >User Name:</div><div class="col-sm-7"> <?php echo $_SESSION['username'] ?></div>
-  							<div class="clearfix"></div>
-							<div class="bot-border"></div>
-
-							<div class="col-sm-5 col-xs-6 tital " >Password:</div><div class="col-sm-7"><?php echo $_SESSION['password'] ?></div>
-
-  							<div class="clearfix"></div>
-							<div class="bot-border"></div>
-
-							<div class="col-sm-5 col-xs-6 tital " >Address:</div><div class="col-sm-7"><?php echo $_SESSION['address'] ?></div>
-
-  							<div class="clearfix"></div>
-                            <div class="bot-border"></div>
-                            
-                            <div class="col-sm-5 col-xs-6 tital " >City:</div><div class="col-sm-7"><?php echo $_SESSION['city'] ?></div>
-                            
-                             <div class="clearfix"></div>
-                            <div class="bot-border"></div>
-                            
-                            <div class="col-sm-5 col-xs-6 tital " >State:</div><div class="col-sm-7"><?php echo $_SESSION['state'] ?></div>
-
- 							<div class="clearfix"></div>
-                            <div class="bot-border"></div>
-                            
-                            <div class="col-sm-5 col-xs-6 tital " >Prefix:</div><div class="col-sm-7"><?php echo $_SESSION['prefix'] ?></div>
-							<div class="clearfix"></div>
-                            <div class="bot-border"></div>
-                            
-                            <div class="col-sm-5 col-xs-6 tital " >Phone number:</div><div class="col-sm-7"><?php echo $_SESSION['phoneNumber'] ?></div>
-
-                        <!-- /.box-body -->
-          				</div>
-          <!-- /.box -->
-
-        		</div>
-       		</div> 
+       					<p>Basement deleted.</p>
+    				
+       			</div> 
     </div>
 
 
@@ -159,21 +143,15 @@
 		}
 	</script>   
     <script>
-		function add_order(){
-			location.href = "welcomeCustomer.php";
+		function go_basement(){
+			location.href = "goBasement.php";
 		}
 	</script>
-	 <script>
-		function updateU(){
-			location.href = "updateU.php";
+	<script>
+		function go_car(){
+			location.href = "goCar.php";
 		}
-	</script> 
-	 <script>
-		function deleteU(){
-			location.href = "deleteU.php";
-		}
-	</script> 
-
+	</script>
        
        
        
