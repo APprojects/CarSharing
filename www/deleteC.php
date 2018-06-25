@@ -2,7 +2,7 @@
 session_start();
 
 $campi = array(
-    'id' => ($_GET['idB']),
+    'id' => ($_GET['idC']),
     'seller' => ($_GET['idU'])
     
 );
@@ -14,7 +14,7 @@ $dati = json_encode($campi);
 $ch = curl_init();
 
 // imposto la URl del web-service remoto
-curl_setopt($ch, CURLOPT_URL, 'localhost/php_rest_myblog/api/basement/delete.php');
+curl_setopt($ch, CURLOPT_URL, 'localhost/php_rest_myblog/api/car/delete.php');
 
 // preparo l'invio dei dati col metodo POST
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -38,8 +38,6 @@ curl_close($ch);
 
 
 ?>
-
-
 
 <!DOCTYPE HTML>
 <!--
@@ -130,7 +128,7 @@ curl_close($ch);
     				</div>
     			</div>
    				<div class="panel-body" id="bodyP">
-       					<p>Basement deleted.</p>
+       					<p>Car deleted.</p>
     				
        			</div> 
     </div>

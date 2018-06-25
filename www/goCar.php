@@ -140,7 +140,7 @@
 	</script>  
        <script>
 		function delete_car($idC,$idU){
-			location.href = "deleteB.php?idC="+$idC+"&idU="+$idU;
+			location.href = "deleteC.php?idC="+$idC+"&idU="+$idU;
 		}
 	</script>  
        

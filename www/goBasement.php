@@ -109,9 +109,12 @@
 								    
 								    if($basement['seller']==$_SESSION['id']){
 								        $_SESSION['idBasement']=$basement['id'];
+								        $_SESSION['addressBasement']=$basement['address'];
+								        $_SESSION['nameBasement']=$basement['name'];
+								    
 								        echo "<div><div class="."col-sm-5 col-xs-6 tital".">" . $basement['name'] . "</div>".
 												    "<div class="."col-sm-7"."> <button type="."button"." id="."deleteB"." class="."btn btn-info"." onclick="."delete_basement(".$basement['id'].",".$_SESSION['id'].") value="."Delete Basement".">Delete Basement</button>" .
-								                    "<button type="."button"." id="."updateB"." class="."btn btn-info"." onclick="."update_basement(".$basement['id'].",".$_SESSION['id'].") value="."Update Basement".">Update Basement</button>	"."</div><div class="."clearfix"."></div>"."<div class="."bot-border"."></div>";
+								                    "<button type="."button"." id="."updateB"." class="."btn btn-info"." onclick="."update_basement(".$basement['id'].",".$basement['name'].",".$basement['address'].",".$_SESSION['id'].") value="."Update Basement".">Update Basement</button>"."</div><div class="."clearfix"."></div>"."<div class="."bot-border"."></div>";
 								    }
 								}
 							?>
@@ -134,6 +137,11 @@
 			location.href = "deleteB.php?idB="+$idB+"&idU="+$idU;
 		}
 	</script>  
+	  <script>
+		function update_basement($idB,$nameB,$addB,$idU){
+			location.href = "updateB.php?idB="+$idB+"&nameB="+$nameB+"&addB="+&addB+"&idU="+$idU;
+		}
+	</script> 
        
    <script>
 		function go_car(){

@@ -3,6 +3,8 @@ session_start();
 
 $campi = array(
     'id' => ($_GET['idB']),
+    'name' => ($_GET['nameB']),
+    'address' => ($_GET['addB']),
     'seller' => ($_GET['idU'])
     
 );
@@ -14,7 +16,7 @@ $dati = json_encode($campi);
 $ch = curl_init();
 
 // imposto la URl del web-service remoto
-curl_setopt($ch, CURLOPT_URL, 'localhost/php_rest_myblog/api/basement/delete.php');
+curl_setopt($ch, CURLOPT_URL, 'localhost/php_rest_myblog/api/basement/update.php');
 
 // preparo l'invio dei dati col metodo POST
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
