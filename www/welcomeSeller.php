@@ -13,7 +13,6 @@
 	<title>Traveler &mdash; Free Website Template, Free HTML5 Template by GetTemplates.co</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Free HTML5 Website Template by GetTemplates.co" />
-	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
 	<meta name="author" content="GetTemplates.co" />
 
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
@@ -65,14 +64,9 @@
     			
     			<div class="row">
     				<div class="col-xs-12 menu-1" >
-    					<ul >
-    						<li><a href="addBasement.php">Add a Basement</a></li>
-    						<li><a href="deleteBasement.php">Delete a Basement</a></li>
-    						<li><a href="updateBasement.php">Update a Basement</a></li>
-    						<li><a href="addCar.php">Add a Car</a></li>
-    						<li><a href="deleteCar.php">Delete a Car</a></li>
-    						<li><a href="updateCar.php">Update a Car</a></li>
-    					</ul>	
+    					<button type="button" id="basement" class="btn btn-info" onclick="go_basement()" value="Basement">Basement</button>	
+    					 <button type="button" id="car" class="btn btn-info" onclick="go_car()" value="Car">Car</button>
+    					
     				</div>
     			</div>
     		</div>	
@@ -86,11 +80,12 @@
 
 		<div class="panel panel-default" id="userPanel">
   				<div class="panel-heading" id="panelH">  
-      				<h4>User Profile</h4>
+      				
       				<div class="row form-group">
     					<div class="col-md-12">
     						<button type="button" id="blogout" class="btn btn-info" onclick="go_home()" value="Log Out">Log Out</button>
-    					</div>
+    					<h4 style="color:#00b1b1;"><?php echo $_SESSION['firstName'] . " " . $_SESSION['lastName'];?> </h4></span>
+             					 <span><p><?php echo $_SESSION['username'];?></p></span></div>
     				</div>
     			</div>
    				<div class="panel-body" id="bodyP">
@@ -99,19 +94,12 @@
         
             			<div class="box-body">
                     		<div class="col-sm-6">
-                     			<div  align="center"> <img alt="User Pic" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" id="profile-image1" class="img-circle img-responsive"> 
-                
-                					<input id="profile-image-upload" class="hidden" type="file">
-										<div style="color:#999;" >click here to change profile image</div>
-               							<!--Upload Image Js And Css-->
-           
-              					</div>
+                     			
                               	<br>
                             <!-- /input-group -->
           					 </div>
            					<div class="col-sm-6">
-           						<h4 style="color:#00b1b1;"><?php echo $_SESSION['firstName'] . " " . $_SESSION['lastName'];?> </h4></span>
-             					 <span><p><?php echo $_SESSION['username'];?></p></span>            
+           						            
             				</div>
             				<div class="clearfix"></div>
             				<hr style="margin:5px 0 5px 0;">
@@ -173,7 +161,16 @@
        
        
        
-       
+    <script>
+		function go_basement(){
+			location.href = "goBasement.php";
+		}
+	</script>
+	<script>
+		function go_car(){
+			location.href = "goCar.php";
+		}
+	</script>
        
        
        

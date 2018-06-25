@@ -16,6 +16,7 @@
 #blogout {
 	width: 10%;
 	margin-left: 85%;
+	margin-top: 1%;
 }
 #book{
 	padding-top: 20px;
@@ -109,4 +110,13 @@ input.hidden {
 #logoW{
 	width:150%;
 	margin-left:-200px;
+}
+
+#basement{
+	margin-top:-50px;
+}
+
+#car {
+	margin-top:-50px;
+	margin-left: 20px;
 }
