@@ -69,7 +69,7 @@
     			<div class="row">
     				<div class="col-xs-12 menu-1" >
     						
-    					 <button type="button" id="car" class="btn btn-info" onclick="go_car()" value="Car">Car</button>
+    					 <button type="button" id="car" class="btn btn-info" onclick="go_basement()" value="Basements">Basements</button>
     					
     				</div>
     			</div>
@@ -105,13 +105,13 @@
 							
 							<?php
 							
-							foreach(getBasements()['basements'] as &$basement){
+							foreach(getCars()['cars'] as &$car){
 								    
-								    if($basement['seller']==$_SESSION['id']){
-								        $_SESSION['idBasement']=$basement['id'];
-								        echo "<div><div class="."col-sm-5 col-xs-6 tital".">" . $basement['name'] . "</div>".
-												    "<div class="."col-sm-7"."> <button type="."button"." id="."deleteB"." class="."btn btn-info"." onclick="."delete_basement(".$basement['id'].",".$_SESSION['id'].") value="."Delete Basement".">Delete Basement</button>" .
-								                    "<button type="."button"." id="."updateB"." class="."btn btn-info"." onclick="."update_basement(".$basement['id'].",".$_SESSION['id'].") value="."Update Basement".">Update Basement</button>	"."</div><div class="."clearfix"."></div>"."<div class="."bot-border"."></div>";
+								    if($car['seller']==$_SESSION['id']){
+								        $_SESSION['idCar']=$car['id'];
+								        echo "<div><div class="."col-sm-5 col-xs-6 tital".">" . $car['id'] . "</div>".
+												    "<div class="."col-sm-7"."> <button type="."button"." id="."deleteC"." class="."btn btn-info"." onclick="."delete_car(".$car['id'].",".$_SESSION['id'].") value="."Delete Car".">Delete Car</button>" .
+								                    "<button type="."button"." id="."updateC"." class="."btn btn-info"." onclick="."update_car(".$car['id'].",".$_SESSION['id'].") value="."Update Car".">Update Car</button>	"."</div><div class="."clearfix"."></div>"."<div class="."bot-border"."></div>";
 								    }
 								}
 							?>
@@ -128,18 +128,23 @@
     </div>
 
     
-       
+      <script>
+		function go_home(){
+			location.href = "index.php";
+		}
+	</script>   
+    <script>
+		function go_basement(){
+			location.href = "goBasement.php";
+		}
+	</script>  
        <script>
-		function delete_basement($idB,$idU){
-			location.href = "deleteB.php?idB="+$idB+"&idU="+$idU;
+		function delete_car($idC,$idU){
+			location.href = "deleteB.php?idC="+$idC+"&idU="+$idU;
 		}
 	</script>  
        
-   <script>
-		function go_car(){
-			location.href = "goCar.php";
-		}
-	</script>
+   
 
        
        

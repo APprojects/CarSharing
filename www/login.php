@@ -61,7 +61,7 @@
 			if($_SESSION['role']== 1)
 				header("location: welcomeSeller.php");
 			else if($_SESSION['role'] == 0)
-				header("location: welcomeCustomer.php");
+				header("location: welcomeCustomer0.php");
 		
 
 		else {

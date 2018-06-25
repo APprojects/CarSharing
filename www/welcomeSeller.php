@@ -153,7 +153,11 @@
 
 
        
-       
+     <script>
+		function go_home(){
+			location.href = "index.php";
+		}
+	</script>   
     <script>
 		function go_basement(){
 			location.href = "goBasement.php";
