@@ -13,7 +13,7 @@
 		// Get History
 		public function read() {
 			// Create query
-			$query = 'SELECT * FROM ' . $this->table;
+		    $query = 'SELECT * FROM '. $this->table . ' JOIN Car ON Car.id = ' . $this->table .'.idCar';
 			
 			//Prepare statement
 			$stmt = $this->conn->prepare($query);
@@ -194,6 +194,5 @@
 
 			printf("Error: %s. \n", $stmt->error);
 		}
-
 	}
 ?>

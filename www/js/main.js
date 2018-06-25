@@ -275,10 +275,11 @@
 		$(function() {
 			  $('input[name="date-start"]').daterangepicker({
 			    timePicker: true,
+			    timePicker24Hour: true,
 			    startDate: moment().startOf('hour'),
 			    endDate: moment().startOf('hour').add(32, 'hour'),
 			    locale: {
-			      format: 'M/DD hh:mm A'
+			      format: ' M/DD/YY hh:mm '
 			    }
 			  });
 			});
@@ -309,9 +310,17 @@
 		loaderPage();
 		counterWayPoint();
 		dateForm();
-		
 		parallax();
 	});
+	
+	$('#sourceBasement').on('change', function(event){
+			console.log(this.value);
+			
+	});
 
+	$('#date-start').on('apply.daterangepicker', function(ev, picker) {
+		  console.log(picker.startDate.format('YYYY-MM-DD'));
+		  console.log(picker.endDate.format('YYYY-MM-DD'));
+		});
 
 }());

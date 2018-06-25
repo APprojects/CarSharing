@@ -78,7 +78,7 @@
 											<select id="sourceBasement" class="form-control" name="sbase">
     											<?php
     												foreach(getBasements()['basements'] as &$basement){
-    													echo "<option value='" . $basement['name'] . "'>" . $basement['name'] . "</option>\n";
+    													echo "<option value='" . $basement['id'] . "'>" . $basement['name'] . "</option>\n";
     												}
     											?>
 											</select>
@@ -96,27 +96,12 @@
 											<select name="dbase" id="destinationBasement" class="form-control">
 												<?php
 													foreach(getBasements()['basements'] as &$basement){
-														echo "<option>" . $basement['name'] . "</option>\n";
+													    echo "<option value='" . $basement['id'] . "'>" . $basement['name'] . "</option>\n";
 													}
 											     ?>
 											</select>
 										</div>
 									</div>
-							<!--    <div class="row form-group">
-    									<div class="col-md-12">
-    										<label for="chooseModel">Choose Model</label>
-    										<select name="model" id="chooseModel" class="form-control">
-    											<?php
-    												    
-    							     					foreach(getCars()['cars'] as &$car){
-    													echo "<option>" . $car['model'] . "</option>\n";
-    												}
-    										     ?>
-    										</select>
-    									</div>
-								    </div>
-								-->	
-
     								<div class="row form-group">
     									<div class="col-md-12">
     										<input type="submit" class="btn btn-primary btn-block" value="Submit">
@@ -131,13 +116,16 @@
 		</div>
 		
 		<?php 
+		echo $_POST['date-start'] . " " . $_POST['sbase'];
 		if(isset($_POST['sbase'])){
 		    echo '<div class="box-body">';
-		    $cars = getCars()['cars'];
-		    if(count($cars)<0){
-    		    foreach ($cars as &$car){
-    		        if($car['basements']==$_POST('sourceBasement')){
-    		            echo '<div class="col-sm-5 col-xs-6 tital " >' . $car['model'] . '</div>';
+		    $historys = getHistorys()['historys'];
+		    if(count($historys)>0){
+		        
+		        foreach ($historys as &$history){
+                    if($histoty['idBasementEnd'] == $_POST['sbase']){
+    		            echo "risultato = ".( $history['idBasementEnd'] . " - "  . $_POST['sbase']);
+    		            echo '<div class="col-sm-5 col-xs-6 tital " >' . $history['model'] . '</div>';
     	                echo '<div class="clearfix"></div>';
     	                echo '<div class="bot-border"></div>';
     		        }

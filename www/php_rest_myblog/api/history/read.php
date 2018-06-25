@@ -36,7 +36,11 @@
 			    'pickUpHour' 	     => $pickUpHour,
 			    'idBasementEnd' 	 => $idBasementEnd,
 			    'deliveryDay' 	     => $deliveryDay,
-			    'deliveryHour'  	 => $deliveryHour
+			    'deliveryHour'  	 => $deliveryHour,
+			    'model'              => $model,
+			    'maxSpeed'           => $maxSpeed,
+			    'numberOfPassengers' => $numberOfPassengers,
+			    'seller'             => $seller
 			);
 
 			// Push to "data"

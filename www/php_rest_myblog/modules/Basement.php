@@ -23,7 +23,7 @@
 			//echo "dopo";
 			return $stmt;
 		}
-
+		
 		// get single basement
 		public function read_single($name, $seller) {
 			// Create query
