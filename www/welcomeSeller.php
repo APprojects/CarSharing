@@ -57,11 +57,14 @@
     	<nav class="gtco-nav" role="navigation">
     		<div class="gtco-container">
     			
-    			<div class="row">
+    			<div class="row" id="logoW">
     				<div class="col-sm-4 col-xs-12">
     					<div id="gtco-logo"><a href="index.php">ESharing <em>.</em></a></div>
     				</div>
-    				<div class="col-xs-12 menu-1">
+    			</div>
+    			
+    			<div class="row">
+    				<div class="col-xs-12 menu-1" >
     					<ul >
     						<li><a href="addBasement.php">Add a Basement</a></li>
     						<li><a href="deleteBasement.php">Delete a Basement</a></li>
@@ -72,15 +75,25 @@
     					</ul>	
     				</div>
     			</div>
-    			
-    		</div>
+    		</div>	
+    		
     	</nav>
 	
-		<header id="gtco-header" class="gtco-cover gtco-cover-md" role="banner" style="height:670px; background-image: url(images/img_bg_2.jpg)">
+		<header id="gtco-header1" class="gtco-cover gtco-cover-md" role="banner" style="background-image: url(images/img_bg_2.jpg)">
 			<div class="overlay"></div>
-			<div class="panel panel-default">
-  				<div class="panel-heading">  <h4 >User Profile</h4></div>
-   				<div class="panel-body">
+		</header>
+    	
+
+		<div class="panel panel-default" id="userPanel">
+  				<div class="panel-heading" id="panelH">  
+      				<h4>User Profile</h4>
+      				<div class="row form-group">
+    					<div class="col-md-12">
+    						<button type="button" id="blogout" class="btn btn-info" onclick="go_home()" value="Log Out">Log Out</button>
+    					</div>
+    				</div>
+    			</div>
+   				<div class="panel-body" id="bodyP">
        
     				<div class="box box-info">
         
@@ -97,54 +110,57 @@
                             <!-- /input-group -->
           					 </div>
            					<div class="col-sm-6">
-           						<h4 style="color:#00b1b1;">Prasad Shankar Huddedar </h4></span>
-             					 <span><p>Aspirant</p></span>            
+           						<h4 style="color:#00b1b1;"><?php echo $_SESSION['firstName'] . " " . $_SESSION['lastName'];?> </h4></span>
+             					 <span><p><?php echo $_SESSION['username'];?></p></span>            
             				</div>
             				<div class="clearfix"></div>
             				<hr style="margin:5px 0 5px 0;">
     
               
-							<div class="col-sm-5 col-xs-6 tital " >First Name:</div><div class="col-sm-7 col-xs-6 ">Prasad</div>
+							<div class="col-sm-5 col-xs-6 tital " >First Name:</div><div class="col-sm-7 col-xs-6 "><?php echo $_SESSION['firstName'] ?></div>
      						<div class="clearfix"></div>
 							<div class="bot-border"></div>
 
-							<div class="col-sm-5 col-xs-6 tital " >Middle Name:</div><div class="col-sm-7"> Shankar</div>
+							<div class="col-sm-5 col-xs-6 tital " >Last Name:</div><div class="col-sm-7"> <?php echo $_SESSION['lastName'] ?></div>
   							<div class="clearfix"></div>
 							<div class="bot-border"></div>
 
-							<div class="col-sm-5 col-xs-6 tital " >Last Name:</div><div class="col-sm-7"> Huddedar</div>
+							<div class="col-sm-5 col-xs-6 tital " >User Name:</div><div class="col-sm-7"> <?php echo $_SESSION['username'] ?></div>
   							<div class="clearfix"></div>
 							<div class="bot-border"></div>
 
-							<div class="col-sm-5 col-xs-6 tital " >Date Of Joining:</div><div class="col-sm-7">15 Jun 2016</div>
+							<div class="col-sm-5 col-xs-6 tital " >Password:</div><div class="col-sm-7"><?php echo $_SESSION['password'] ?></div>
 
   							<div class="clearfix"></div>
 							<div class="bot-border"></div>
 
-							<div class="col-sm-5 col-xs-6 tital " >Date Of Birth:</div><div class="col-sm-7">11 Jun 1998</div>
+							<div class="col-sm-5 col-xs-6 tital " >Address:</div><div class="col-sm-7"><?php echo $_SESSION['address'] ?></div>
 
   							<div class="clearfix"></div>
                             <div class="bot-border"></div>
                             
-                            <div class="col-sm-5 col-xs-6 tital " >Place Of Birth:</div><div class="col-sm-7">Shirdi</div>
+                            <div class="col-sm-5 col-xs-6 tital " >City:</div><div class="col-sm-7"><?php echo $_SESSION['city'] ?></div>
                             
                              <div class="clearfix"></div>
                             <div class="bot-border"></div>
                             
-                            <div class="col-sm-5 col-xs-6 tital " >Nationality:</div><div class="col-sm-7">Indian</div>
+                            <div class="col-sm-5 col-xs-6 tital " >State:</div><div class="col-sm-7"><?php echo $_SESSION['state'] ?></div>
 
  							<div class="clearfix"></div>
                             <div class="bot-border"></div>
                             
-                            <div class="col-sm-5 col-xs-6 tital " >Relition:</div><div class="col-sm-7">Hindu</div>
-
+                            <div class="col-sm-5 col-xs-6 tital " >Prefix:</div><div class="col-sm-7"><?php echo $_SESSION['prefix'] ?></div>
+							<div class="clearfix"></div>
+                            <div class="bot-border"></div>
+                            
+                            <div class="col-sm-5 col-xs-6 tital " >Phone number:</div><div class="col-sm-7"><?php echo $_SESSION['phoneNumber'] ?></div>
 
                         <!-- /.box-body -->
           				</div>
           <!-- /.box -->
 
         		</div>
-       	</div> 
+       		</div> 
     </div>
 
     <script>
@@ -154,100 +170,6 @@
     			});
 			});       
     </script> 
-       
-       
-       
-
-	</header>
-       <div class="col-md-7 ">
-
-<div class="panel panel-default">
-  <div class="panel-heading">  <h4 >User Profile</h4></div>
-   <div class="panel-body">
-       
-    <div class="box box-info">
-        
-            <div class="box-body">
-                     <div class="col-sm-6">
-                     <div  align="center"> <img alt="User Pic" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" id="profile-image1" class="img-circle img-responsive"> 
-                
-                <input id="profile-image-upload" class="hidden" type="file">
-<div style="color:#999;" >click here to change profile image</div>
-                <!--Upload Image Js And Css-->
-           
-              
-   
-                
-                
-                     
-                     
-                     </div>
-              
-              <br>
-    
-              <!-- /input-group -->
-            </div>
-            <div class="col-sm-6">
-            <h4 style="color:#00b1b1;">Prasad Shankar Huddedar </h4></span>
-              <span><p>Aspirant</p></span>            
-            </div>
-            <div class="clearfix"></div>
-            <hr style="margin:5px 0 5px 0;">
-    
-              
-<div class="col-sm-5 col-xs-6 tital " >First Name:</div><div class="col-sm-7 col-xs-6 ">Prasad</div>
-     <div class="clearfix"></div>
-<div class="bot-border"></div>
-
-<div class="col-sm-5 col-xs-6 tital " >Middle Name:</div><div class="col-sm-7"> Shankar</div>
-  <div class="clearfix"></div>
-<div class="bot-border"></div>
-
-<div class="col-sm-5 col-xs-6 tital " >Last Name:</div><div class="col-sm-7"> Huddedar</div>
-  <div class="clearfix"></div>
-<div class="bot-border"></div>
-
-<div class="col-sm-5 col-xs-6 tital " >Date Of Joining:</div><div class="col-sm-7">15 Jun 2016</div>
-
-  <div class="clearfix"></div>
-<div class="bot-border"></div>
-
-<div class="col-sm-5 col-xs-6 tital " >Date Of Birth:</div><div class="col-sm-7">11 Jun 1998</div>
-
-  <div class="clearfix"></div>
-<div class="bot-border"></div>
-
-<div class="col-sm-5 col-xs-6 tital " >Place Of Birth:</div><div class="col-sm-7">Shirdi</div>
-
- <div class="clearfix"></div>
-<div class="bot-border"></div>
-
-<div class="col-sm-5 col-xs-6 tital " >Nationality:</div><div class="col-sm-7">Indian</div>
-
- <div class="clearfix"></div>
-<div class="bot-border"></div>
-
-<div class="col-sm-5 col-xs-6 tital " >Relition:</div><div class="col-sm-7">Hindu</div>
-
-
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-
-        </div>
-       
-            
-    </div> 
-    </div>
-</div>  
-    <script>
-              $(function() {
-    $('#profile-image1').on('click', function() {
-        $('#profile-image-upload').click();
-    });
-});       
-              </script> 
-       
        
        
        

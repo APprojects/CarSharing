@@ -87,3 +87,26 @@ input.hidden {
 	border:2px solid #03b1ce ;}
 	.tital{ font-size:16px; font-weight:500;}
 	 .bot-border{ border-bottom:1px #f8f8f8 solid;  margin:5px 0  5px 0}	
+	 
+#gtco-header1{
+	height:90px;
+}
+
+#gtco-header{
+	height:670px;
+}
+
+#panelH{
+	
+	margin-left:75px;
+}
+
+#bodyP{
+	
+	margin-left:75px;
+}
+
+#logoW{
+	width:150%;
+	margin-left:-200px;
+}
