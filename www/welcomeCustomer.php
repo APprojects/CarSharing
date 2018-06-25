@@ -87,8 +87,8 @@
 
 									<!-- Date input -->
 									<div class="form-group"> 
-								        <label class="control-label" for="date-start">Pickup and Delivery </label>
-								        <input class="form-control" id="date-start" name="date-start" type="text"/>
+								        <label class="control-label" for="date">Pickup and Delivery </label>
+								        <input class="form-control" id="date" name="date" type="text"/>
 							      	</div>
 									<div class="row form-group">
 										<div class="col-md-12">
@@ -104,7 +104,7 @@
 									</div>
     								<div class="row form-group">
     									<div class="col-md-12">
-    										<input type="submit" class="btn btn-primary btn-block" value="Submit">
+    										<input type="submit" id ="searchCar" class="btn btn-primary btn-block" value="Submit">
     									</div>
     								</div>
 								</form>	
@@ -117,11 +117,18 @@
 		
 		<?php 
 		
-		foreach ($_POST['date-start'] as &$data){
-		    echo $data;
-		}
 		if(isset($_POST['sbase'])){
-		    echo '<div class="box-body">';
+		    //GET DATE AND TIME
+		    
+            
+            $dates = explode(' ', $_POST['date']);
+            $startDate = $dates[1];
+            $startTime = $dates[2];
+            $endDate = $dates[6];
+            $endTime = $dates[7];
+            echo "startDate " . $startDate . " - startTime ". $startTime . " - endDate " . $endDate . " - EndTime " . $endTime;
+            
+            echo '<div class="box-body">';
 		    $historys = getHistorys()['historys'];
 		    if(count($historys)>0){
 				foreach ($historys as &$history){
@@ -176,6 +183,7 @@
     
     <!-- Main -->
  	<script src="js/main.js"></script>
+ 	
 	<script>
 
 		
@@ -202,6 +210,7 @@
     	    $('#date-start').datepicker('setEndDate', new Date($(this).val()));
     	});
     */	//END DATE PICKER CONFIGURATIONS
+
     
 	</script>
 	<script>

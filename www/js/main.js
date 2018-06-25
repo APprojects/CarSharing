@@ -273,7 +273,7 @@
 
 	var dateForm = function() {
 		$(function() {
-			  $('input[name="date-start"]').daterangepicker({
+			  $('input[name="date"]').daterangepicker({
 			    timePicker: true,
 			    timePicker24Hour: true,
 			    startDate: moment().startOf('hour'),
@@ -311,11 +311,6 @@
 		counterWayPoint();
 		dateForm();
 		parallax();
-	});
-	
-	$('#sourceBasement').on('change', function(event){
-			console.log(this.value);
-			
 	});
 
 	$('#date-start').on('apply.daterangepicker', function(ev, picker) {

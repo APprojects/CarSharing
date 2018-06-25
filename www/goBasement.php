@@ -111,21 +111,21 @@
 								    if($basement['seller']==$_SESSION['id']){
 								       
 								    
-								        echo "<div>
-                                                <div class="."col-sm-5 col-xs-6 tital".">" 
+								        echo '<div>
+                                                <div class="col-sm-5 col-xs-6 tital">' 
 	                                               . $basement['name'] . 
-	                                           "</div>";
-										echo  "<div class="."col-sm-7".">"; 
-                                        echo      "<button type="."button".
-                                                    " id="."deleteB"." class="."btn btn-info".
-                                                    " onclick="."delete_basement(".$basement['id'].",".$_SESSION['id'].") 
-                                                       value="."Delete Basement".">Delete Basement</button>" ;
-								        echo       "<button type="."button".
-												     " id="."updateB"." class="."btn btn-info".
-												     " onclick="."update_basement(".$basement['id'].",".$basement['name'].",".$basement['address'].",".$_SESSION['id'].") 
-                                                        value="."Update Basement".">Update Basement</button>";
-								       echo         "</div>
-                                                    <div class="."clearfix"."></div>"."<div class="."bot-border"."></div>";
+	                                           '</div>';
+										echo '<div class="col-sm-7">'; 
+                                        echo      '<button type="button"'.
+                                                    ' id="deleteB" class="btn btn-info"'.
+                                                    ' onclick="delete_basement('.$basement["id"].','.$_SESSION["id"].')"'. 
+                                                      ' value="Delete Basement">Delete Basement</button>' ;
+								        echo       '<button type="button"'.
+												     ' id="updateB" class="btn btn-info"'.
+												     ' onclick="update_basement('.$basement["id"].',\''.$basement["name"].'\',\''.$basement["address"].'\','.$_SESSION["id"].')" '.
+                                                     ' value="Update Basement">Update Basement</button></div>';
+								       echo         '
+                                                    <div class="clearfix"></div><div class="bot-border"></div>';
 								    }
 							}}
 							?>
@@ -143,23 +143,20 @@
 
     
        
-       <script>
-    		function delete_basement($idB,$idU){
-    			location.href = "deleteB.php?idB="+$idB+"&idU="+$idU;
+       <script  type="text/javascript">
+    		function delete_basement(idB,idU){
+    			location.href = "deleteB.php?idB="+idB+"&idU="+idU;
     		}
-	   </script>
-	   <script>
-    		function update_basement($idB,$nameB,$addB,$idU){
+	   
+    		function update_basement(idB,nameB,addB,idU){
     			alert("ciao");
-    			location.href = "updateB.php?idB="+$idB+"&nameB="+$nameB+"&addB="+&addB+"&idU="+$idU;
+    			location.href = "updateB.php?idB="+idB+"&nameB="+nameB+"&addB="+addB+"&idU="+idU;
     		}
-		</script>
-		<script>
+		
     		function go_car(){
     			location.href = "goCar.php";
     		}
-		</script>
-		<script>
+	
     		function go_home(){
     			location.href = "index.php";
     		}
