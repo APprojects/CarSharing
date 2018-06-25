@@ -272,19 +272,8 @@
 
 
 	var dateForm = function() {
-		$(function() {
-			  $('input[name="date-start"]').daterangepicker({
-			    timePicker: true,
-			    startDate: moment().startOf('hour'),
-			    endDate: moment().startOf('hour').add(32, 'hour'),
-			    locale: {
-			      format: 'M/DD hh:mm A'
-			    }
-			  });
-			});
+		$('#date-start').datepicker();
 	};
-	
-
 
 	var parallax = function() {
 		$(window).stellar({
@@ -309,7 +298,6 @@
 		loaderPage();
 		counterWayPoint();
 		dateForm();
-		
 		parallax();
 	});
 

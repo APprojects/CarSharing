@@ -22,7 +22,7 @@
 	if($num > 0){
 		// users array
 		$historys_arr = array();
-		$historys_arr['history'] = array();
+		$historys_arr['historys'] = array();
 
 		while($row = $result->fetch(PDO::FETCH_ASSOC)) {
 			extract($row);
@@ -40,7 +40,7 @@
 			);
 
 			// Push to "data"
-			array_push($historys_arr['history'], $history_item);
+			array_push($historys_arr['historys'], $history_item);
 		}
 
 		// turn to JSON & output
