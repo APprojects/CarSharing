@@ -58,18 +58,18 @@
 			$_SESSION['phoneNumber'] 	= $response['phoneNumber'];
 			$_SESSION['role'] 			= $response['role'];
 
-			if($_SESSION['role']== 1)
+			if($_SESSION['role']== 1){
 				header("location: welcomeSeller.php");
-			else if($_SESSION['role'] == 0)
+			}
+			else if($_SESSION['role'] == 0){
 				header("location: welcomeCustomer0.php");
-		
-
-		else {
-			header("location: index.php?error_login=".urlencode('user not registered'));
-
-		}
+			}
+    		
+		}else {
+	    	header("location: index.php?error_login=".urlencode('user not registered'));
+        }
 	}
-}
+
 
 			
 ?>
