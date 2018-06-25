@@ -1,6 +1,4 @@
 <?php
-
-getHistorys();
 	//return an array['data']  of array [0,1,...,n] of basements with ['name'] and ['address']
 	function getBasements(){
 		$ch = curl_init();
@@ -66,7 +64,7 @@ getHistorys();
 	    
 	    // eseguo la chiamata
 	    $response = json_decode(curl_exec($ch), true);
-	    var_dump($response);
+	 //var_dump($response);
 	    // chiudo
 	    curl_close($ch);
 	    return $response;
