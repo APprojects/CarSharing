@@ -60,7 +60,7 @@
 		}
 		
 		// Get single History by idHistory
-		public function read_single($idHistory) {
+		public function read_single_byID($idHistory) {
 		    // Create query
 		    return $this->commonReadSingle('SELECT * FROM ' . $this->table . ' WHERE idHistory = :idHistory');
 		}
@@ -159,7 +159,7 @@
 
 			// execute query
 			if($stmt->execute()) {
-			    return $this->read_single($idHistory);
+			    return $this->read_single_byID($idHistory);
 			}
 
 			// print error if something goes wrong 
