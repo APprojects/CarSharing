@@ -41,10 +41,10 @@
 			$row = $stmt->fetch(PDO::FETCH_ASSOC);
             
 			return array(
-			    'id' => $row->id,
-			    'name' => $row->name,
-			    'address' => $row->address,
-			    'seller' => $row->seller
+			    'id'         => $row['id'],
+			    'name'       => $row['name'],
+			    'address'    => $row['address'],
+			    'seller'     => $row['seller']
 			);
 			
 		}
@@ -113,10 +113,10 @@
 			// execute query
 			if($stmt->execute()) {
 			    return array(
-			        'id' => $row->id,
-			        'name' => $row->name,
-			        'address' => $row->address,
-			        'seller' => $row->seller
+			        'id' => $id,
+			        'name' => $name,
+			        'address' => $address,
+			        'seller' => $seller
 			    );
 			}
 

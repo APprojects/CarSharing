@@ -11,42 +11,40 @@
 	$db = $database->connect();
 	
 	//Instantiate user objects
-	$user = new User($db);
+	$history = new History($db);
 
 	//user query
-	$result = $user->read();
+	$result = $history->read();
 	//get row count
 	$num = $result->rowCount();
 
 	// check if any user
 	if($num > 0){
 		// users array
-		$users_arr = array();
-		$users_arr['data'] = array();
+		$historys_arr = array();
+		$historys_arr['history'] = array();
 
 		while($row = $result->fetch(PDO::FETCH_ASSOC)) {
 			extract($row);
 
-			$user_item = array(
-				'id' 			=> $id,
-				'firstName' 	=> $firstName,
-				'lastName' 		=> $lastName,
-				'username' 		=> $username,
-				'address' 		=> $address,
-				'city' 			=> $city,
-				'state' 		=> $state,
-				'gender' 		=> $gender,
-				'prefix' 		=> $prefix,
-				'phoneNumber' 	=> $phoneNumber,
-				'role' 		=> $role		
+			$history_item = array(
+			    'idHistory'          => $idHistory,
+			    'idCar'              => $idCar,
+			    'customer'           => $customer,
+			    'idBasementStart'    => $idBasementStart,
+			    'pickUpDay' 	     => $pickUpDay,
+			    'pickUpHour' 	     => $pickUpHour,
+			    'idBasementEnd' 	 => $idBasementEnd,
+			    'deliveryDay' 	     => $deliveryDay,
+			    'deliveryHour'  	 => $deliveryHour
 			);
 
 			// Push to "data"
-			array_push($users_arr['data'], $user_item);
+			array_push($historys_arr['history'], $history_item);
 		}
 
 		// turn to JSON & output
-		echo json_encode($users_arr);
+		echo json_encode($historys_arr);
 	}
 
 	else {

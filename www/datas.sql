@@ -35,12 +35,12 @@ CREATE TABLE IF NOT EXISTS History (
 	idCar integer REFERENCES Car(id),
 	customer integer REFERENCES User(id),
 	idBasementStart integer REFERENCES Basement(name),
-	PickUpDay date,
-	PickUpHour time,
+	pickUpDay date,
+	pickUpHour time,
 	idBasementEnd integer REFERENCES Basement(name),
-	DeliveryDay date,
-	DeliveryHour time,
-	CONSTRAINT UC_Person UNIQUE (idCar, DeliveryDay, DeliveryHour)
+	deliveryDay date,
+	deliveryHour time,
+	CONSTRAINT UC_Person UNIQUE (idCar, deliveryDay, deliveryHour)
 );
 
 INSERT INTO User VALUES (1,'Luisa','Piersanti','admin','admin','via delle rose', 'parma','italy','F','+39','333333333','0');

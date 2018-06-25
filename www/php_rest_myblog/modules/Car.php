@@ -42,11 +42,11 @@
 
 			// Set properties
 			return array(
-			    'id' 			=> $row->id,
-			    'model' 	=> $row->model,
-			    'maxSpeed' 		=> $row->maxSpeed,
-			    'numberOfPassengers' => $row->numberOfPassengers,
-			    'seller' 		=> $row->seller
+			    'id' 			     => $row['id'],
+			    'model' 	         => $row['model'],
+			    'maxSpeed' 		     => $row['maxSpeed'],
+			    'numberOfPassengers' => $row['numberOfPassengers'],
+			    'seller' 		     => $row['seller']
 			);
 			
 		}
@@ -83,11 +83,11 @@
 			// execute query
 			if($stmt->execute()) {
 			    return array(
-			        'id' 			=> $id,
-			        'model' 	=> $model,
-			        'maxSpeed' 		=> $maxSpeed,
+			        'id' 			     => $id,
+			        'model' 	         => $model,
+			        'maxSpeed' 		     => $maxSpeed,
 			        'numberOfPassengers' => $numberOfPassengers,
-			        'seller' 		=> $seller
+			        'seller' 		     => $seller
 			    );
 			    
 			}
@@ -128,11 +128,11 @@
 			// execute query
 			if($stmt->execute()) {
 			    return array(
-			        'id' 			=> $id,
-			        'model' 	=> $model,
-			        'maxSpeed' 		=> $maxSpeed,
+			        'id' 			     => $id,
+			        'model' 	         => $model,
+			        'maxSpeed' 		     => $maxSpeed,
 			        'numberOfPassengers' => $numberOfPassengers,
-			        'seller' 		=> $seller
+			        'seller' 		     => $seller
 			    );
 			}
 

@@ -13,11 +13,11 @@
 	$db = $database->connect();
 	
 	//Instantiate user objects
-	$user = new User($db);
+	$history = new History($db);
 
 	// get raw user json_input
 	$json_input = json_decode(file_get_contents("php://input"));
 
    // Delete user
-	echo json_encode($user->delete($json_input['id'], $json_input['username'], $json_input['password']));
+	echo json_encode($history->delete($json_input['idCar'], $json_input['user']));
 ?>

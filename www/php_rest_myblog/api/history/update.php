@@ -13,13 +13,12 @@
 	$db = $database->connect();
 	
 	//Instantiate user objects
-	$user = new User($db);
+	$history = new History($db);
 
 	// get raw user json_input
 	$json_input = json_decode(file_get_contents("php://input"));
 
 	// update user
-    echo json_encode($user->update($json_input['id'], $json_input['firstName'], $json_input['lastName'], $json_input['username'], $json_input['password'],
-	        $json_input['address'], $json_input['city'], $json_input['state'], $json_input['gender'], $json_input['prefix'],
-	        $json_input['phoneNumber'], $json_input['role']));
+	echo json_encode($history->update($json_input['idHistory'], $json_input['idCar'], $json_input['user'], $json_input['idBasementStart'], $json_input['pickUpDay'],
+	    $json_input['pickUpHour'], $json_input['idBasementEnd'], $json_input['deliveryDay'], $json_input['deliveryHour']));
 ?>
