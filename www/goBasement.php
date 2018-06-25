@@ -52,6 +52,10 @@
 
 	</head>
 	<body>
+	<?php
+		
+		include_once("./utilityFunctions.php");
+	?>
 	
     	<nav class="gtco-nav" role="navigation">
     		<div class="gtco-container">
@@ -93,77 +97,46 @@
     				<div class="box box-info">
         
             			<div class="box-body">
-                    		<div class="col-sm-6">
-                     			
-                              	<br>
-                            <!-- /input-group -->
-          					 </div>
-           					<div class="col-sm-6">
-           						            
-            				</div>
+                    		
             				<div class="clearfix"></div>
             				<hr style="margin:5px 0 5px 0;">
     
               
-							<div class="col-sm-5 col-xs-6 tital " >First Name:</div><div class="col-sm-7 col-xs-6 "><?php echo $_SESSION['firstName'] ?></div>
-     						<div class="clearfix"></div>
-							<div class="bot-border"></div>
-
-							<div class="col-sm-5 col-xs-6 tital " >Last Name:</div><div class="col-sm-7"> <?php echo $_SESSION['lastName'] ?></div>
-  							<div class="clearfix"></div>
-							<div class="bot-border"></div>
-
-							<div class="col-sm-5 col-xs-6 tital " >User Name:</div><div class="col-sm-7"> <?php echo $_SESSION['username'] ?></div>
-  							<div class="clearfix"></div>
-							<div class="bot-border"></div>
-
-							<div class="col-sm-5 col-xs-6 tital " >Password:</div><div class="col-sm-7"><?php echo $_SESSION['password'] ?></div>
-
-  							<div class="clearfix"></div>
-							<div class="bot-border"></div>
-
-							<div class="col-sm-5 col-xs-6 tital " >Address:</div><div class="col-sm-7"><?php echo $_SESSION['address'] ?></div>
-
-  							<div class="clearfix"></div>
-                            <div class="bot-border"></div>
-                            
-                            <div class="col-sm-5 col-xs-6 tital " >City:</div><div class="col-sm-7"><?php echo $_SESSION['city'] ?></div>
-                            
-                             <div class="clearfix"></div>
-                            <div class="bot-border"></div>
-                            
-                            <div class="col-sm-5 col-xs-6 tital " >State:</div><div class="col-sm-7"><?php echo $_SESSION['state'] ?></div>
-
- 							<div class="clearfix"></div>
-                            <div class="bot-border"></div>
-                            
-                            <div class="col-sm-5 col-xs-6 tital " >Prefix:</div><div class="col-sm-7"><?php echo $_SESSION['prefix'] ?></div>
-							<div class="clearfix"></div>
-                            <div class="bot-border"></div>
-                            
-                            <div class="col-sm-5 col-xs-6 tital " >Phone number:</div><div class="col-sm-7"><?php echo $_SESSION['phoneNumber'] ?></div>
-
+							
+							<?php
+							
+							foreach(getBasements()['basements'] as &$basement){
+								    
+								    if($basement['seller']==$_SESSION['id']){
+								        $_SESSION['idBasement']=$basement['id'];
+								        echo "<div><div class="."col-sm-5 col-xs-6 tital".">" . $basement['name'] . "</div>".
+												    "<div class="."col-sm-7"."> <button type="."button"." id="."deleteB"." class="."btn btn-info"." onclick="."delete_basement(".$basement['id'].",".$_SESSION['id'].") value="."Delete Basement".">Delete Basement</button>" .
+								                    "<button type="."button"." id="."updateB"." class="."btn btn-info"." onclick="."update_basement(".$basement['id'].",".$_SESSION['id'].") value="."Update Basement".">Update Basement</button>	"."</div><div class="."clearfix"."></div>"."<div class="."bot-border"."></div>";
+								    }
+								}
+							?>
+							
+							
+							</div>
+     						
                         <!-- /.box-body -->
-          				</div>
+          			</div>
           <!-- /.box -->
 
         		</div>
-       		</div> 
+       		
     </div>
 
+    
+       
+       <script>
+		function delete_basement($idB,$idU){
+			location.href = "deleteB.php?idB="+$idB+"&idU="+$idU;
+		}
+	</script>  
+       
+   
 
-       
-       
-    <script>
-		function go_basement(){
-			location.href = "goBasement.php";
-		}
-	</script>
-	<script>
-		function go_car(){
-			location.href = "goCar.php";
-		}
-	</script>
        
        
        
@@ -203,4 +176,4 @@
 	<!-- Main -->
 	<script src="js/main.js"></script>
 	
-	</body></html>
+</body></html>
