@@ -19,9 +19,10 @@
 	// get raw user json_input
 	$json_input = json_decode(file_get_contents("php://input"),true);
 
+	$message = $car->delete($json_input['id'], $json_input['seller']);
 
 	// Delete car
-	echo json_encode($car->delete($json_input['id'], $json_input['seller']));
+	echo json_encode($message);
 	
 
 ?>

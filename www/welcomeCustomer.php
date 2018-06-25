@@ -116,15 +116,16 @@
 		</div>
 		
 		<?php 
-		echo $_POST['date-start'] . " " . $_POST['sbase'];
+		
+		foreach ($_POST['date-start'] as &$data){
+		    echo $data;
+		}
 		if(isset($_POST['sbase'])){
 		    echo '<div class="box-body">';
 		    $historys = getHistorys()['historys'];
 		    if(count($historys)>0){
-		        
-		        foreach ($historys as &$history){
-                    if($histoty['idBasementEnd'] == $_POST['sbase']){
-    		            echo "risultato = ".( $history['idBasementEnd'] . " - "  . $_POST['sbase']);
+				foreach ($historys as &$history){
+				    if(!strcmp($history['idBasementEnd'], $_POST['sbase'])){
     		            echo '<div class="col-sm-5 col-xs-6 tital " >' . $history['model'] . '</div>';
     	                echo '<div class="clearfix"></div>';
     	                echo '<div class="bot-border"></div>';
