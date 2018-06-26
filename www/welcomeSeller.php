@@ -169,6 +169,17 @@
 			location.href = "goCar.php";
 		}
 	</script>
+	<script>
+		function updateU(){
+			location.href = "updateU.php";
+			
+		}
+	</script> 
+	 <script>
+		function deleteU(){
+			location.href = "deleteU.php";
+		}
+	</script> 
        
        
        
