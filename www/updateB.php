@@ -11,27 +11,31 @@
     
     include_once("./utilityFunctions.php");
 
-    var_dump($_POST['baseName']);
+
+    
+
     //controllo se sono settate le variabili post in caso affermativo faccio i controlli
-	if(isset($_POST['baseName']) || isset($_POST['baseAddress'])){
+    if(!empty($_POST['baseName']) || !empty($_POST['baseAddress'])){
+	    
+	    if(!empty($_POST['baseName']))
+	        echo $_POST['baseName'];
+	   
 	    $basements = getBasements()['basements'];
 	    
-	    if(isset($_POST['baseAddress'])){
+	    if(!empty($_POST['baseName'])){
 		   $campi['name'] = $_POST['baseName'];
-		        foreach ($basements as &$basement){
-		            if($_POST['baseName'] == ($basement['name'])){
-		                 echo "the name is already existing";
-		                $campi['name']= $_GET['nameB'];
-		                break;
-		            }
-	              }
-	      }
-	 
-	  
-	      if(isset($_POST['baseAddress'])){
-		      $campi['address'] =$_POST['baseAddress'];
-		      
-		  }
+	      foreach ($basements as &$basement){
+	          if($campi['name'] == ($basement['name'])){
+	              echo "the name is already existing";
+	              $campi['name']= $_GET['nameB'];
+	              break;
+	          }
+          }
+	    }
+	    
+	    if(!empty($_POST['baseAddress'])){
+            $campi['address'] =$_POST['baseAddress'];
+	    }
 	                
 	                
         // trasformo la mia array in JSON
@@ -50,15 +54,12 @@
         
         // imposto gli header correttamente
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-        'Content-Type: application/json',
-        'Content-Length: ' . strlen($dati))
+            'Content-Type: application/json',
+            'Content-Length: ' . strlen($dati))
         );
         
         // eseguo la chiamata
         $response = json_decode(curl_exec($ch), true);
-        
-        
-        
         
         // chiudo
         curl_close($ch);    
@@ -163,7 +164,7 @@
 									<div class="tab-content-inner active" id="baseInfo" data-content="signup">
 										<h3>Update Basement's Information</h3>
 											
-											<form action="updateB.php?idB=<?php echo $_GET['idB']."&nameB=".$_GET['nameB']."&addB=".$_GET['addB']."&idU=".$_GET['idU'];?>" method="post">
+											<form action="updateB.php?idB=<?php echo $_GET['idB']."&nameB=".$campi['name']."&addB=".$campi['address']."&idU=".$_GET['idU'];?>" method="post">
 												<div class="form-group">
 													<div class="col-md-12">
 														<label for="nameB">Name  (<?php echo $campi['name'];?>)</label>

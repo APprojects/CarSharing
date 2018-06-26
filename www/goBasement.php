@@ -110,23 +110,23 @@
 							foreach($basements as &$basement){
 								    
 								    if($basement['seller']==$_SESSION['id']){
-								       
-								    
 								        echo '<div>
                                                 <div class="col-sm-5 col-xs-6 tital">' 
 	                                               . $basement['name'] . 
 	                                           '</div>';
 										echo '<div class="col-sm-7">'; 
                                         echo      '<button type="button"'.
-                                                    ' id="deleteB" class="btn btn-info"'.
+                                                    ' class="btn btn-info deleteB"'.
                                                     ' onclick="delete_basement('.$basement["id"].','.$_SESSION["id"].')"'. 
                                                       ' value="Delete Basement">Delete Basement</button>' ;
 								        echo       '<button type="button"'.
-												     ' id="updateB" class="btn btn-info"'.
+												     'class="btn btn-info updateB"'.
 												     ' onclick="update_basement('.$basement["id"].',\''.$basement["name"].'\',\''.$basement["address"].'\','.$_SESSION["id"].')" '.
-                                                     ' value="Update Basement">Update Basement</button></div>';
-								       echo         '
-                                                    <div class="clearfix"></div><div class="bot-border"></div>';
+												     ' value="idB   : \''.$basement["id"]      .'\','.
+												     'nameB: \''.$basement["name"]    .'\','.
+												     'addB : \''.$basement["address"] .'\','.
+												     'idU  : \''.$_SESSION["id"]      .'\'">Update Basement</button></div>';
+								        echo         '</div><div class="clearfix"></div><div class="bot-border"></div>';    
 								    }
 							}}
 							?>
@@ -152,6 +152,8 @@
     		function update_basement(idB,nameB,addB,idU){
     			location.href = "updateB.php?idB="+idB+"&nameB="+nameB+"&addB="+addB+"&idU="+idU;
     		}
+
+    		
 		
     		function go_car(){
     			location.href = "goCar.php";
@@ -160,7 +162,22 @@
     		function go_home(){
     			location.href = "index.php";
     		}
+
+    		/*$(document).ready(function(){
+    		    $('.updateB').click(function(){
+    		        var clickBtnValue = $(this).val();
+    		        var url = 'updateB.php',
+    		        data =  {clickBtnValue};
+		        	
+    		        $.post(url, {clickBtnValue}, function (response) {
+    		            // Response div goes here.
+    		            $('html').html(response);
+    		        });
+    		    });
+
+    		});*/
 		</script>
+
 
        
        
