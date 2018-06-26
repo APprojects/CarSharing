@@ -109,7 +109,7 @@ include_once("./utilityFunctions.php");
 								<div class="tab-content">
 									<div class="tab-content-inner active" id="baseInfo" data-content="signup">
 										<h3>Update Basement's Information</h3>
-											<form action="updateB.php" method="post">
+											<form action="updateB.php?idB=".$_GET['idB']."&nameB=".$_GET['nameB']."&addB=".$_GET['addB']."&idU=".$_GET['idU]" method="post">
 												<div class="form-group">
 													<div class="col-md-12">
 														<label for="nameB">Name</label>
@@ -141,40 +141,26 @@ include_once("./utilityFunctions.php");
 		<?php 
 		
 		$basements = getBasements()['basements'];
-		$campi1 = array(
-		    'basename' => null,
-		    'address' => null
-		);
-		
+				
 		  if(isset($_POST['baseName'])){
-		    
+		        $campi['name'] = $_POST['baseName'];
 		        foreach ($basements as &$basement){
 		            if($_POST['baseName'] == ($basement['name'])){
-		                echo "the name is already existing";
-		                $campi1['basename']=null;
+		                 echo "the name is already existing";
+		                $campi['name']= $_GET['nameB'];
 		                break;
 		            }
-		              
-		           else{
-		               $campi1['basename'] = $_POST['baseName'];
-		           }
-		                
 		        }
 		  }
-		  else{
-		      $campi1['basename']=$_GET['nameB'];
-		  }
+		 
 		  
 		  if(isset($_POST['baseAddress'])){
+		      $campi['address'] =$_POST['baseAddress'];
 		      foreach ($basements as &$basement){
 		          if($_POST['baseAddress'] == ($basement['address'])){
 		              echo "the address is already existing";
-		              $campi1['address']=null;
+		              $campi['address']=$_GET['addB'];
 		              break;
-		          }
-		          
-		          else{
-		              $campi1['address'] = $_POST['baseAddress'];
 		          }
 		          
 		      }
@@ -182,7 +168,7 @@ include_once("./utilityFunctions.php");
 		                
 		                
 		        // trasformo la mia array in JSON
-		                $dati = json_encode($campi1);
+		                $dati = json_encode($campi);
 		                
 		                // inizializzo curl
 		                $ch = curl_init();
