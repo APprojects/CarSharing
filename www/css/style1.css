@@ -137,6 +137,11 @@ input.hidden {
 margin-left: 20px;
 }
 
-#addB, #addr{
-	margin-top:30px;
+#addB{
+	
+	margin-left:18px;
+}
+
+#baseInfo{
+	margin-top: 30px;
 }

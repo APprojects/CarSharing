@@ -107,8 +107,8 @@ include_once("./utilityFunctions.php");
 						<div class="form-wrap">
 							<div class="tab">
 								<div class="tab-content">
-									<div class="tab-content-inner active" data-content="signup">
-										<h3>Book Your Electric Car!</h3>
+									<div class="tab-content-inner active" id="baseInfo" data-content="signup">
+										<h3>Update Basement's Information</h3>
 											<form action="updateB.php" method="post">
 												<div class="form-group">
 													<div class="col-md-12">
@@ -119,7 +119,7 @@ include_once("./utilityFunctions.php");
 
             									<!-- Date input -->
             									<div class="form-group"> 
-								       				<label for="addr">Address</label>
+								       				<label for="addr" style="margin-left: 17px; margin-top:30px;">Address</label>
 								      				<input class="form-control" id="addB" placeholder="Change base address" name="baseAddress"/>
 							      				</div>
 									
