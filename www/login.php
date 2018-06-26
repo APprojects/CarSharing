@@ -5,7 +5,7 @@
 	  'password' => ($_POST['PasswordL'])
 	);
 
-
+    
 
 	if (empty($campi['username']) && empty($campi['password'])){
 		header ("location: index.php?error_login=".urlencode('user name and password not entered'));
@@ -42,7 +42,7 @@
 
 		// chiudo
 		curl_close($ch);
-
+		
 		if(!is_null($response['id'])){
 			session_start();
 			$_SESSION['id'] 			= $response['id'];
@@ -57,7 +57,7 @@
 			$_SESSION['prefix'] 		= $response['prefix'];
 			$_SESSION['phoneNumber'] 	= $response['phoneNumber'];
 			$_SESSION['role'] 			= $response['role'];
-
+            
 			if($_SESSION['role']== 1){
 				header("location: welcomeSeller.php");
 			}

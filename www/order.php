@@ -25,7 +25,6 @@ if (((empty($campi["sbase"])) || (empty($campi["date-start"]))) || ((empty($camp
 
 
 else {
-	session_start();
 	$_SESSION['sbase'] 		= $campi['sbase'];
 	$_SESSION['date-start'] = $campi['date-start'];
 	$_SESSION['wtime'] 		= $campi['wtime'];

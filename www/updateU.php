@@ -1,5 +1,9 @@
 <?php 
-    session_start();
+session_start();
+if(!isset($_SESSION['role'])){
+    header('Location: login.php');
+    exit();
+}
     
     $campi = array(
         'id' => $_SESSION['id'],
@@ -92,7 +96,7 @@
         
         // eseguo la chiamata
         $response = json_decode(curl_exec($ch), true);
-        var_dump($response);
+
         if(!is_null($response['id'])){
             $_SESSION['id'] 			= $response['id'];
             $_SESSION['firstName'] 		= $response['firstName'];

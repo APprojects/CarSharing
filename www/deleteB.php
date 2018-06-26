@@ -1,6 +1,9 @@
 <?php 
 session_start();
-
+if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
+    header('Location: login.php');
+    exit();
+}
 $campi = array(
     'id' => ($_GET['idB']),
     'seller' => ($_GET['idU'])

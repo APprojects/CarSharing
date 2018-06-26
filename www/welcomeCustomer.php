@@ -1,4 +1,10 @@
-<?php session_start(); ?>
+<?php
+session_start();
+if(!isset($_SESSION['role']) || $_SESSION['role']!=0){
+    header('Location: login.php');
+    exit();
+}
+?>
 <html>
 <head>
 <meta charset="utf-8">
