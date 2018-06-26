@@ -149,7 +149,6 @@
     		}
 	   
     		function update_basement(idB,nameB,addB,idU){
-    			alert("ciao");
     			location.href = "updateB.php?idB="+idB+"&nameB="+nameB+"&addB="+addB+"&idU="+idU;
     		}
 		
