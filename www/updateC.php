@@ -13,10 +13,10 @@
     include_once("./utilityFunctions.php");
 
     //controllo se sono settate le variabili post in caso affermativo faccio i controlli
-	if(isset($_POST['plate']) || isset($_POST['model']) || isset($_POST['maxs']) || isset($_POST['noP'])){
+    if(!empty($_POST['plate']) || !empty($_POST['model']) || !empty($_POST['maxs']) || !empty($_POST['noP'])){
 	    $cars = getCars()['cars'];
 	    
-	    if(isset($_POST['plate'])){
+	    if(!empty($_POST['plate'])){
 		   $campi['id'] = $_POST['plate'];
 		        foreach ($cars as &$car){
 		            if($_POST['plate'] == ($car['id'])){
@@ -28,15 +28,15 @@
 	      }
 	 
 	  
-	      if(isset($_POST['model'])){
+	      if(!empty($_POST['model'])){
 		      $campi['model'] =$_POST['model'];
 		      
 		  }
-		  if(isset($_POST['maxs'])){
+		  if(!empty($_POST['maxs'])){
 		      $campi['maxSpeed'] =$_POST['maxs'];
 		      
 		  }
-		  if(isset($_POST['noP'])){
+		  if(!empty($_POST['noP'])){
 		      $campi['numberOfPassengers'] =$_POST['noP'];
 		      
 		  }
@@ -171,7 +171,7 @@
 									<div class="tab-content-inner active" id="baseInfo" data-content="signup">
 										<h3>Update Car's Information</h3>
 											
-											<form action="updateC.php?idC=<?php echo $_GET['idC']."&modC=".$_GET['modC']."&spC=".$_GET['spC']."&npC=".$_GET['npC']."&idU=".$_GET['idU'];?>" method="post">
+											<form action="updateC.php?idC=<?php echo $campi['id']."&modC=".$campi['model']."&spC=".$campi['maxSpeed']."&npC=".$campi['numberOfPassengers']."&idU=".$_GET['idU'];?>" method="post">
 												<div class="form-group">
 													<div class="col-md-12">
 														<label for="plate">Plate  (<?php echo $campi['id'];?>)</label>

@@ -153,6 +153,10 @@
     			location.href = "updateB.php?idB="+idB+"&nameB="+nameB+"&addB="+addB+"&idU="+idU;
     		}
 
+    		function updateU(){
+    			location.href = "updateU.php";
+    		}
+
     		
 		
     		function go_car(){
