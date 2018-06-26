@@ -140,18 +140,20 @@ include_once("./utilityFunctions.php");
 		
 		<?php 
 		
-		$basements = getBasements()['basements'];
+		
 				
-		  if(isset($_POST['baseName'])){
-		        $campi['name'] = $_POST['baseName'];
-		        foreach ($basements as &$basement){
-		            if($_POST['baseName'] == ($basement['name'])){
-		                 echo "the name is already existing";
-		                $campi['name']= $_GET['nameB'];
-		                break;
-		            }
-		        }
-		  }
+	if(isset($_POST['baseName']) || isset($_POST['baseAddress'])){
+		    $basements = getBasements()['basements'];
+		    if(isset($_POST['baseAddress'])){
+    		   $campi['name'] = $_POST['baseName'];
+    		        foreach ($basements as &$basement){
+    		            if($_POST['baseName'] == ($basement['name'])){
+    		                 echo "the name is already existing";
+    		                $campi['name']= $_GET['nameB'];
+    		                break;
+    		            }
+		              }
+		      }
 		 
 		  
 		  if(isset($_POST['baseAddress'])){
@@ -196,7 +198,7 @@ include_once("./utilityFunctions.php");
 		                // chiudo
 		                curl_close($ch);
 		                
-		            
+            }
             
  
 		
