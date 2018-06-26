@@ -2,44 +2,72 @@
     session_start();
     
     $campi = array(
-        'id' => ($_GET['idC']),
-        'model' => ($_GET['modC']),
-        'maxSpeed' => ($_GET['spC']),
-        'numberOfPassengers' => ($_GET['npC']),
-        'seller' => ($_GET['idU'])
-        
+        'id' => $_SESSION['id'],
+        'firstName' => $_SESSION['firstName'],
+        'lastName' => $_SESSION['lastName'],
+        'username' => $_SESSION['username'],
+        'password' => $_SESSION['password'],
+        'address' => $_SESSION['address'],
+        'city' => $_SESSION['city'],
+        'state' => $_SESSION['state'],
+        'gender' => $_SESSION['gender'],
+        'prefix' => $_SESSION['prefix'],
+        'phoneNumber' => $_SESSION['phoneNumber'],
+        'role' => $_SESSION['role']
     );
     
     include_once("./utilityFunctions.php");
 
     //controllo se sono settate le variabili post in caso affermativo faccio i controlli
-	if(isset($_POST['plate']) || isset($_POST['model']) || isset($_POST['maxs']) || isset($_POST['noP'])){
-	    $cars = getCars()['cars'];
-	    
-	    if(isset($_POST['plate'])){
-		   $campi['id'] = $_POST['plate'];
-		        foreach ($cars as &$car){
-		            if($_POST['plate'] == ($car['id'])){
-		                 echo "the plate is already existing";
-		                $campi['id']= $_GET['idC'];
-		                break;
-		            }
-	              }
-	      }
-	 
-	  
-	      if(isset($_POST['model'])){
-		      $campi['model'] =$_POST['model'];
-		      
-		  }
-		  if(isset($_POST['maxs'])){
-		      $campi['maxSpeed'] =$_POST['maxs'];
-		      
-		  }
-		  if(isset($_POST['noP'])){
-		      $campi['numberOfPassengers'] =$_POST['noP'];
-		      
-		  }
+    if(!empty($_POST['fname']) || !empty($_POST['lname'])
+        ||!empty($_POST['uname']) || !empty($_POST['password'])
+        || !empty($_POST['address']) || !empty($_POST['city'])
+        || !empty($_POST['state']) || !empty($_POST['gender'])
+        || !empty($_POST['prefix']) || !empty($_POST['phoneNumber'])){
+        
+        if(!empty($_POST['uname']))
+            echo $_POST['uname'];
+            
+            $users = getUsers()['users'];
+            
+            if(!empty($_POST['uname'])){
+                $campi['username'] = $_POST['uname'];
+                foreach ($users as &$user){
+                    if($campi['username'] == ($user['username'])){
+                        echo "the username is already existing";
+                        $campi['username']= $_SESSION['username'];
+                        break;
+                    }
+                }
+            }
+            
+            if(!empty($_POST['fname'])){
+                $campi['firstName'] =$_SESSION['firstName'];
+            }
+            if(!empty($_POST['lname'])){
+                $campi['lastName'] =$_SESSION['lastName'];
+            }
+            if(!empty($_POST['pword'])){
+                $campi['password'] =$_SESSION['password'];
+            }
+            if(!empty($_POST['addr'])){
+                $campi['address'] =$_SESSION['address'];
+            }
+            if(!empty($_POST['city'])){
+                $campi['city'] =$_SESSION['city'];
+            }
+            if(!empty($_POST['state'])){
+                $campi['state'] =$_SESSION['state'];
+            }
+            if(!empty($_POST['gender'])){
+                $campi['gender'] =$_SESSION['gender'];
+            }
+            if(!empty($_POST['prefix'])){
+                $campi['prefix'] =$_SESSION['prefix'];
+            }
+            if(!empty($_POST['pnum'])){
+                $campi['phoneNumber'] =$_SESSION['phoneNumber'];
+            }
 	                
 	                
         // trasformo la mia array in JSON
@@ -169,35 +197,74 @@
 							<div class="tab">
 								<div class="tab-content">
 									<div class="tab-content-inner active" id="baseInfo" data-content="signup">
-										<h3>Update Car's Information</h3>
+										<h3>Update User's Information</h3>
 											
-											<form action="updateC.php?idC=<?php echo $_GET['idC']."&modC=".$_GET['modC']."&spC=".$_GET['spC']."&npC=".$_GET['npC']."&idU=".$_GET['idU'];?>" method="post">
+											<form action="updateU.php" method="post">
 												<div class="form-group">
 													<div class="col-md-12">
-														<label for="plate">Plate  (<?php echo $campi['id'];?>)</label>
-														<input class="form-control" id="plate" placeholder="Change plate" name="plate">
+														<label for="fname">First Name  (<?php echo $campi['firstName'];?>)</label>
+														<input class="form-control" id="fname" placeholder="Change first name" name="fname">
     												</div>
 												</div>
 												<div class="form-group">
 													<div class="col-md-12">
-														<label for="model">Model  (<?php echo $campi['model'];?>)</label>
-														<input class="form-control" id="model" placeholder="Change model" name="model">
+														<label for="lname">Last Name  (<?php echo $campi['lastName'];?>)</label>
+														<input class="form-control" id="lname" placeholder="Change last name" name="lname">
     												</div>
 												</div>
 												<div class="form-group">
 													<div class="col-md-12">
-														<label for="maxSpeed">Max Speed  (<?php echo $campi['maxSpeed'];?>)</label>
-														<input class="form-control" id="maxSpeed" placeholder="Change max speed" name="maxs">
+														<label for="uname">Username (<?php echo $campi['username'];?>)</label>
+														<input class="form-control" id="uname" placeholder="Change username" name="uname">
+    												</div>
+												</div>
+												<div class="form-group">
+													<div class="col-md-12">
+														<label for="pword">Password (<?php echo $campi['password'];?>)</label>
+														<input class="form-control" id="pword" placeholder="Change password" name="pword">
+    												</div>
+												</div>
+												<div class="form-group">
+													<div class="col-md-12">
+														<label for="addr">Address (<?php echo $campi['address'];?>)</label>
+														<input class="form-control" id="addr" placeholder="Change address" name="addr">
+    												</div>
+												</div>
+												<div class="form-group">
+													<div class="col-md-12">
+														<label for="city">City (<?php echo $campi['city'];?>)</label>
+														<input class="form-control" id="city" placeholder="Change city" name="city">
+    												</div>
+												</div>
+												<div class="form-group">
+													<div class="col-md-12">
+														<label for="state">State (<?php echo $campi['state'];?>)</label>
+														<input class="form-control" id="state" placeholder="Change state" name="state">
+    												</div>
+												</div>
+												<div class="form-group">
+													<div class="col-md-12">
+														<label for="gender">Gender (<?php echo $campi['gender'];?>)</label>
+														<select class="form-control" id="gender" name="gender">
+    	                        							<option>M</option>
+    	                        							<option>F</option>
+                            							</select>
+    												</div>
+												</div>
+												<div class="form-group">
+													<div class="col-md-12">
+														<label for="prefix">Prefix (<?php echo $campi['prefix'];?>)</label>
+														<input class="form-control" id="prefix" placeholder="Change prefix" name="prefix">
+    												</div>
+												</div>
+												<div class="form-group">
+													<div class="col-md-12">
+														<label for="pnum">Phone Number (<?php echo $campi['phoneNumber'];?>)</label>
+														<input class="form-control" id="pnum" placeholder="Change phone number" name="pnum">
     												</div>
 												</div>
 
-            									<!-- Date input -->
-            									<div class="form-group"> 
-            									<div class="col-md-12">
-								       				<label for="noP" style=" ">Number of Passengers  (<?php echo $campi['numberOfPassengers'];?>)</label>
-								      				<input class="form-control" id="noP" placeholder="Change number of passengers" name="noP"/>
-							      				</div>
-							      				</div>
+            									
 									
                 								<div class="row form-group">
                 									<div class="col-md-12">
