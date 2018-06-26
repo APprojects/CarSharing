@@ -93,8 +93,20 @@
         // eseguo la chiamata
         $response = json_decode(curl_exec($ch), true);
         
-        
-        
+        if(!is_null($response['id'])){
+            $_SESSION['id'] 			= $response['id'];
+            $_SESSION['firstName'] 		= $response['firstName'];
+            $_SESSION['lastName'] 		= $response['lastName'];
+            $_SESSION['username'] 		= $response['username'];
+            $_SESSION['password'] 		= $response['password'];
+            $_SESSION['address'] 		= $response['address'];
+            $_SESSION['city'] 			= $response['city'];
+            $_SESSION['state'] 			= $response['state'];
+            $_SESSION['gender'] 		= $response['gender'];
+            $_SESSION['prefix'] 		= $response['prefix'];
+            $_SESSION['phoneNumber'] 	= $response['phoneNumber'];
+            $_SESSION['role'] 			= $response['role'];
+        }
         
         // chiudo
         curl_close($ch);    
