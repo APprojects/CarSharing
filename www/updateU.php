@@ -1,4 +1,79 @@
-<?php session_start();?>
+<?php 
+    session_start();
+    
+    $campi = array(
+        'id' => ($_GET['idC']),
+        'model' => ($_GET['modC']),
+        'maxSpeed' => ($_GET['spC']),
+        'numberOfPassengers' => ($_GET['npC']),
+        'seller' => ($_GET['idU'])
+        
+    );
+    
+    include_once("./utilityFunctions.php");
+
+    //controllo se sono settate le variabili post in caso affermativo faccio i controlli
+	if(isset($_POST['plate']) || isset($_POST['model']) || isset($_POST['maxs']) || isset($_POST['noP'])){
+	    $cars = getCars()['cars'];
+	    
+	    if(isset($_POST['plate'])){
+		   $campi['id'] = $_POST['plate'];
+		        foreach ($cars as &$car){
+		            if($_POST['plate'] == ($car['id'])){
+		                 echo "the plate is already existing";
+		                $campi['id']= $_GET['idC'];
+		                break;
+		            }
+	              }
+	      }
+	 
+	  
+	      if(isset($_POST['model'])){
+		      $campi['model'] =$_POST['model'];
+		      
+		  }
+		  if(isset($_POST['maxs'])){
+		      $campi['maxSpeed'] =$_POST['maxs'];
+		      
+		  }
+		  if(isset($_POST['noP'])){
+		      $campi['numberOfPassengers'] =$_POST['noP'];
+		      
+		  }
+	                
+	                
+        // trasformo la mia array in JSON
+        $dati = json_encode($campi);
+        
+        // inizializzo curl
+        $ch = curl_init();
+        
+        // imposto la URl del web-service remoto
+        curl_setopt($ch, CURLOPT_URL, 'localhost/php_rest_myblog/api/user/update.php');
+        
+        // preparo l'invio dei dati col metodo POST
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $dati);
+        
+        // imposto gli header correttamente
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        'Content-Type: application/json',
+        'Content-Length: ' . strlen($dati))
+        );
+        
+        // eseguo la chiamata
+        $response = json_decode(curl_exec($ch), true);
+        
+        
+        
+        
+        // chiudo
+        curl_close($ch);    
+    }
+?>
+
+
 
 <!DOCTYPE HTML>
 <!--
@@ -40,9 +115,9 @@
 	<link rel="stylesheet" href="css/owl.theme.default.min.css">
 
 	<!-- Theme style  -->
-	<link rel="stylesheet" href="css/style1.css">
+	
 	<link rel="stylesheet" href="css/style.css">
-
+<link rel="stylesheet" href="css/style1.css">
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
 	<!-- FOR IE9 below -->
@@ -66,8 +141,7 @@
     				<div class="col-xs-12 menu-1" >
     					<button type="button" id="basement" class="btn btn-info" onclick="go_basement()" value="Basement">Basement</button>	
     					 <button type="button" id="car" class="btn btn-info" onclick="go_car()" value="Car">Car</button>
-    					 <button type="button" id="updateU" class="btn btn-info" onclick="updateU()" value="Update User">Update User</button>
-    					 <button type="button" id="deleteU" class="btn btn-info" onclick="deleteU()" value="Delete User">Delete User</button>
+    					
     				</div>
     			</div>
     		</div>	
@@ -89,69 +163,55 @@
              					 <span><p><?php echo $_SESSION['username'];?></p></span></div>
     				</div>
     			</div>
-   				<div class="panel-body" id="bodyP">
-       
-    				<div class="box box-info">
-        
-            			<div class="box-body">
-                    		<div class="col-sm-6">
-                     			
-                              	<br>
-                            <!-- /input-group -->
-          					 </div>
-           					<div class="col-sm-6">
-           						            
-            				</div>
-            				<div class="clearfix"></div>
-            				<hr style="margin:5px 0 5px 0;">
-    
-              
-							<div class="col-sm-5 col-xs-6 tital " >First Name:</div><div class="col-sm-7 col-xs-6 "><?php echo $_SESSION['firstName'] ?></div>
-     						<div class="clearfix"></div>
-							<div class="bot-border"></div>
+   				<div class="container">
+					<div  class="col-md-push-1  animate-box" data-animate-effect="fadeInRight">
+						<div class="form-wrap">
+							<div class="tab">
+								<div class="tab-content">
+									<div class="tab-content-inner active" id="baseInfo" data-content="signup">
+										<h3>Update Car's Information</h3>
+											
+											<form action="updateC.php?idC=<?php echo $_GET['idC']."&modC=".$_GET['modC']."&spC=".$_GET['spC']."&npC=".$_GET['npC']."&idU=".$_GET['idU'];?>" method="post">
+												<div class="form-group">
+													<div class="col-md-12">
+														<label for="plate">Plate  (<?php echo $campi['id'];?>)</label>
+														<input class="form-control" id="plate" placeholder="Change plate" name="plate">
+    												</div>
+												</div>
+												<div class="form-group">
+													<div class="col-md-12">
+														<label for="model">Model  (<?php echo $campi['model'];?>)</label>
+														<input class="form-control" id="model" placeholder="Change model" name="model">
+    												</div>
+												</div>
+												<div class="form-group">
+													<div class="col-md-12">
+														<label for="maxSpeed">Max Speed  (<?php echo $campi['maxSpeed'];?>)</label>
+														<input class="form-control" id="maxSpeed" placeholder="Change max speed" name="maxs">
+    												</div>
+												</div>
 
-							<div class="col-sm-5 col-xs-6 tital " >Last Name:</div><div class="col-sm-7"> <?php echo $_SESSION['lastName'] ?></div>
-  							<div class="clearfix"></div>
-							<div class="bot-border"></div>
-
-							<div class="col-sm-5 col-xs-6 tital " >User Name:</div><div class="col-sm-7"> <?php echo $_SESSION['username'] ?></div>
-  							<div class="clearfix"></div>
-							<div class="bot-border"></div>
-
-							<div class="col-sm-5 col-xs-6 tital " >Password:</div><div class="col-sm-7"><?php echo $_SESSION['password'] ?></div>
-
-  							<div class="clearfix"></div>
-							<div class="bot-border"></div>
-
-							<div class="col-sm-5 col-xs-6 tital " >Address:</div><div class="col-sm-7"><?php echo $_SESSION['address'] ?></div>
-
-  							<div class="clearfix"></div>
-                            <div class="bot-border"></div>
-                            
-                            <div class="col-sm-5 col-xs-6 tital " >City:</div><div class="col-sm-7"><?php echo $_SESSION['city'] ?></div>
-                            
-                             <div class="clearfix"></div>
-                            <div class="bot-border"></div>
-                            
-                            <div class="col-sm-5 col-xs-6 tital " >State:</div><div class="col-sm-7"><?php echo $_SESSION['state'] ?></div>
-
- 							<div class="clearfix"></div>
-                            <div class="bot-border"></div>
-                            
-                            <div class="col-sm-5 col-xs-6 tital " >Prefix:</div><div class="col-sm-7"><?php echo $_SESSION['prefix'] ?></div>
-							<div class="clearfix"></div>
-                            <div class="bot-border"></div>
-                            
-                            <div class="col-sm-5 col-xs-6 tital " >Phone number:</div><div class="col-sm-7"><?php echo $_SESSION['phoneNumber'] ?></div>
-
-                        <!-- /.box-body -->
-          				</div>
-          <!-- /.box -->
-
-        		</div>
-       		</div> 
-    </div>
-
+            									<!-- Date input -->
+            									<div class="form-group"> 
+            									<div class="col-md-12">
+								       				<label for="noP" style=" ">Number of Passengers  (<?php echo $campi['numberOfPassengers'];?>)</label>
+								      				<input class="form-control" id="noP" placeholder="Change number of passengers" name="noP"/>
+							      				</div>
+							      				</div>
+									
+                								<div class="row form-group">
+                									<div class="col-md-12">
+                										<input type="submit" id ="updateBasement" class="btn btn-primary btn-block" value="Submit">
+                									</div>
+                								</div>
+											</form>	
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
 
        
      <script>

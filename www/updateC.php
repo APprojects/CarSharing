@@ -1,15 +1,76 @@
 <?php 
-session_start();
-
-$campi = array(
-    'id' => ($_GET['idB']),
-    'model' => ($_GET['nameB']),
-    'address' => ($_GET['addB']),
-    'seller' => ($_GET['idU'])
+    session_start();
     
-);
+    $campi = array(
+        'id' => ($_GET['idC']),
+        'model' => ($_GET['modC']),
+        'maxSpeed' => ($_GET['spC']),
+        'numberOfPassengers' => ($_GET['npC']),
+        'seller' => ($_GET['idU'])
+        
+    );
+    
+    include_once("./utilityFunctions.php");
 
-include_once("./utilityFunctions.php");
+    //controllo se sono settate le variabili post in caso affermativo faccio i controlli
+	if(isset($_POST['plate']) || isset($_POST['model']) || isset($_POST['maxs']) || isset($_POST['noP'])){
+	    $cars = getCars()['cars'];
+	    
+	    if(isset($_POST['plate'])){
+		   $campi['id'] = $_POST['plate'];
+		        foreach ($cars as &$car){
+		            if($_POST['plate'] == ($car['id'])){
+		                 echo "the plate is already existing";
+		                $campi['id']= $_GET['idC'];
+		                break;
+		            }
+	              }
+	      }
+	 
+	  
+	      if(isset($_POST['model'])){
+		      $campi['model'] =$_POST['model'];
+		      
+		  }
+		  if(isset($_POST['maxs'])){
+		      $campi['maxSpeed'] =$_POST['maxs'];
+		      
+		  }
+		  if(isset($_POST['noP'])){
+		      $campi['numberOfPassengers'] =$_POST['noP'];
+		      
+		  }
+	                
+	                
+        // trasformo la mia array in JSON
+        $dati = json_encode($campi);
+        
+        // inizializzo curl
+        $ch = curl_init();
+        
+        // imposto la URl del web-service remoto
+        curl_setopt($ch, CURLOPT_URL, 'localhost/php_rest_myblog/api/car/update.php');
+        
+        // preparo l'invio dei dati col metodo POST
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $dati);
+        
+        // imposto gli header correttamente
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        'Content-Type: application/json',
+        'Content-Length: ' . strlen($dati))
+        );
+        
+        // eseguo la chiamata
+        $response = json_decode(curl_exec($ch), true);
+        
+        
+        
+        
+        // chiudo
+        curl_close($ch);    
+    }
 ?>
 
 
@@ -108,19 +169,34 @@ include_once("./utilityFunctions.php");
 							<div class="tab">
 								<div class="tab-content">
 									<div class="tab-content-inner active" id="baseInfo" data-content="signup">
-										<h3>Update Basement's Information</h3>
-											<form action="updateB.php?idB=".$_GET['idB']."&nameB=".$_GET['nameB']."&addB=".$_GET['addB']."&idU=".$_GET['idU]" method="post">
+										<h3>Update Car's Information</h3>
+											
+											<form action="updateC.php?idC=<?php echo $_GET['idC']."&modC=".$_GET['modC']."&spC=".$_GET['spC']."&npC=".$_GET['npC']."&idU=".$_GET['idU'];?>" method="post">
 												<div class="form-group">
 													<div class="col-md-12">
-														<label for="nameB">Name</label>
-														<input class="form-control" id="nameB" placeholder="Change base name" name="baseName">
+														<label for="plate">Plate  (<?php echo $campi['id'];?>)</label>
+														<input class="form-control" id="plate" placeholder="Change plate" name="plate">
+    												</div>
+												</div>
+												<div class="form-group">
+													<div class="col-md-12">
+														<label for="model">Model  (<?php echo $campi['model'];?>)</label>
+														<input class="form-control" id="model" placeholder="Change model" name="model">
+    												</div>
+												</div>
+												<div class="form-group">
+													<div class="col-md-12">
+														<label for="maxSpeed">Max Speed  (<?php echo $campi['maxSpeed'];?>)</label>
+														<input class="form-control" id="maxSpeed" placeholder="Change max speed" name="maxs">
     												</div>
 												</div>
 
             									<!-- Date input -->
             									<div class="form-group"> 
-								       				<label for="addr" style="margin-left: 17px; margin-top:30px;">Address</label>
-								      				<input class="form-control" id="addB" placeholder="Change base address" name="baseAddress"/>
+            									<div class="col-md-12">
+								       				<label for="noP" style=" ">Number of Passengers  (<?php echo $campi['numberOfPassengers'];?>)</label>
+								      				<input class="form-control" id="noP" placeholder="Change number of passengers" name="noP"/>
+							      				</div>
 							      				</div>
 									
                 								<div class="row form-group">
@@ -136,75 +212,6 @@ include_once("./utilityFunctions.php");
 					</div>
 				</div>
 		</div>
-		
-		
-		<?php 
-		
-		
-				
-	if(isset($_POST['baseName']) || isset($_POST['baseAddress'])){
-		    $basements = getBasements()['basements'];
-		    if(isset($_POST['baseAddress'])){
-    		   $campi['name'] = $_POST['baseName'];
-    		        foreach ($basements as &$basement){
-    		            if($_POST['baseName'] == ($basement['name'])){
-    		                 echo "the name is already existing";
-    		                $campi['name']= $_GET['nameB'];
-    		                break;
-    		            }
-		              }
-		      }
-		 
-		  
-		  if(isset($_POST['baseAddress'])){
-		      $campi['address'] =$_POST['baseAddress'];
-		      foreach ($basements as &$basement){
-		          if($_POST['baseAddress'] == ($basement['address'])){
-		              echo "the address is already existing";
-		              $campi['address']=$_GET['addB'];
-		              break;
-		          }
-		          
-		      }
-		  }
-		                
-		                
-		        // trasformo la mia array in JSON
-		                $dati = json_encode($campi);
-		                
-		                // inizializzo curl
-		                $ch = curl_init();
-		                
-		                // imposto la URl del web-service remoto
-		                curl_setopt($ch, CURLOPT_URL, 'localhost/php_rest_myblog/api/basement/update.php');
-		                
-		                // preparo l'invio dei dati col metodo POST
-		                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		                curl_setopt($ch, CURLOPT_POST, true);
-		                curl_setopt($ch, CURLOPT_POSTFIELDS, $dati);
-		                
-		                // imposto gli header correttamente
-		                curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-		                'Content-Type: application/json',
-		                'Content-Length: ' . strlen($dati))
-		                );
-		                
-		                // eseguo la chiamata
-		                $response = json_decode(curl_exec($ch), true);
-		                
-		                
-		                
-		                
-		                // chiudo
-		                curl_close($ch);
-		                
-            }
-            
- 
-		
-		?>
-    
-
 
        
      <script>

@@ -137,8 +137,12 @@ input.hidden {
 margin-left: 20px;
 }
 
-#addB{
+#addB,#plate,#model,#maxSpeed{
 	
+	margin-bottom:20px;
+}
+
+#noP{
 	margin-bottom:20px;
 }
 

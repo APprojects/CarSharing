@@ -165,7 +165,11 @@
 	</script>
 	 <script>
 		function updateU(){
-			location.href = "updateU.php";
+			//location.href = "updateU.php";
+			$.post("updateU.php",{firstname: <?php $_SESSION['firstName']?>, lastname: <?php $_SESSION['lastName']?>, username: <?php $_SESSION['username']?>, 
+					password: <?php $_SESSION['password']?>, address: <?php $_SESSION['address']?>, city: <?php $_SESSION['city']?>, state: <?php $_SESSION['state']?>,
+					prefix: <?php $_SESSION['prefix']?>, phoneNumber: <?php $_SESSION['phoneNumber']?>});
+			
 		}
 	</script> 
 	 <script>
