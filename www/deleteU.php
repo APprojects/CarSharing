@@ -2,8 +2,9 @@
 session_start();
 
 $campi = array(
-    'id' => ($_GET['idU']),
-    'seller' => ($_GET['idU'])
+    'id' => ($_SESSION['id']),
+    'username' => ($_SESSION['username']),
+    'password' => ($_SESSION['password'])
     
 );
 
@@ -14,7 +15,7 @@ $dati = json_encode($campi);
 $ch = curl_init();
 
 // imposto la URl del web-service remoto
-curl_setopt($ch, CURLOPT_URL, 'localhost/php_rest_myblog/api/basement/delete.php');
+curl_setopt($ch, CURLOPT_URL, 'localhost/php_rest_myblog/api/user/delete.php');
 
 // preparo l'invio dei dati col metodo POST
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -130,7 +131,7 @@ curl_close($ch);
     				</div>
     			</div>
    				<div class="panel-body" id="bodyP">
-       					<p>Basement deleted.</p>
+       					<p><?php echo $response['message']?></p>
     				
        			</div> 
     </div>
