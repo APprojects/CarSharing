@@ -1,15 +1,74 @@
 <?php 
-session_start();
-
-$campi = array(
-    'id' => ($_GET['idB']),
-    'name' => ($_GET['nameB']),
-    'address' => ($_GET['addB']),
-    'seller' => ($_GET['idU'])
+    session_start();
     
-);
+    $campi = array(
+        'id' => ($_GET['idB']),
+        'name' => ($_GET['nameB']),
+        'address' => ($_GET['addB']),
+        'seller' => ($_GET['idU'])
+        
+    );
+    
+    include_once("./utilityFunctions.php");
 
-include_once("./utilityFunctions.php");
+    //controllo se sono settate le variabili post in caso affermativo faccio i controlli
+	if(isset($_POST['baseName']) || isset($_POST['baseAddress'])){
+	    $basements = getBasements()['basements'];
+	    
+	    if(isset($_POST['baseAddress'])){
+		   $campi['name'] = $_POST['baseName'];
+		        foreach ($basements as &$basement){
+		            if($_POST['baseName'] == ($basement['name'])){
+		                 echo "the name is already existing";
+		                $campi['name']= $_GET['nameB'];
+		                break;
+		            }
+	              }
+	      }
+	 
+	  
+	      if(isset($_POST['baseAddress'])){
+		      $campi['address'] =$_POST['baseAddress'];
+		      foreach ($basements as &$basement){
+		          if($_POST['baseAddress'] == ($basement['address'])){
+		              echo "the address is already existing";
+		              $campi['address']=$_GET['addB'];
+		              break;
+		          }
+		          
+		      }
+		  }
+	                
+	                
+        // trasformo la mia array in JSON
+        $dati = json_encode($campi);
+        
+        // inizializzo curl
+        $ch = curl_init();
+        
+        // imposto la URl del web-service remoto
+        curl_setopt($ch, CURLOPT_URL, 'localhost/php_rest_myblog/api/basement/update.php');
+        
+        // preparo l'invio dei dati col metodo POST
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $dati);
+        
+        // imposto gli header correttamente
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        'Content-Type: application/json',
+        'Content-Length: ' . strlen($dati))
+        );
+        
+        // eseguo la chiamata
+        $response = json_decode(curl_exec($ch), true);
+        
+        
+        
+        
+        // chiudo
+        curl_close($ch);    
+    }
 ?>
 
 
@@ -109,7 +168,7 @@ include_once("./utilityFunctions.php");
 								<div class="tab-content">
 									<div class="tab-content-inner active" id="baseInfo" data-content="signup">
 										<h3>Update Basement's Information</h3>
-											<form action="updateB.php?idB=".$_GET['idB']."&nameB=".$_GET['nameB']."&addB=".$_GET['addB']."&idU=".$_GET['idU]" method="post">
+											<form action="updateB.php?idB="<?php echo $_GET['idB']."&nameB=".$_GET['nameB']."&addB=".$_GET['addB']."&idU=".$_GET['idU'];?> method="post">
 												<div class="form-group">
 													<div class="col-md-12">
 														<label for="nameB">Name</label>
@@ -136,75 +195,6 @@ include_once("./utilityFunctions.php");
 					</div>
 				</div>
 		</div>
-		
-		
-		<?php 
-		
-		
-				
-	if(isset($_POST['baseName']) || isset($_POST['baseAddress'])){
-		    $basements = getBasements()['basements'];
-		    if(isset($_POST['baseAddress'])){
-    		   $campi['name'] = $_POST['baseName'];
-    		        foreach ($basements as &$basement){
-    		            if($_POST['baseName'] == ($basement['name'])){
-    		                 echo "the name is already existing";
-    		                $campi['name']= $_GET['nameB'];
-    		                break;
-    		            }
-		              }
-		      }
-		 
-		  
-		  if(isset($_POST['baseAddress'])){
-		      $campi['address'] =$_POST['baseAddress'];
-		      foreach ($basements as &$basement){
-		          if($_POST['baseAddress'] == ($basement['address'])){
-		              echo "the address is already existing";
-		              $campi['address']=$_GET['addB'];
-		              break;
-		          }
-		          
-		      }
-		  }
-		                
-		                
-		        // trasformo la mia array in JSON
-		                $dati = json_encode($campi);
-		                
-		                // inizializzo curl
-		                $ch = curl_init();
-		                
-		                // imposto la URl del web-service remoto
-		                curl_setopt($ch, CURLOPT_URL, 'localhost/php_rest_myblog/api/basement/update.php');
-		                
-		                // preparo l'invio dei dati col metodo POST
-		                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		                curl_setopt($ch, CURLOPT_POST, true);
-		                curl_setopt($ch, CURLOPT_POSTFIELDS, $dati);
-		                
-		                // imposto gli header correttamente
-		                curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-		                'Content-Type: application/json',
-		                'Content-Length: ' . strlen($dati))
-		                );
-		                
-		                // eseguo la chiamata
-		                $response = json_decode(curl_exec($ch), true);
-		                
-		                
-		                
-		                
-		                // chiudo
-		                curl_close($ch);
-		                
-            }
-            
- 
-		
-		?>
-    
-
 
        
      <script>
