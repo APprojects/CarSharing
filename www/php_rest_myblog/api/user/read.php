@@ -29,16 +29,16 @@
 
 			$user_item = array(
 				'id' 			=> $id,
-				'firstName' 	=> $firstName,
-				'lastName' 		=> $lastName,
+			//	'firstName' 	=> $firstName,
+			//	'lastName' 		=> $lastName,
 				'username' 		=> $username,
-				'address' 		=> $address,
-				'city' 			=> $city,
-				'state' 		=> $state,
-				'gender' 		=> $gender,
-				'prefix' 		=> $prefix,
-				'phoneNumber' 	=> $phoneNumber,
-				'role' 		=> $role		
+			//	'address' 		=> $address,
+			//	'city' 			=> $city,
+			//	'state' 		=> $state,
+			//	'gender' 		=> $gender,
+			//	'prefix' 		=> $prefix,
+			//	'phoneNumber' 	=> $phoneNumber,
+			//	'role' 		=> $role		
 			);
 
 			// Push to "data"

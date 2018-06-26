@@ -11,9 +11,6 @@
     
     include_once("./utilityFunctions.php");
 
-
-    
-
     //controllo se sono settate le variabili post in caso affermativo faccio i controlli
     if(!empty($_POST['baseName']) || !empty($_POST['baseAddress'])){
 	    

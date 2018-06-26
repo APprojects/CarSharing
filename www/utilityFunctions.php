@@ -70,6 +70,27 @@
 	    return $response;
 	}
 	
-	
+	function getUsers(){
+	    $ch = curl_init();
+	    $dati = array();
+	    // imposto la URl del web-service remoto
+	    curl_setopt($ch, CURLOPT_URL, 'localhost/php_rest_myblog/api/user/read.php');
+	    
+	    // Chiamo l'API  tramite PUT
+	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
+	    
+	    // imposto gli header correttamente
+	    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+	        'Content-Type: application/json')
+	    );
+	    
+	    // eseguo la chiamata
+	    $response = json_decode(curl_exec($ch), true);
+	    //var_dump($response);
+	    // chiudo
+	    curl_close($ch);
+	    return $response;
+	}
 	
 ?>

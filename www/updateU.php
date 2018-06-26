@@ -42,16 +42,16 @@
             }
             
             if(!empty($_POST['fname'])){
-                $campi['firstName'] =$_POST['firstName'];
+                $campi['firstName'] =$_POST['fname'];
             }
             if(!empty($_POST['lname'])){
-                $campi['lastName'] =$_POST['lastName'];
+                $campi['lastName'] =$_POST['lname'];
             }
             if(!empty($_POST['pword'])){
-                $campi['password'] =$_POST['password'];
+                $campi['password'] =$_POST['pword'];
             }
             if(!empty($_POST['addr'])){
-                $campi['address'] =$_POST['address'];
+                $campi['address'] =$_POST['addr'];
             }
             if(!empty($_POST['city'])){
                 $campi['city'] =$_POST['city'];
@@ -66,7 +66,7 @@
                 $campi['prefix'] =$_POST['prefix'];
             }
             if(!empty($_POST['pnum'])){
-                $campi['phoneNumber'] =$_POST['phoneNumber'];
+                $campi['phoneNumber'] =$_POST['pnum'];
             }
 	                
 	                
