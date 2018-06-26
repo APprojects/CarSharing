@@ -99,20 +99,34 @@
             			<div class="box-body">
                     		
             				<div class="clearfix"></div>
-            				<hr style="margin:5px 0 5px 0;">
+            			
     
               
 							
 							<?php
 							$cars = getCars()['cars'];
-							if(!is_null($cars)>0){
+							if(!is_null($cars)){
 							foreach($cars as $car){
 								    
 								    if($car['seller']==$_SESSION['id']){
-								        $_SESSION['idCar']=$car['id'];
-								        echo "<div><div class="."col-sm-5 col-xs-6 tital".">" . $car['id'] . "</div>".
-												    "<div class="."col-sm-7"."> <button type="."button"." id="."deleteC"." class="."btn btn-info"." onclick="."delete_car(".$car['id'].",".$_SESSION['id'].") value="."Delete Car".">Delete Car</button>" .
-								                    "<button type="."button"." id="."updateC"." class="."btn btn-info"." onclick="."update_car(".$car['id'].",".$_SESSION['id'].") value="."Update Car".">Update Car</button>	"."</div><div class="."clearfix"."></div>"."<div class="."bot-border"."></div>";
+								        
+								      
+								        echo '<div>
+                                                <div class="col-sm-5 col-xs-6 tital">'
+	                                               . $car['id'] .
+	                                            '</div>';
+	                                    echo '<div class="col-sm-7">';
+	                                    echo      '<button type="button"'.
+	   	                                          ' id="deleteC" class="btn btn-info"'.
+                                        	   	    ' onclick="delete_car('.$car["id"].','.$_SESSION["id"].')"'.
+                                        	   	    ' value="Delete Car">Delete Car</button>' ;
+                                	    echo       '<button type="button"'.
+                                            	   	    ' id="updateC" class="btn btn-info"'.
+                                            	   	    ' onclick="update_car('.$car["id"].',\''.$car["model"].'\','.$car["maxSpeed"].','.$car["numberOfPassengers"].','.$_SESSION["id"].')" '.
+                                            	   	    ' value="Update Car">Update Car</button></div>';
+                                	    echo         '
+                                               <div class="clearfix"></div><div class="bot-border"></div>';
+								    
 								    }
 							}}
 							?>
@@ -140,10 +154,16 @@
 		}
 	</script>  
        <script>
-		function delete_car($idC,$idU){
-			location.href = "deleteC.php?idC="+$idC+"&idU="+$idU;
+		function delete_car(idC,idU){
+			location.href = "deleteC.php?idC="+idC+"&idU="+idU;
 		}
-	</script>  
+	</script> 
+	<script>
+		function update_car(idC,modC,spC,npC,idU){
+			alert("ciao");
+			location.href = "updateC.php?idC="+idC+"&modC="+modC+"&spC="+spC+"&npC="+npC+"&idU="+idU;
+		}
+	</script> 
        
    
 

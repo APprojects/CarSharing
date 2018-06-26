@@ -9,36 +9,7 @@ $campi = array(
     
 );
 
-// trasformo la mia array in JSON
-$dati = json_encode($campi);
-
-// inizializzo curl
-$ch = curl_init();
-
-// imposto la URl del web-service remoto
-curl_setopt($ch, CURLOPT_URL, 'localhost/php_rest_myblog/api/basement/update.php');
-
-// preparo l'invio dei dati col metodo POST
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $dati);
-
-// imposto gli header correttamente
-curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-    'Content-Type: application/json',
-    'Content-Length: ' . strlen($dati))
-    );
-
-// eseguo la chiamata
-$response = json_decode(curl_exec($ch), true);
-
-
-
-
-// chiudo
-curl_close($ch);
-
-
+include_once("./utilityFunctions.php");
 ?>
 
 
@@ -83,9 +54,9 @@ curl_close($ch);
 	<link rel="stylesheet" href="css/owl.theme.default.min.css">
 
 	<!-- Theme style  -->
-	<link rel="stylesheet" href="css/style1.css">
+	
 	<link rel="stylesheet" href="css/style.css">
-
+<link rel="stylesheet" href="css/style1.css">
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
 	<!-- FOR IE9 below -->
@@ -131,11 +102,120 @@ curl_close($ch);
              					 <span><p><?php echo $_SESSION['username'];?></p></span></div>
     				</div>
     			</div>
-   				<div class="panel-body" id="bodyP">
-       					<p>Basement deleted.</p>
-    				
-       			</div> 
-    </div>
+   				<div class="container">
+					<div  class="col-md-push-1  animate-box" data-animate-effect="fadeInRight">
+						<div class="form-wrap">
+							<div class="tab">
+								<div class="tab-content">
+									<div class="tab-content-inner active" data-content="signup">
+										<h3>Book Your Electric Car!</h3>
+											<form action="updateB.php" method="post">
+												<div class="form-group">
+													<div class="col-md-12">
+														<label for="nameB">Name</label>
+														<input class="form-control" id="nameB" placeholder="Change base name" name="baseName">
+    												</div>
+												</div>
+
+            									<!-- Date input -->
+            									<div class="form-group"> 
+								       				<label for="addr">Address</label>
+								      				<input class="form-control" id="addB" placeholder="Change base address" name="baseAddress"/>
+							      				</div>
+									
+                								<div class="row form-group">
+                									<div class="col-md-12">
+                										<input type="submit" id ="updateBasement" class="btn btn-primary btn-block" value="Submit">
+                									</div>
+                								</div>
+											</form>	
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
+		
+		
+		<?php 
+		
+		$basements = getBasements()['basements'];
+		$campi1 = array(
+		    'basename' => null,
+		    'address' => null
+		);
+		
+		  if(isset($_POST['baseName'])){
+		    
+		        foreach ($basements as &$basement){
+		            if($_POST['baseName'] == ($basement['name'])){
+		                echo "the name is already existing";
+		                $campi1['basename']=null;
+		                break;
+		            }
+		              
+		           else{
+		               $campi1['basename'] = $_POST['baseName'];
+		           }
+		                
+		        }
+		  }
+		  else{
+		      $campi1['basename']=$_GET['nameB'];
+		  }
+		  
+		  if(isset($_POST['baseAddress'])){
+		      foreach ($basements as &$basement){
+		          if($_POST['baseAddress'] == ($basement['address'])){
+		              echo "the address is already existing";
+		              $campi1['address']=null;
+		              break;
+		          }
+		          
+		          else{
+		              $campi1['address'] = $_POST['baseAddress'];
+		          }
+		          
+		      }
+		  }
+		                
+		                
+		        // trasformo la mia array in JSON
+		                $dati = json_encode($campi1);
+		                
+		                // inizializzo curl
+		                $ch = curl_init();
+		                
+		                // imposto la URl del web-service remoto
+		                curl_setopt($ch, CURLOPT_URL, 'localhost/php_rest_myblog/api/basement/update.php');
+		                
+		                // preparo l'invio dei dati col metodo POST
+		                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		                curl_setopt($ch, CURLOPT_POST, true);
+		                curl_setopt($ch, CURLOPT_POSTFIELDS, $dati);
+		                
+		                // imposto gli header correttamente
+		                curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+		                'Content-Type: application/json',
+		                'Content-Length: ' . strlen($dati))
+		                );
+		                
+		                // eseguo la chiamata
+		                $response = json_decode(curl_exec($ch), true);
+		                
+		                
+		                
+		                
+		                // chiudo
+		                curl_close($ch);
+		                
+		            
+            
+ 
+		
+		?>
+    
 
 
        
