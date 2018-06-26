@@ -168,18 +168,21 @@
 								<div class="tab-content">
 									<div class="tab-content-inner active" id="baseInfo" data-content="signup">
 										<h3>Update Basement's Information</h3>
-											<form action="updateB.php?idB=<?php echo $_GET['idB']."&nameB=".$_GET['nameB']."&addB=".$_GET['addB']."&idU=".$_GET['idU'];?>" method="post">
+											
+											<form action="goBasement.php?idB=<?php echo $_GET['idB']."&nameB=".$_GET['nameB']."&addB=".$_GET['addB']."&idU=".$_GET['idU'];?>" method="post">
 												<div class="form-group">
 													<div class="col-md-12">
-														<label for="nameB">Name</label>
+														<label for="nameB">Name  (<?php echo $campi['name'];?>)</label>
 														<input class="form-control" id="nameB" placeholder="Change base name" name="baseName">
     												</div>
 												</div>
 
             									<!-- Date input -->
             									<div class="form-group"> 
-								       				<label for="addr" style="margin-left: 17px; margin-top:30px;">Address</label>
+            									<div class="col-md-12">
+								       				<label for="addr" style=" margin-top:30px;">Address  (<?php echo $campi['address'];?>)</label>
 								      				<input class="form-control" id="addB" placeholder="Change base address" name="baseAddress"/>
+							      				</div>
 							      				</div>
 									
                 								<div class="row form-group">
