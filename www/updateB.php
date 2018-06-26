@@ -11,6 +11,7 @@
     
     include_once("./utilityFunctions.php");
 
+    var_dump($_POST['baseName']);
     //controllo se sono settate le variabili post in caso affermativo faccio i controlli
 	if(isset($_POST['baseName']) || isset($_POST['baseAddress'])){
 	    $basements = getBasements()['basements'];
