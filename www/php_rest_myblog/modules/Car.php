@@ -112,18 +112,18 @@
 			$stmt = $this->conn->prepare($query);
 
 			// clean data
-			$id = htmlspecialchars(strip_tags($id));
-			$model = htmlspecialchars(strip_tags($model));
-			$maxSpeed = htmlspecialchars(strip_tags($maxSpeed));
-			$numberOfPassengers = htmlspecialchars(strip_tags($numberOfPassengers));
-			$seller = htmlspecialchars(strip_tags($seller));
+			$id                  = htmlspecialchars(strip_tags($id));
+			$model               = htmlspecialchars(strip_tags($model));
+			$maxSpeed            = htmlspecialchars(strip_tags($maxSpeed));
+			$numberOfPassengers  = htmlspecialchars(strip_tags($numberOfPassengers));
+			$seller              = htmlspecialchars(strip_tags($seller));
 
 			// bind data
 			$stmt->bindParam(':id', $id);
 			$stmt->bindParam(':model', $model);
-			$stmt->bindPatam(':maxSpeed', $maxSpeed);
-			$stmt->bindPatam(':numberOfPassengers', $numberOfPassengers);
-			$stmt->bindPatam(':seller', $seller);
+			$stmt->bindParam(':maxSpeed', $maxSpeed);
+			$stmt->bindParam(':numberOfPassengers', $numberOfPassengers);
+			$stmt->bindParam(':seller', $seller);
 
 			// execute query
 			if($stmt->execute()) {

@@ -92,7 +92,7 @@
         
         // eseguo la chiamata
         $response = json_decode(curl_exec($ch), true);
-        
+        var_dump($response);
         if(!is_null($response['id'])){
             $_SESSION['id'] 			= $response['id'];
             $_SESSION['firstName'] 		= $response['firstName'];

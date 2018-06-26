@@ -161,7 +161,6 @@
 	</script> 
 	<script>
 		function update_car(idC,modC,spC,npC,idU){
-			alert("ciao");
 			location.href = "updateC.php?idC="+idC+"&modC="+modC+"&spC="+spC+"&npC="+npC+"&idU="+idU;
 		}
 	</script> 

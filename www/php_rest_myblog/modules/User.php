@@ -123,16 +123,17 @@
 			//create query
 			$query = 'UPDATE ' . $this->table . '
 				SET
-					firstName 		= :firstName,
-					lastName 		= :lastName,
-					username 		= :username,
-					address 		= :address,
-					city 			= :city,
-					state 			= :state,
-					gender 			= :gender,
-					prefix 			= :prefix,
-					phoneNumber 	= :phoneNumber,
-					role 			= :role
+					firstName = :firstName,
+					lastName = :lastName,
+					username = :username,
+                    password = :password,
+					address = :address,
+					city = :city,
+					state = :state,
+					gender = :gender,
+					prefix = :prefix,
+					phoneNumber = :phoneNumber,
+					role = :role
 				WHERE
 					id = :id';
 
@@ -143,7 +144,8 @@
 			$id              = htmlspecialchars(strip_tags($id));
 			$firstName       = htmlspecialchars(strip_tags($firstName));	
 			$lastName        = htmlspecialchars(strip_tags($lastName));	
-			$username        = htmlspecialchars(strip_tags($username));	
+			$username        = htmlspecialchars(strip_tags($username));
+			$password        = htmlspecialchars(strip_tags($password));
 			$address         = htmlspecialchars(strip_tags($address));	
 			$city            = htmlspecialchars(strip_tags($city));		
 			$state           = htmlspecialchars(strip_tags($state));	
@@ -153,16 +155,19 @@
 			$role 		     = htmlspecialchars(strip_tags($role));
 
 			// bind data
-			$stmt->bindParam(':firstName', 		$firstName);
-			$stmt->bindParam(':lastName', 		$lastName);
-			$stmt->bindParam(':username', 		$username);
-			$stmt->bindParam(':address', 		$address);
-			$stmt->bindParam(':city', 			$city);
-			$stmt->bindParam(':state', 			$state);
-			$stmt->bindParam(':gender', 		$gender);
-			$stmt->bindParam(':prefix', 		$prefix);
-			$stmt->bindParam(':phoneNumber', 	$phoneNumber);
-			$stmt->bindParam(':role', 			$role);
+			$stmt->bindParam(':id', $id);
+			$stmt->bindParam(':firstName', $firstName);
+			$stmt->bindParam(':lastName', $lastName);
+			$stmt->bindParam(':username', $username);
+			$stmt->bindParam(':password', $password);
+			$stmt->bindParam(':address', $address);
+			$stmt->bindParam(':city', $city);
+			$stmt->bindParam(':state', $state);
+			$stmt->bindParam(':gender', $gender);
+			$stmt->bindParam(':prefix', $prefix);
+			$stmt->bindParam(':phoneNumber', $phoneNumber);
+			$stmt->bindParam(':role', $role);
+			
 
 			// execute query
 			if($stmt->execute()) {
@@ -180,7 +185,8 @@
 			        'phoneNumber' 	=> $phoneNumber,
 			        'role' 		    => $role
 			    );
-			}
+			
+		}
 
 			// print error if something goes wrong 
 

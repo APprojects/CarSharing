@@ -11,23 +11,12 @@
     );
     
     include_once("./utilityFunctions.php");
-
+    
     //controllo se sono settate le variabili post in caso affermativo faccio i controlli
-    if(!empty($_POST['plate']) || !empty($_POST['model']) || !empty($_POST['maxs']) || !empty($_POST['noP'])){
-	    $cars = getCars()['cars'];
+    if(!empty($_POST['model']) || !empty($_POST['maxs']) || !empty($_POST['noP'])){
+        
+        $cars = getCars()['cars'];
 	    
-	    if(!empty($_POST['plate'])){
-		   $campi['id'] = $_POST['plate'];
-		        foreach ($cars as &$car){
-		            if($_POST['plate'] == ($car['id'])){
-		                 echo "the plate is already existing";
-		                $campi['id']= $_GET['idC'];
-		                break;
-		            }
-	              }
-	      }
-	 
-	  
 	      if(!empty($_POST['model'])){
 		      $campi['model'] =$_POST['model'];
 		      
@@ -40,8 +29,7 @@
 		      $campi['numberOfPassengers'] =$_POST['noP'];
 		      
 		  }
-	                
-	                
+	     
         // trasformo la mia array in JSON
         $dati = json_encode($campi);
         
@@ -64,7 +52,7 @@
         
         // eseguo la chiamata
         $response = json_decode(curl_exec($ch), true);
-        
+        var_dump($response);
         
         
         
@@ -172,12 +160,6 @@
 										<h3>Update Car's Information</h3>
 											
 											<form action="updateC.php?idC=<?php echo $campi['id']."&modC=".$campi['model']."&spC=".$campi['maxSpeed']."&npC=".$campi['numberOfPassengers']."&idU=".$_GET['idU'];?>" method="post">
-												<div class="form-group">
-													<div class="col-md-12">
-														<label for="plate">Plate  (<?php echo $campi['id'];?>)</label>
-														<input class="form-control" id="plate" placeholder="Change plate" name="plate">
-    												</div>
-												</div>
 												<div class="form-group">
 													<div class="col-md-12">
 														<label for="model">Model  (<?php echo $campi['model'];?>)</label>

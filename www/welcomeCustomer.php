@@ -133,6 +133,8 @@
 		    if(count($historys)>0){
 				foreach ($historys as &$history){
 				    if(!strcmp($history['idBasementEnd'], $_POST['sbase'])){
+				        //casi delle date
+				        startDate
     		            echo '<div class="col-sm-5 col-xs-6 tital " >' . $history['model'] . '</div>';
     	                echo '<div class="clearfix"></div>';
     	                echo '<div class="bot-border"></div>';

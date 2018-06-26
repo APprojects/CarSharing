@@ -14,9 +14,6 @@
     //controllo se sono settate le variabili post in caso affermativo faccio i controlli
     if(!empty($_POST['baseName']) || !empty($_POST['baseAddress'])){
 	    
-	    if(!empty($_POST['baseName']))
-	        echo $_POST['baseName'];
-	   
 	    $basements = getBasements()['basements'];
 	    
 	    if(!empty($_POST['baseName'])){

@@ -19,7 +19,9 @@
 	$json_input = json_decode(file_get_contents("php://input"),true);
 
 	// update user
-    echo json_encode($user->update($json_input['id'], $json_input['firstName'], $json_input['lastName'], $json_input['username'], $json_input['password'],
+     echo json_encode($user->update($json_input['id'], $json_input['firstName'], $json_input['lastName'], $json_input['username'], $json_input['password'],
 	        $json_input['address'], $json_input['city'], $json_input['state'], $json_input['gender'], $json_input['prefix'],
 	        $json_input['phoneNumber'], $json_input['role']));
+     
+     
 ?>
