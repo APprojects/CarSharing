@@ -6,6 +6,16 @@
 #lista{
 	width:110%;
 }
+
+#labRole{
+	margin-top:20px;
+}
+
+#login-submit, #register-submit{
+	margin-top:40px;
+	
+
+}
 .sign{
 	margin-top: 20px;
 	margin-left: 40%;
@@ -38,7 +48,7 @@
 }
 
 #inputPassword, #inputPassword1{
-	width: 200px;
+	height:20%;
 }
 
 
@@ -46,13 +56,13 @@
 	width: 160px;
 }
 #inputCity, #labelCity{
-	margin-left: 170px;
+	
 	width: 160px;
 }
 
 #inputState, #labelState {
-	margin-left: 320px;
-	width: 80px;
+	
+	width: 160px;
 }
 
 
@@ -93,9 +103,11 @@ input.hidden {
 	height:90px;
 }
 
-#gtco-header{
+/*#gtco-header{
 	height:670px;
 }
+*/
+
 
 #panelH{
 	
