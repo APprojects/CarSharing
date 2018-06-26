@@ -70,7 +70,8 @@
     				<div class="col-xs-12 menu-1" >
     						
     					 <button type="button" id="car" class="btn btn-info" onclick="go_basement()" value="Basements">Basements</button>
-    					
+    					<button type="button" id="updateU" class="btn btn-info" onclick="updateU()" value="Update User">Update User</button>
+    					 <button type="button" id="deleteU" class="btn btn-info" onclick="deleteU()" value="Delete User">Delete User</button>
     				</div>
     			</div>
     		</div>	
