@@ -168,7 +168,7 @@
 								<div class="tab-content">
 									<div class="tab-content-inner active" id="baseInfo" data-content="signup">
 										<h3>Update Basement's Information</h3>
-											<form action="updateB.php?idB="<?php echo $_GET['idB']."&nameB=".$_GET['nameB']."&addB=".$_GET['addB']."&idU=".$_GET['idU'];?> method="post">
+											<form action="updateB.php?idB=<?php echo $_GET['idB']."&nameB=".$_GET['nameB']."&addB=".$_GET['addB']."&idU=".$_GET['idU'];?>" method="post">
 												<div class="form-group">
 													<div class="col-md-12">
 														<label for="nameB">Name</label>
