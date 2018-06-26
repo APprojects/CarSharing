@@ -42,31 +42,31 @@
             }
             
             if(!empty($_POST['fname'])){
-                $campi['firstName'] =$_SESSION['firstName'];
+                $campi['firstName'] =$_POST['firstName'];
             }
             if(!empty($_POST['lname'])){
-                $campi['lastName'] =$_SESSION['lastName'];
+                $campi['lastName'] =$_POST['lastName'];
             }
             if(!empty($_POST['pword'])){
-                $campi['password'] =$_SESSION['password'];
+                $campi['password'] =$_POST['password'];
             }
             if(!empty($_POST['addr'])){
-                $campi['address'] =$_SESSION['address'];
+                $campi['address'] =$_POST['address'];
             }
             if(!empty($_POST['city'])){
-                $campi['city'] =$_SESSION['city'];
+                $campi['city'] =$_POST['city'];
             }
             if(!empty($_POST['state'])){
-                $campi['state'] =$_SESSION['state'];
+                $campi['state'] =$_POST['state'];
             }
             if(!empty($_POST['gender'])){
-                $campi['gender'] =$_SESSION['gender'];
+                $campi['gender'] =$_POST['gender'];
             }
             if(!empty($_POST['prefix'])){
-                $campi['prefix'] =$_SESSION['prefix'];
+                $campi['prefix'] =$_POST['prefix'];
             }
             if(!empty($_POST['pnum'])){
-                $campi['phoneNumber'] =$_SESSION['phoneNumber'];
+                $campi['phoneNumber'] =$_POST['phoneNumber'];
             }
 	                
 	                
