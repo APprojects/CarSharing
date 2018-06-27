@@ -9,14 +9,17 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
     include_once("./utilityFunctions.php");
     
     //controllo se sono settate tutte le variabili post in caso affermativo faccio i controlli
-    if(!empty($_POST['plate']) && !empty($_POST['model']) && !empty($_POST['maxs']) && !empty($_POST['noP'])){
+    if(!empty($_POST['plate']) && !empty($_POST['model']) && !empty($_POST['maxs']) && !empty($_POST['noP']) && !empty($_POST['baseStart'])){
         
         $campi = array(
             'id'=>$_POST['plate'],
             'model'=>$_POST['model'], 
             'maxSpeed'=>$_POST['maxs'], 
             'numberOfPassengers'=> $_POST['noP'], 
-            'seller'=>$_SESSION['id']
+            'idBasementStart'=>$_POST['baseStart'],
+            'pickUpDay' => date('Y-m-d H:i:s'),
+            'idBasementEnd' => $_POST['baseStart'],
+            'deliveryDay' => date('Y-m-d H:i:s')
             
         );
              
@@ -63,6 +66,9 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
             }
             if ((empty($_POST['noP']))){
                 $string_error .= " number of passengers ";
+            }
+            if ((empty($_POST['base']))){
+                $string_error .= " basement ";
             }
                         
             $string_error .= "not entered";
@@ -209,6 +215,18 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
 								      				<input class="form-control" id="noP" placeholder="Enter number of passengers" name="noP"/>
 							      				</div>
 							      				</div>
+							      				<div class="col-md-12">
+													<label for="destination"> Basement</label>
+													<select name="baseStart" id="Basement" class="form-control">
+        												<?php
+        													foreach(getBasements()['basements'] as &$basement){
+        													    if($basement['seller']==$_SESSION['id']){
+        													       echo "<option value='" . $basement['id'] . "'>" . $basement['name'] . "</option>\n";
+        													   }
+        													}
+        											     ?>
+													</select>
+												</div>
 									
                 								<div class="row form-group">
                 									<div class="col-md-12">

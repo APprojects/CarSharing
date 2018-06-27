@@ -73,7 +73,7 @@
 				<div class="col-xs-8 text-right menu-1">
 					<ul>
 						<li><a href="destination.html">Travel with us</a></li>
-						<li><a href="basements.html">Basements</a></li>
+						
 						<li><a href="pricing.html">Pricing</a></li>
 						<li><a href="contact.html">Contact</a></li>
 					</ul>	

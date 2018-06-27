@@ -53,7 +53,7 @@
 
 		// Create a car
 
-		public function create($id, $model, $maxSpeed, $numberOfPassengers, $seller) {
+		public function create($id, $model, $maxSpeed, $numberOfPassengers, $seller, $idBasementStart, $pickUpDay, $idBasementEnd, $deliveryDay) {
 			//create query
 			$query = 'INSERT INTO ' . $this->table . '
 				SET
@@ -61,7 +61,14 @@
 					model = :model,
 					maxSpeed = :maxSpeed,
 					numberOfPassengers = :numberOfPassengers,
-					seller = :seller ';
+					seller = :seller, 
+                    idBasementStart = :idBasementStart,
+                    pickUpDay =: pickUpDay,
+                    idBasementEnd =: idBasementEnd,
+                    deliveryDay =: deliveryDay'
+			     
+			
+			;
 
 			// prepare statement
 			$stmt = $this->conn->prepare($query);
@@ -72,14 +79,27 @@
 			$maxSpeed = htmlspecialchars(strip_tags($maxSpeed));	
 			$numberOfPassengers = htmlspecialchars(strip_tags($numberOfPassengers));
 			$seller = htmlspecialchars(strip_tags($seller));
-
+			$idBasementStart = htmlspecialchars(strip_tags($idBasementStart));
+			$pickUpDay = htmlspecialchars(strip_tags($pickUpDay));
+			
+			$idBasementEnd = htmlspecialchars(strip_tags($idBasementEnd));
+			$deliveryDay = htmlspecialchars(strip_tags($deliveryDay));
+			
+		
+			
 			// bind data
 			$stmt->bindParam(':id', $id);
 			$stmt->bindParam(':model', $model);
 			$stmt->bindParam(':maxSpeed', $maxSpeed);
 			$stmt->bindParam(':numberOfPassengers', $numberOfPassengers);
 			$stmt->bindParam(':seller', $seller);
-
+			$stmt->bindParam(':idBasementStart', $idBasementStart);
+			$stmt->bindParam(':pickUpDay', $pickUpDay);
+		
+			$stmt->bindParam(':idBasementEnd', $idBasementEnd);
+			$stmt->bindParam(':deliveryDay', $deliveryDay);
+			
+			
 			// execute query
 			if($stmt->execute()) {
 			    return array(
@@ -87,7 +107,14 @@
 			        'model' 	         => $model,
 			        'maxSpeed' 		     => $maxSpeed,
 			        'numberOfPassengers' => $numberOfPassengers,
-			        'seller' 		     => $seller
+			        'seller' 		     => $seller,
+			        'idBasementStart' 		     => $idBasementStart,
+			        'pickUpDay' 		     => $pickUpDay,
+			       
+			        'idBasementEnd' 		     => $idBasementEnd,
+			        'deliveryDay' 		     => $deliveryDay
+			        
+			        
 			    );
 			    
 			}

@@ -18,7 +18,8 @@
 	// Get value, user name and password 
 	$json_input = json_decode(file_get_contents('php://input'), true);
 
-	$car_arr = $car->create($json_input['id'],$json_input['model'],$json_input['maxSpeed'],$json_input['numberOfPassengers'],$json_input['seller']);
+	$car_arr = $car->create($json_input['id'],$json_input['model'],$json_input['maxSpeed'],$json_input['numberOfPassengers'],$json_input['seller'],
+	    $json_input['idBasementStart'],$json_input['pickUpDay'],$json_input['idBasementEnd'],$json_input['deliveryDay']);
 
 	// make JSON
 	echo(json_encode($car_arr));
