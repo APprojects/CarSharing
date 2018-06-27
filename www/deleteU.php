@@ -1,9 +1,8 @@
 <?php 
 session_start();
-if(!isset($_SESSION['role'])){
-    header('Location: login.php');
-    exit();
-}
+session_destroy();
+header( "refresh:5;url=index.php" );
+
 $campi = array(
     'id' => ($_SESSION['id']),
     'username' => ($_SESSION['username']),
@@ -106,14 +105,6 @@ curl_close($ch);
     					<div id="gtco-logo"><a href="index.php">ESharing <em>.</em></a></div>
     				</div>
     			</div>
-    			
-    			<div class="row">
-    				<div class="col-xs-12 menu-1" >
-    					<button type="button" id="basement" class="btn btn-info" onclick="go_basement()" value="Basement">Basement</button>	
-    					 <button type="button" id="car" class="btn btn-info" onclick="go_car()" value="Car">Car</button>
-    					
-    				</div>
-    			</div>
     		</div>	
     		
     	</nav>
@@ -128,38 +119,17 @@ curl_close($ch);
       				
       				<div class="row form-group">
     					<div class="col-md-12">
-    						<button type="button" id="blogout" class="btn btn-info" onclick="go_home()" value="Log Out">Log Out</button>
     					<h4 style="color:#00b1b1;"><?php echo $_SESSION['firstName'] . " " . $_SESSION['lastName'];?> </h4></span>
              					 <span><p><?php echo $_SESSION['username'];?></p></span></div>
     				</div>
     			</div>
    				<div class="panel-body" id="bodyP">
-       					<p><?php echo $response['message']?></p>
+       					<p><?php echo $response['message'];
+       					echo "<br>You succesfully logout. Wait 15 seconds or click here to go back to the <a href='login.php'>Home Page</a>";
+       					?></p>
     				
        			</div> 
     </div>
-
-
-       
-     <script>
-		function go_home(){
-			location.href = "index.php";
-		}
-	</script>   
-    <script>
-		function go_basement(){
-			location.href = "goBasement.php";
-		}
-	</script>
-	<script>
-		function go_car(){
-			location.href = "goCar.php";
-		}
-	</script>
-       
-       
-       
-       
    
 
 	

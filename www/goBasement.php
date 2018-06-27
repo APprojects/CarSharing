@@ -93,7 +93,7 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
       				
       				<div class="row form-group">
     					<div class="col-md-12">
-    						<button type="button" id="blogout" class="btn btn-info logout" onclick="go_home()" value="Log Out">Log Out</button>
+    						<button type="button" id="blogout" class="btn btn-info logout" onclick="logout()" value="Log Out">Log Out</button>
     					<h4 style="color:#00b1b1;"><?php echo $_SESSION['firstName'] . " " . $_SESSION['lastName'];?> </h4></span>
              					 <span><p><?php echo $_SESSION['username'];?></p></span></div>
     				</div>
@@ -157,34 +157,11 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
     		function update_basement(idB,nameB,addB,idU){
     			location.href = "updateB.php?idB="+idB+"&nameB="+nameB+"&addB="+addB+"&idU="+idU;
     		}
-
-    		function updateU(){
-    			location.href = "updateU.php";
+    				
+    		function logout(){
+    			location.href = "logout.php";
     		}
 
-    		
-		
-    		function go_car(){
-    			location.href = "goCar.php";
-    		}
-	
-    		function go_home(){
-    			location.href = "index.php";
-    		}
-
-    		/*$(document).ready(function(){
-    		    $('.updateB').click(function(){
-    		        var clickBtnValue = $(this).val();
-    		        var url = 'updateB.php',
-    		        data =  {clickBtnValue};
-		        	
-    		        $.post(url, {clickBtnValue}, function (response) {
-    		            // Response div goes here.
-    		            $('html').html(response);
-    		        });
-    		    });
-
-    		});*/
 		</script>
 
 

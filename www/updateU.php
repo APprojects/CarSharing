@@ -171,27 +171,28 @@ if(!isset($_SESSION['role'])){
 
 	</head>
 	<body>
-	
-    	<nav class="gtco-nav" role="navigation">
-    		<div class="gtco-container">
-    			
-    			<div class="row" id="logoW">
-    				<div class="col-sm-4 col-xs-12">
-    					<div id="gtco-logo"><a href="index.php">ESharing <em>.</em></a></div>
-    				</div>
-    			</div>
-    			
-    			<div class="row">
-    				<div class="col-xs-12 menu-1" >
-    					<button type="button" id="basement" class="btn btn-info" onclick="go_basement()" value="Basement">Basement</button>	
-    					 <button type="button" id="car" class="btn btn-info" onclick="go_car()" value="Car">Car</button>
-    					
-    				</div>
-    			</div>
-    		</div>	
-    		
-    	</nav>
-	
+    	<!-- NavBar -->
+        	<nav class="gtco-nav" role="navigation">
+        		<div class="gtco-container">
+        			
+        			<div class="row">
+        				<div class="col-sm-4 col-xs-12">
+        					<div id="gtco-logo"><a href="index.php">ESharing <em>.</em></a></div>
+        				</div>
+        				<div class="col-xs-8 text-right menu-1">
+        					<ul>
+        						<li><a href="goBasement.php">Basements</a></li>
+        						<li><a href="goCar.php">Car</a></li>
+        						<li><a href="<?php if($_SESSION['role'] = 0){echo "welcomeCustomer0.php";} else if($_SESSION['role'] = 1){echo "welcomeSeller.php";}?>">Personal Page</a></li>
+        						
+        					</ul>	
+        				</div>
+        			</div>
+        			
+        		</div>
+        	</nav>
+        	<!-- END NavBar -->
+        	
 		<header id="gtco-header1" class="gtco-cover gtco-cover-md" role="banner" style="background-image: url(images/img_bg_2.jpg)">
 			<div class="overlay"></div>
 		</header>
@@ -202,7 +203,7 @@ if(!isset($_SESSION['role'])){
       				
       				<div class="row form-group">
     					<div class="col-md-12">
-    						<button type="button" id="blogout" class="btn btn-info" onclick="go_home()" value="Log Out">Log Out</button>
+    						<button type="button" id="blogout" class="btn btn-info" onclick="logout()" value="Log Out">Log Out</button>
     					<h4 style="color:#00b1b1;"><?php echo $_SESSION['firstName'] . " " . $_SESSION['lastName'];?> </h4></span>
              					 <span><p><?php echo $_SESSION['username'];?></p></span></div>
     				</div>
@@ -298,18 +299,8 @@ if(!isset($_SESSION['role'])){
 
        
      <script>
-		function go_home(){
-			location.href = "index.php";
-		}
-	</script>   
-    <script>
-		function go_basement(){
-			location.href = "goBasement.php";
-		}
-	</script>
-	<script>
-		function go_car(){
-			location.href = "goCar.php";
+		function logout(){
+			location.href = "logout.php";
 		}
 	</script>
        
