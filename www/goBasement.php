@@ -151,17 +151,46 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
        
        <script  type="text/javascript">
     		function delete_basement(idB,idU){
-    			location.href = "deleteB.php?idB="+idB+"&idU="+idU;
+    			
+    		    if (confirm("Are you sure you want to delete this basement?")) {
+    		    	location.href = "deleteB.php?idB="+idB+"&idU="+idU;
+    		    } else {
+    		        location.href = "goBasement.php";
+    		    }
+    			
     		}
 	   
     		function update_basement(idB,nameB,addB,idU){
     			location.href = "updateB.php?idB="+idB+"&nameB="+nameB+"&addB="+addB+"&idU="+idU;
     		}
-    				
-    		function logout(){
-    			location.href = "logout.php";
+
+    		function updateU(){
+    			location.href = "updateU.php";
     		}
 
+    		
+		
+    		function go_car(){
+    			location.href = "goCar.php";
+    		}
+	
+    		function go_home(){
+    			location.href = "index.php";
+    		}
+
+    		/*$(document).ready(function(){
+    		    $('.updateB').click(function(){
+    		        var clickBtnValue = $(this).val();
+    		        var url = 'updateB.php',
+    		        data =  {clickBtnValue};
+		        	
+    		        $.post(url, {clickBtnValue}, function (response) {
+    		            // Response div goes here.
+    		            $('html').html(response);
+    		        });
+    		    });
+
+    		});*/
 		</script>
 
 

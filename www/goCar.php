@@ -92,7 +92,7 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
       				
       				<div class="row form-group">
     					<div class="col-md-12">
-    						<button type="button" id="blogout" class="btn btn-info" onclick="logout()" value="Log Out">Log Out</button>
+    						<button type="button" id="blogout" class="btn btn-info logout" onclick="logout()" value="Log Out">Log Out</button>
     					<h4 style="color:#00b1b1;"><?php echo $_SESSION['firstName'] . " " . $_SESSION['lastName'];?> </h4></span>
              					 <span><p><?php echo $_SESSION['username'];?></p></span></div>
     				</div>
@@ -153,7 +153,12 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
 		}
 
 		function delete_car(idC,idU){
-			location.href = "deleteC.php?idC="+idC+"&idU="+idU;
+			 if (confirm("Are you sure you want to delete this car?")) {
+				 location.href = "deleteC.php?idC="+idC+"&idU="+idU;
+ 		    } else {
+ 		        location.href = "goCar.php";
+ 		    }
+			
 		}
 
 		function update_car(idC,modC,spC,npC,idU){
