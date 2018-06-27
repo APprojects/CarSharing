@@ -24,6 +24,7 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	
 	<!-- Animate.css -->
 	<link rel="stylesheet" href="css/animate.css">
 	<!-- Icomoon Icon Fonts-->
@@ -45,9 +46,9 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
 	<link rel="stylesheet" href="css/owl.theme.default.min.css">
 
 	<!-- Theme style  -->
-	
+	<link rel="stylesheet" href="css/style1.css">
 	<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/style1.css">
+	
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
 	<!-- FOR IE9 below -->
@@ -61,27 +62,25 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
 		
 		include_once("./utilityFunctions.php");
 	?>
-	
-    	<nav class="gtco-nav" role="navigation">
-    		<div class="gtco-container">
-    			
-    			<div class="row" id="logoW">
-    				<div class="col-sm-4 col-xs-12">
-    					<div id="gtco-logo"><a href="index.php">ESharing <em>.</em></a></div>
-    				</div>
-    			</div>
-    			
-    			<div class="row">
-    				<div class="col-xs-12 menu-1" >
-    						
-    					 <button type="button" id="car" class="btn btn-info" onclick="go_basement()" value="Basements">Basements</button>
-    					<button type="button" id="updateU" class="btn btn-info" onclick="updateU()" value="Update User">Update User</button>
-    					 <button type="button" id="deleteU" class="btn btn-info" onclick="deleteU()" value="Delete User">Delete User</button>
-    				</div>
-    			</div>
-    		</div>	
-    		
-    	</nav>
+	<!-- NavBar -->
+	<nav class="gtco-nav" role="navigation">
+		<div class="gtco-container">
+			
+			<div class="row">
+				<div class="col-sm-4 col-xs-12">
+					<div id="gtco-logo"><a href="index.php">ESharing <em>.</em></a></div>
+				</div>
+				<div class="col-xs-8 text-right menu-1">
+					<ul>
+						<li><a href="goBasement.php">Basements</a></li>
+						<li><a href="welcomeSeller.php">Personal Page</a></li>
+					</ul>	
+				</div>
+			</div>
+			
+		</div>
+	</nav>
+	<!-- END NavBar -->
 	
 		<header id="gtco-header1" class="gtco-cover gtco-cover-md" role="banner" style="background-image: url(images/img_bg_2.jpg)">
 			<div class="overlay"></div>
@@ -93,7 +92,7 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
       				
       				<div class="row form-group">
     					<div class="col-md-12">
-    						<button type="button" id="blogout" class="btn btn-info" onclick="go_home()" value="Log Out">Log Out</button>
+    						<button type="button" id="blogout" class="btn btn-info" onclick="logout()" value="Log Out">Log Out</button>
     					<h4 style="color:#00b1b1;"><?php echo $_SESSION['firstName'] . " " . $_SESSION['lastName'];?> </h4></span>
              					 <span><p><?php echo $_SESSION['username'];?></p></span></div>
     				</div>
@@ -139,7 +138,6 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
 							
 							
 							</div>
-     						
                         <!-- /.box-body -->
           			</div>
           <!-- /.box -->
@@ -150,21 +148,14 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
 
     
       <script>
-		function go_home(){
-			location.href = "index.php";
+		function logout(){
+			location.href = "logout.php";
 		}
-	</script>   
-    <script>
-		function go_basement(){
-			location.href = "goBasement.php";
-		}
-	</script>  
-       <script>
+
 		function delete_car(idC,idU){
 			location.href = "deleteC.php?idC="+idC+"&idU="+idU;
 		}
-	</script> 
-	<script>
+
 		function update_car(idC,modC,spC,npC,idU){
 			location.href = "updateC.php?idC="+idC+"&modC="+modC+"&spC="+spC+"&npC="+npC+"&idU="+idU;
 		}

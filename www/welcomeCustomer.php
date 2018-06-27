@@ -59,17 +59,40 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=0){
 		
 		include_once("./utilityFunctions.php");
 	?>
-	<?php
-		echo '<div class="welcome">';
-			echo "Welcome " . $_SESSION['firstName'] . " " . $_SESSION['lastName'] . "!";
-		echo '</div>';
-	?>
 	
-		<div class="row form-group">
-				<div class="col-md-12">
-					<button type="button" id="blogout" class="btn btn-info" onclick="go_home()" value="Log Out">Log Out</button>
+	<!-- NavBar -->
+	<nav class="gtco-nav" role="navigation">
+		<div class="gtco-container">
+			
+			<div class="row">
+				<div class="col-sm-4 col-xs-12">
+					<div id="gtco-logo"><a href="index.php">ESharing <em>.</em></a></div>
 				</div>
+				<div class="col-xs-8 text-right menu-1">
+					<ul>
+						<li><a href="welcomeCustomer0.php">Personal Page</a></li>
+					</ul>	
+				</div>
+			</div>
+			
 		</div>
+	</nav>
+	<!-- END NavBar -->
+	
+		<header id="gtco-header1" class="gtco-cover gtco-cover-md" role="banner" style="background-image: url(images/img_bg_2.jpg)">
+			<div class="overlay"></div>
+		</header>
+	<div class="panel panel-default" id="userPanel">
+  				<div class="panel-heading" id="panelH">  
+      				
+      				<div class="row form-group">
+    					<div class="col-md-12">
+    						<button type="button" id="blogout" class="btn btn-info logout" onclick="logout()" value="Log Out">Log Out</button>
+    					<h4 style="color:#00b1b1;"><?php echo $_SESSION['firstName'] . " " . $_SESSION['lastName'];?> </h4></span>
+             					 <span><p><?php echo $_SESSION['username'];?></p></span></div>
+    				</div>
+    			</div>
+	
 		<div id="book">
 			<div  class="col-md-push-1  animate-box" data-animate-effect="fadeInRight">
 				<div class="form-wrap">
@@ -221,7 +244,7 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=0){
     
 	</script>
 	<script>
-		function go_home(){
+		function logout(){
 			location.href = "logout.php";
 		}
 	</script>	

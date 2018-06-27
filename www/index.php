@@ -264,7 +264,7 @@
 			<div class="row copyright">
 				<div class="col-md-12">
 					<p class="pull-left">
-						<small class="block">&copy; 2018 Free HTML5. All Rights Reserved.</small>
+						<small class="block">&copy; 2018 APProjects. All Rights Reserved.</small>
 					</p>
 					
 				</div>
