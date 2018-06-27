@@ -139,8 +139,8 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=0){
           			</div>
     </div>
 	<div class="col-sm-5 col-xs-6 " style="margin-top:50px;">
-		<button type="button" id="updateO" class="btn btn-info" onclick="updateO()" value="Update Order">Update Order</button>
-	 	<button type="button" id="deleteO" class="btn btn-info" onclick="deleteO()" value="Delete Order">Delete Order</button>
+		
+	 	<button type="button" id="deleteO" class="btn btn-info" onclick=<?php echo "delete=(\''.$history["id"].'\','.$_SESSION["id"].');"?> value="Delete Order">Delete Order</button>
 	</div>
 
        
@@ -157,15 +157,17 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=0){
 			location.href = "updateU.php";
 			
 		}
-	
-		function deleteO(){
-			
-		    if (confirm("Are you sure you want to delete your order?")) {
-		        location.href = "deleteO.php";
+
+		function deleteO(idO,idU){
+			 if (confirm("Are you sure you want to delete this order?")) {
+				 location.href = "deleteO.php?idO="+idO+"&idU="+idU;
 		    } else {
 		        location.href = "orderList.php";
 		    }
+			
 		}
+	
+		
 
 	</script> 
 
