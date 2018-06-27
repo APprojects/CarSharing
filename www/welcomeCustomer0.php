@@ -176,8 +176,14 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=0){
 		}
 	
 		function deleteU(){
-			location.href = "deleteU.php";
+			
+		    if (confirm("Are you sure you want to delete your account?")) {
+		        location.href = "deleteU.php";
+		    } else {
+		        location.href = "welcomeCustomer0.php";
+		    }
 		}
+
 	</script> 
 
        

@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS User (
-	id integer PRIMARY KEY AUTO_INCREMENT, 
+	id integer PRIMARY KEY AUTO_INCREMENT ON DELETE CASCADE, 
 	firstName varchar(50),
 	lastName varchar(50) ,
 	username varchar(50) UNIQUE,
