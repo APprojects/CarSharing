@@ -7,6 +7,7 @@
 
 	include_once '../../config/Database.php';
 	include_once '../../modules/Car.php';
+	include_once '../../modules/History.php';
 	
 	//Instantiate DB & connect
 	$database = new Database();
@@ -20,6 +21,7 @@
 
 	$car_arr = $car->create($json_input['id'],$json_input['model'],$json_input['maxSpeed'],$json_input['numberOfPassengers'],$json_input['seller'],
 	    $json_input['idBasementStart'],$json_input['pickUpDay'],$json_input['idBasementEnd'],$json_input['deliveryDay']);
+	(new History())->create($json_input['id'], $json_input['seller'], $json_input['idBasementStart'],$json_input['pickUpDay'],$json_input['idBasementEnd'],$json_input['deliveryDay']);
 
 	// make JSON
 	echo(json_encode($car_arr));

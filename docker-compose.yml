@@ -17,7 +17,7 @@
        links:
         - database:mysql
     database:
-      image: mysql:5.7
+      image: mariadb:latest
       ports:
        - "3306:3306"  
       environment:
