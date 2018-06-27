@@ -137,7 +137,7 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=0){
 =======
 	<div class="col-sm-5 col-xs-6 " style="margin-top:50px;">
 		
-	 	<button type="button" id="deleteO" class="btn btn-info" onclick=<?php echo "delete=(\''.$history["id"].'\','.$_SESSION["id"].');"?> value="Delete Order">Delete Order</button>
+	 	<button type="button" id="deleteO" class="btn btn-info" onclick="<?php echo 'delete=(\''.$history['id'].'\','.$_SESSION['id'].')';?>" value="Delete Order">Delete Order</button>
 	</div>
 >>>>>>> branch 'API-OK' of https://github.com/APprojects/CarSharing.git
 
