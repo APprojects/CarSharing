@@ -215,6 +215,7 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
 								      				<input class="form-control" id="noP" placeholder="Enter number of passengers" name="noP"/>
 							      				</div>
 							      				</div>
+							      				<div class="form-group"> 
 							      				<div class="col-md-12">
 													<label for="destination"> Basement</label>
 													<select name="baseStart" id="Basement" class="form-control">
@@ -226,6 +227,7 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
         													}
         											     ?>
 													</select>
+												</div>
 												</div>
 									
                 								<div class="row form-group">
