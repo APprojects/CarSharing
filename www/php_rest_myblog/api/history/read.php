@@ -21,8 +21,8 @@
 	// check if any user
 	if($num > 0){
 		// users array
-		$historys_arr = array();
-		$historys_arr['historys'] = array();
+		$histories_arr = array();
+		$histories_arr['histories'] = array();
 
 		while($row = $result->fetch(PDO::FETCH_ASSOC)) {
 			extract($row);
@@ -42,11 +42,11 @@
 			);
 
 			// Push to "data"
-			array_push($historys_arr['historys'], $history_item);
+			array_push($histories_arr['histories'], $history_item);
 		}
 
 		// turn to JSON & output
-		echo json_encode($historys_arr);
+		echo json_encode($histories_arr);
 	}
 
 	else {

@@ -70,7 +70,7 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=0){
 				<div class="col-xs-8 text-right menu-1">
 					<ul>
 						<li><a href="welcomeCustomer.php">Book your car!</a></li>
-						<li><a href="orderList.php">See your orders</a></li>
+						<li><a href="welcomeCustomer0.php">Profile Page</a></li>
 					</ul>	
 				</div>
 			</div>
@@ -106,29 +106,23 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=0){
               
 							
 						<?php
-						$histories = getHistory()['histories'];
+						$histories = getHistories()['histories'];
 						  if(!is_null($histories)){
 							foreach($histories as &$history){
-								    
-								    if($history['customer']==$_SESSION['id']){
-								        echo '<div>
-                                                <div class="col-sm-5 col-xs-6 tital">' 
-	    . $history['idHistory'] . "  " .$history['idCar'] . "  " . $history['idBasementStart'] . "  " . $history['pickUpDay'] . "  " .$history['idBasementEnd']. "  " .$history['deliveryDay'].
-	                                           '</div>';
+								  if($history['customer']==$_SESSION['id']){
+								       echo '<div>
+                                                <div class="col-sm-5 col-xs-6 tital"><p>' 
+	    . $history['idHistory'] . " - " .$history['idCar'] . " - " . $history['idBasementStart'] . " - " . $history['pickUpDay'] . " - " .$history['idBasementEnd']. " - " .$history['deliveryDay'].
+	                                           '</p></div>';
 										echo '<div class="col-sm-7">'; 
                                         echo      '<button type="button"'.
                                                     ' class="btn btn-info deleteO"'.
                                                     ' onclick="delete_order('.$history["idHistory"].','.$_SESSION["id"].')"'. 
                                                       ' value="Delete Order">Delete Order</button>' ;
-								      /*  echo       '<button type="button"'.
-												     'class="btn btn-info updateO"'.
-												     ' onclick="update_order('.$history["idHistory"].','.$history["idCar"].','.$_SESSION["id"].','.$_SESSION["idBasementStart"].','.$history['pickUpDay'].','.$history['idBasementEnd'].','.$history['deliveryDay'])" '.
-												     ' value="idB   : \''.$basement["id"]      .'\','.
-												     'nameB: \''.$basement["name"]    .'\','.
-												     'addB : \''.$basement["address"] .'\','.
-												     'idU  : \''.$_SESSION["id"]      .'\'">Update Basement</button></div>';
-								      */  echo         '</div><div class="clearfix"></div><div class="bot-border"></div>';    
-								    }
+								        echo         '</div><div class="clearfix"></div><div class="bot-border"></div>';    
+								  
+								  
+								  }
 							}}
 							?>
 							
@@ -138,10 +132,7 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=0){
                         <!-- /.box-body -->
           			</div>
     </div>
-	<div class="col-sm-5 col-xs-6 " style="margin-top:50px;">
-		<button type="button" id="updateO" class="btn btn-info" onclick="updateO()" value="Update Order">Update Order</button>
-	 	<button type="button" id="deleteO" class="btn btn-info" onclick="deleteO()" value="Delete Order">Delete Order</button>
-	</div>
+	
 
        
      <script>
@@ -158,10 +149,10 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=0){
 			
 		}
 	
-		function deleteO(){
+		function delete_order(){
 			
 		    if (confirm("Are you sure you want to delete your order?")) {
-		        location.href = "deleteO.php";
+		        location.href = "orderList.php";
 		    } else {
 		        location.href = "orderList.php";
 		    }

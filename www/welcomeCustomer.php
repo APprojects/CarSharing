@@ -153,31 +153,44 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=0){
             $dates = explode(' ', $_POST['date']);
             $startDate = new DateTime($dates[1] . $dates[2].":00");
             $endDate = new DateTime($dates[6] . $dates[7].":00");
-            echo "startDate " . $startDate->format("Y-m-d h:i:s") . " - endDate " . $endDate->format("Y-m-d  h:i:s") ;
             
             echo '<div class="box-body">';
-		    $historys = getHistorys()['historys'];
-		    if(count($historys)>0){
-		        $unavailableCar = new ArrayObject();
+		    $histories = getHistories()['histories'];
+		    if(count($histories)>0){
+		        $unavailableCars = new ArrayObject();
 		        
-		        foreach ($historys as &$history){
+		        foreach ($histories as &$history){
 		            $hisStartDate = new DateTime($history['pickUpDay'] . $history['pickUpHour']);
 		            $hisEndDate = new DateTime($history['deliveryDate'] . $history['deliveryHour']);
 
 		            if(($hisStartDate < $startDate && $startDate < $hisEndDate) || ($hisStartDate < $endDate && $endDate < $hisEndDate)){
-		                $unavailableCar->append($history['idCar']);
+		                $unavailableCars->append($history['idCar']);
 		            }
 		        }
 		        
-		        $cars = getCar()['cars'];
-		        $availableCar = new ArrayObject()
+		        $cars = getCars()['cars'];
 		        foreach ($cars as &$car){
-		            if(array_search($car['id'], $unavailableCar)){
-		                $cars
+		            $isAvailable = true;
+		            foreach ($unavailableCars as &$ucar){
+		                if(strcmp($car, $ucar) == 0){
+		                    $isAvailable = false;
+		                }
+		            }
+		            if($isAvailable){
+		                echo '<div class="col-sm-5 col-xs-6 tital " >' . $car['model'] . ', Max Speed: '. $car['maxSpeed'] . ', number of passengers: '. $car['numberOfPassengers'] . '</div>';
+		                echo '<div class="col-sm-7">';
+		                echo      '<button type="button"'.
+		  		                ' class="btn btn-info"'.
+		  		                ' onclick="bookCar(\''.$car["id"].'\','.$_SESSION["id"].', '. $_POST['sbase'] . ',\'' . $startDay .'\','. $_POST['dbase'].',\''. $endDate .'\');"'.
+		  		                ' value="Book Car">Book</button>' ;
+		                echo         '</div>
+                                               <div class="clearfix"></div><div class="bot-border"></div>';
+		                echo '<div class="clearfix"></div>';
+		                echo '<div class="bot-border"></div>';
 		            }
 		        }
 		        
-				foreach ($historys as &$history){
+				foreach ($histories as &$history){
 				    if(!strcmp($history['idBasementEnd'], $_POST['sbase'])){
 				        //casi delle date
 				        $hisStartDate = new DateTime($history['pickUpDay']);
@@ -289,6 +302,10 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=0){
 	<script>
 		function logout(){
 			location.href = "logout.php";
+		}
+
+		function bookCar(idCar, customer, sBase, startDay, eBase, endDay){
+			
 		}
 	</script>	
 

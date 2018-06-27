@@ -47,7 +47,7 @@
 	    return $response;
 	}
 	
-	function getHistorys(){
+	function getHistories(){
 	    $ch = curl_init();
 	    $dati = array();
 	    // imposto la URl del web-service remoto
