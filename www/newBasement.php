@@ -7,63 +7,61 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
     
 
     include_once("./utilityFunctions.php");
-    
-    //controllo se sono settate tutte le variabili post in caso affermativo faccio i controlli
-    if(!empty($_POST['name']) && !empty($_POST['address'])){
-        
-        $campi = array(
+    if(isset($_POST['name'])){
+        //controllo se sono settate tutte le variabili post in caso affermativo faccio i controlli
+        if(!empty($_POST['name']) && !empty($_POST['address'])){
             
-            'name'=>$_POST['name'], 
-            'address'=>$_POST['address'], 
-            'seller'=>$_SESSION['id']
+            $campi = array(
+                
+                'name'=>$_POST['name'], 
+                'address'=>$_POST['address'], 
+                'seller'=>$_SESSION['id']
+                
+            );
+                 
+            // trasformo la mia array in JSON
+            $dati = json_encode($campi);
             
-        );
-             
-        // trasformo la mia array in JSON
-        $dati = json_encode($campi);
+            // inizializzo curl
+            $ch = curl_init();
+            
+            // imposto la URl del web-service remoto
+            curl_setopt($ch, CURLOPT_URL, 'localhost/php_rest_myblog/api/basement/create.php');
+            
+            // preparo l'invio dei dati col metodo POST
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $dati);
+            
+            // imposto gli header correttamente
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type: application/json',
+            'Content-Length: ' . strlen($dati))
+            );
+            
+            // eseguo la chiamata
+            $response = json_decode(curl_exec($ch), true);
+            
+            // chiudo
+            curl_close($ch);    
+        }
         
-        // inizializzo curl
-        $ch = curl_init();
-        
-        // imposto la URl del web-service remoto
-        curl_setopt($ch, CURLOPT_URL, 'localhost/php_rest_myblog/api/basement/create.php');
-        
-        // preparo l'invio dei dati col metodo POST
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $dati);
-        
-        // imposto gli header correttamente
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-        'Content-Type: application/json',
-        'Content-Length: ' . strlen($dati))
-        );
-        
-        // eseguo la chiamata
-        $response = json_decode(curl_exec($ch), true);
-        var_dump($response);
-        
-        
-        
-        // chiudo
-        curl_close($ch);    
+        else{
+                $string_error ="";
+                if ((empty($_POST['name']))){
+                    $string_error .= " name ";
+                }
+                if ((empty($_POST['address']))){
+                    $string_error .= " address ";
+                }
+                
+                            
+                $string_error .= "not entered";
+                header ("location: newBasement.php?error_insertion_b=".urlencode($string_error));
+                                                        
+         
+       }
     }
-    
-    else{
-            $string_error ="";
-            if ((empty($_POST['name']))){
-                $string_error .= " name ";
-            }
-            if ((empty($_POST['address']))){
-                $string_error .= " address ";
-            }
-            
-                        
-            $string_error .= "not entered";
-            header ("location: newBasement.php?error_insertion_b=".urlencode($string_error));
-                                                    
-     
-   }
     
 
 ?>
@@ -166,9 +164,7 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
 								<div class="tab-content">
 									<div class="tab-content-inner active" id="baseInfo" data-content="signup">
 										<h3>Add a new Basement!</h3>
-											
-											<form action="newBasement.php" method="post">
-												<div id="error_insertion_b" class="errors">
+											<div id="error_insertion_b" class="errors">
 	                    								<?php
 	                    								  
 	                    								  if(isset($_GET['error_insertion_b'])){
@@ -176,7 +172,7 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
 	                    								  }
 	                    								?>
 												</div>
-						
+											<form action="newBasement.php" method="post">
 												<div class="form-group">
 													<div class="col-md-12">
 														<label for="name">Name </label>

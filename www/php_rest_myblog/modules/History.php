@@ -92,10 +92,10 @@
 				SET
 					idCar 		    = :idCar,
 					customer 		= :customer,
-					idBasementStart = :basementStart,
+					idBasementStart = DATE(:basementStart),
 					pickUpDay 		= :pickUpDay,
 					idBasementEnd 	= :idBasementEnd,
-					deliveryDay 	= :deliveryDay';
+					deliveryDay 	= DATE(:deliveryDay)';
 
 			// prepare statement
 			$stmt = $this->conn->prepare($query);
@@ -110,7 +110,7 @@
 
 			// bind data
 			$stmt->bindParam(':idCar', 		    $idCar);
-			$stmt->bindParam(':customer', 		$customer);
+			$stmt->bindParam(':customer', 		intval($customer));
 			$stmt->bindParam(':idBasementStart',$idBasementStart);
 			$stmt->bindParam(':pickUpDay', 		$pickUpDay);
 			$stmt->bindParam(':idBasementEnd', 	$idBasementEnd);

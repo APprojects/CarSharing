@@ -57,11 +57,11 @@
 			//create query
 			$query = 'INSERT INTO ' . $this->table . '
 				SET
-					id = :id,
-					model = :model,
-					maxSpeed = :maxSpeed,
-					numberOfPassengers = :numberOfPassengers,
-					seller = :seller
+					id = ?,
+					model = ?,
+					maxSpeed = ?,
+					numberOfPassengers = ?,
+					seller = ?
                     '
 			     
 			
@@ -81,11 +81,11 @@
 		
 			
 			// bind data
-			$stmt->bindParam(':id', $id);
-			$stmt->bindParam(':model', $model);
-			$stmt->bindParam(':maxSpeed', $maxSpeed);
-			$stmt->bindParam(':numberOfPassengers', $numberOfPassengers);
-			$stmt->bindParam(':seller', $seller);
+			$stmt->bindParam(1, $id);
+			$stmt->bindParam(2, $model);
+			$stmt->bindParam(3, $maxSpeed);
+			$stmt->bindParam(4, $numberOfPassengers);
+			$stmt->bindParam(5, intval($seller));
 			
 			
 			// execute query

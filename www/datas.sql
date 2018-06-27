@@ -16,10 +16,10 @@ CREATE TABLE IF NOT EXISTS User (
 
 
 CREATE TABLE IF NOT EXISTS Car (
-	id integer PRIMARY KEY,
+	id varchar(10) PRIMARY KEY,
 	model varchar(50),
-	maxSpeed integer,
-	numberOfPassengers integer,
+	maxSpeed varchar(10),
+	numberOfPassengers varchar(10),
 	seller integer,
 	FOREIGN KEY(seller) REFERENCES User(id) ON DELETE CASCADE
 );
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS Basement (
 
 CREATE TABLE IF NOT EXISTS History (
 	idHistory integer PRIMARY KEY  AUTO_INCREMENT,
-	idCar integer,
+	idCar varchar(10),
 	customer integer,
 	idBasementStart integer,
 	pickUpDay datetime,
@@ -49,8 +49,8 @@ CREATE TABLE IF NOT EXISTS History (
 
 INSERT INTO User VALUES (1,'Luisa','Piersanti','admin','admin','via delle rose', 'parma','italy','F','+39','333333333','0');
 INSERT INTO User VALUES (2,'Matteo','Azzarelli','matteo','matteo','via degli ulivi', 'pisa','italy','M','+39','333333333','1');
-INSERT INTO Car VALUES (123,'Smart EQ fortwo',130,2,2);
-INSERT INTO Car VALUES (1234, 'Nissan LEAF',144,5, 2);
+INSERT INTO Car VALUES ('123','Smart EQ fortwo',130,2,2);
+INSERT INTO Car VALUES ('1234', 'Nissan LEAF',144,5, 2);
 # INSERT INTO Car VALUES ('Renault Zoe',135,5);
 # INSERT INTO Car VALUES ('Renault Twizy',45,2);
 # INSERT INTO Car VALUES ('Toyota Yaris',155,5);

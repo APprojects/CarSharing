@@ -56,7 +56,7 @@
 			$query = 'INSERT INTO ' . $this->table . '
 				SET
 					name = :name,
-					address = :address
+					address = :address,
 					seller = :seller';
 					
 

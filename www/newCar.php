@@ -7,75 +7,77 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
     
 
     include_once("./utilityFunctions.php");
-    
-    //controllo se sono settate tutte le variabili post in caso affermativo faccio i controlli
-    if(!empty($_POST['plate']) && !empty($_POST['model']) && !empty($_POST['maxs']) && !empty($_POST['noP']) && !empty($_POST['baseStart'])){
-        
-        $campi = array(
-            'id'=>$_POST['plate'],
-            'model'=>$_POST['model'], 
-            'maxSpeed'=>$_POST['maxs'], 
-            'numberOfPassengers'=> $_POST['noP'], 
-            'idBasementStart'=>$_POST['baseStart'],
-            'pickUpDay' => date('Y-m-d H:i:s'),
-            'idBasementEnd' => $_POST['baseStart'],
-            'deliveryDay' => date('Y-m-d H:i:s')
+   
+    if(isset($_POST['plate'])){
+        //controllo se sono settate tutte le variabili post in caso affermativo faccio i controlli
+        if(!empty($_POST['plate']) && !empty($_POST['model']) && !empty($_POST['maxs']) && !empty($_POST['noP']) && !empty($_POST['baseStart'])){
             
-        );
-             
-        // trasformo la mia array in JSON
-        $dati = json_encode($campi);
+            $campi = array(
+                'id'=>$_POST['plate'],
+                'model'=>$_POST['model'], 
+                'maxSpeed'=>$_POST['maxs'], 
+                'numberOfPassengers'=> $_POST['noP'], 
+                'idBasementStart'=>$_POST['baseStart'],
+                'pickUpDay' => date('Y-m-d H:i:s'),
+                'idBasementEnd' => $_POST['baseStart'],
+                'deliveryDay' => date('Y-m-d H:i:s'),
+                'seller' => $_SESSION['id']
+            );
+                 
+            // trasformo la mia array in JSON
+            $dati = json_encode($campi);
+            
+            // inizializzo curl
+            $ch = curl_init();
+            
+            // imposto la URl del web-service remoto
+            curl_setopt($ch, CURLOPT_URL, 'localhost/php_rest_myblog/api/car/create.php');
+            
+            // preparo l'invio dei dati col metodo POST
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $dati);
+            
+            // imposto gli header correttamente
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type: application/json',
+            'Content-Length: ' . strlen($dati))
+            );
+            
+            // eseguo la chiamata
+            $response = json_decode(curl_exec($ch), true);
+            var_dump($response);
+            
+            
+            
+            // chiudo
+            curl_close($ch);    
+        }
         
-        // inizializzo curl
-        $ch = curl_init();
-        
-        // imposto la URl del web-service remoto
-        curl_setopt($ch, CURLOPT_URL, 'localhost/php_rest_myblog/api/car/create.php');
-        
-        // preparo l'invio dei dati col metodo POST
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $dati);
-        
-        // imposto gli header correttamente
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-        'Content-Type: application/json',
-        'Content-Length: ' . strlen($dati))
-        );
-        
-        // eseguo la chiamata
-        $response = json_decode(curl_exec($ch), true);
-        var_dump($response);
-        
-        
-        
-        // chiudo
-        curl_close($ch);    
+        else{
+                $string_error ="";
+                if ((empty($_POST['plate']))){
+                    $string_error .= " plate ";
+                }
+                if ((empty($_POST['model']))){
+                    $string_error .= " model ";
+                }
+                if ((empty($_POST['maxs']))){
+                    $string_error .= " max speed ";
+                }
+                if ((empty($_POST['noP']))){
+                    $string_error .= " number of passengers ";
+                }
+                if ((empty($_POST['base']))){
+                    $string_error .= " basement ";
+                }
+                            
+                $string_error .= "not entered";
+                header ("location: newCar.php?error_insertion_c=".urlencode($string_error));
+                                                        
+         
+       }
     }
-    
-    else{
-            $string_error ="";
-            if ((empty($_POST['plate']))){
-                $string_error .= " plate ";
-            }
-            if ((empty($_POST['model']))){
-                $string_error .= " model ";
-            }
-            if ((empty($_POST['maxs']))){
-                $string_error .= " max speed ";
-            }
-            if ((empty($_POST['noP']))){
-                $string_error .= " number of passengers ";
-            }
-            if ((empty($_POST['base']))){
-                $string_error .= " basement ";
-            }
-                        
-            $string_error .= "not entered";
-            header ("location: newCar.php?error_insertion_c=".urlencode($string_error));
-                                                    
-     
-   }
     
 
 ?>
@@ -210,10 +212,10 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
 
             									<!-- Date input -->
             									<div class="form-group"> 
-            									<div class="col-md-12">
-								       				<label for="noP" style=" ">Number of Passengers </label>
-								      				<input class="form-control" id="noP" placeholder="Enter number of passengers" name="noP"/>
-							      				</div>
+                									<div class="col-md-12">
+    								       				<label for="noP" style=" ">Number of Passengers </label>
+    								      				<input class="form-control" id="noP" placeholder="Enter number of passengers" name="noP"/>
+    							      				</div>
 							      				</div>
 							      				<div class="col-md-12">
 													<label for="destination"> Basement</label>
