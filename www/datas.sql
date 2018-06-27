@@ -34,10 +34,10 @@ CREATE TABLE IF NOT EXISTS History (
 	idHistory integer PRIMARY KEY  AUTO_INCREMENT,
 	idCar integer REFERENCES Car(id),
 	customer integer REFERENCES User(id),
-	idBasementStart integer REFERENCES Basement(name),
+	idBasementStart integer REFERENCES Basement(id),
 	pickUpDay date,
 	pickUpHour time,
-	idBasementEnd integer REFERENCES Basement(name),
+	idBasementEnd integer REFERENCES Basement(id),
 	deliveryDay date,
 	deliveryHour time,
 	CONSTRAINT UC_Person UNIQUE (idCar, deliveryDay, deliveryHour)
