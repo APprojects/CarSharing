@@ -46,7 +46,6 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
             
             // eseguo la chiamata
             $response = json_decode(curl_exec($ch), true);
-            var_dump($response);
             
             
             
@@ -213,18 +212,18 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
     							      				</div>
 							      				</div>
 							      				<div class="form-group"> 
-							      				<div class="col-md-12">
-													<label for="destination"> Basement</label>
-													<select name="baseStart" id="Basement" class="form-control">
-        												<?php
-        													foreach(getBasements()['basements'] as &$basement){
-        													    if($basement['seller']==$_SESSION['id']){
-        													       echo "<option value='" . $basement['id'] . "'>" . $basement['name'] . "</option>\n";
-        													   }
-        													}
-        											     ?>
-													</select>
-												</div>
+    							      				<div class="col-md-12">
+    													<label for="destination"> Basement</label>
+    													<select name="baseStart" id="Basement" class="form-control">
+            												<?php
+            													foreach(getBasements()['basements'] as &$basement){
+            													    if($basement['seller']==$_SESSION['id']){
+            													       echo "<option value='" . $basement['id'] . "'>" . $basement['name'] . "</option>\n";
+            													   }
+            													}
+            											     ?>
+    													</select>
+    												</div>
 												</div>
 									
                 								<div class="row form-group">

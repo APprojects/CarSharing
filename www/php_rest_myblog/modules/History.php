@@ -90,12 +90,12 @@
 			//create query
 			$query = 'INSERT INTO ' . $this->table . '
 				SET
-					idCar 		    = :idCar,
-					customer 		= :customer,
-					idBasementStart = DATE(:basementStart),
-					pickUpDay 		= :pickUpDay,
-					idBasementEnd 	= :idBasementEnd,
-					deliveryDay 	= DATE(:deliveryDay)';
+					idCar 		    = ?,
+					customer 		= ?,
+					idBasementStart = ?,
+					pickUpDay 		= ?,
+					idBasementEnd 	= ?,
+					deliveryDay 	= ?';
 
 			// prepare statement
 			$stmt = $this->conn->prepare($query);
@@ -109,12 +109,12 @@
 			$deliveryDay     = htmlspecialchars(strip_tags($deliveryDay));	
 
 			// bind data
-			$stmt->bindParam(':idCar', 		    $idCar);
-			$stmt->bindParam(':customer', 		intval($customer));
-			$stmt->bindParam(':idBasementStart',$idBasementStart);
-			$stmt->bindParam(':pickUpDay', 		$pickUpDay);
-			$stmt->bindParam(':idBasementEnd', 	$idBasementEnd);
-			$stmt->bindParam(':deliveryDay', 	$deliveryDay);
+			$stmt->bindParam(1, 		$idCar);
+			$stmt->bindParam(2, 		intval($customer));
+			$stmt->bindParam(3,         $idBasementStart);
+			$stmt->bindParam(4, 		$pickUpDay);
+			$stmt->bindParam(5, 	    $idBasementEnd);
+			$stmt->bindParam(6, 	    $deliveryDay);
 
 			// execute query
 			if($stmt->execute()) {
