@@ -4,7 +4,7 @@ if(!isset($_SESSION['role'])){
     header('Location: login.php');
     exit();
 }
-    
+
     $campi = array(
         'id' => $_SESSION['id'],
         'firstName' => $_SESSION['firstName'],
@@ -181,9 +181,16 @@ if(!isset($_SESSION['role'])){
         				</div>
         				<div class="col-xs-8 text-right menu-1">
         					<ul>
-        						<li><a href="goBasement.php">Basements</a></li>
-        						<li><a href="goCar.php">Car</a></li>
-        						<li><a href="<?php if($_SESSION['role'] = 0){echo "welcomeCustomer0.php";} else if($_SESSION['role'] = 1){echo "welcomeSeller.php";}?>">Personal Page</a></li>
+        					<?php
+        					if($_SESSION['role'] == 0){
+        					    echo '<li><a href="welcomeCustomer0.php">Personal Page</a></li>';
+        					}
+        					else if($_SESSION['role'] == 1){
+        						echo '<li><a href="goBasement.php">Basements</a></li>';
+        						echo '<li><a href="goCar.php">Car</a></li>';
+        						echo '<li><a href="welcomeSeller.php">Personal Page</a></li>';
+                            }
+                            ?>
         						
         					</ul>	
         				</div>
