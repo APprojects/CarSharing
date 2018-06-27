@@ -153,7 +153,12 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
 		}
 
 		function delete_car(idC,idU){
-			location.href = "deleteC.php?idC="+idC+"&idU="+idU;
+			 if (confirm("Are you sure you want to delete this car?")) {
+				 location.href = "deleteC.php?idC="+idC+"&idU="+idU;
+ 		    } else {
+ 		        location.href = "goCar.php";
+ 		    }
+			
 		}
 
 		function update_car(idC,modC,spC,npC,idU){
