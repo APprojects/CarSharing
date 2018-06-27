@@ -19,5 +19,5 @@
 	$json_input = json_decode(file_get_contents("php://input"),true);
 
    // Delete user
-	echo json_encode($history->delete($json_input['idCar'], $json_input['user']));
+	echo json_encode($history->delete($json_input['idHistory'], $json_input['user']));
 ?>

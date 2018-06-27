@@ -151,25 +151,68 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=0){
 		    
             
             $dates = explode(' ', $_POST['date']);
-            $startDate = $dates[1];
-            $startTime = $dates[2];
-            $endDate = $dates[6];
-            $endTime = $dates[7];
-            echo "startDate " . $startDate . " - startTime ". $startTime . " - endDate " . $endDate . " - EndTime " . $endTime;
+            $startDate = new DateTime($dates[1] . $dates[2].":00");
+            $endDate = new DateTime($dates[6] . $dates[7].":00");
+            echo "startDate " . $startDate->format("Y-m-d h:i:s") . " - endDate " . $endDate->format("Y-m-d  h:i:s") ;
             
             echo '<div class="box-body">';
 		    $historys = getHistorys()['historys'];
 		    if(count($historys)>0){
+		        $unavailableCar = new ArrayObject();
+		        
+		        foreach ($historys as &$history){
+		            $hisStartDate = new DateTime($history['pickUpDay'] . $history['pickUpHour']);
+		            $hisEndDate = new DateTime($history['deliveryDate'] . $history['deliveryHour']);
+
+		            if(($hisStartDate < $startDate && $startDate < $hisEndDate) || ($hisStartDate < $endDate && $endDate < $hisEndDate)){
+		                $unavailableCar->append($history['idCar']);
+		            }
+		        }
+		        
+		        $cars = getCar()['cars'];
+		        $availableCar = new ArrayObject()
+		        foreach ($cars as &$car){
+		            if(array_search($car['id'], $unavailableCar)){
+		                $cars
+		            }
+		        }
+		        
 				foreach ($historys as &$history){
 				    if(!strcmp($history['idBasementEnd'], $_POST['sbase'])){
 				        //casi delle date
+				        $hisStartDate = new DateTime($history['pickUpDay']);
+				        $hisEndDate = new DateTime($history['deliveryDate']);
+				        
+				        
+				        if($endDate < $hisStartDate){
+				            echo "1: ". $endDate->diff($hisStartDate)->format("%R%d days");
+				        }
+				        else if($startDate > $hisEndDate){
+				            echo "2: ".$startDate->diff($hisEndDate)->format("%R%d days");
+				        }
+				        else if($startDate ==$hisStartDate){
+				           echo "3";
+				            if($endTime<=$history['pickUpHour']){
+				                echo "time OK";
+				            }
+				            else if($startTime>=$history['deleryHour']){
+				                echo "time OK";
+				            }
+				        }
+				        /*
+				        if($endTime <= $history['deliveryHour']){
+				            
+				        }
+				        else if($startTime >= $history['deliveryHour']){
+				            
+				        }*/
     		            echo '<div class="col-sm-5 col-xs-6 tital " >' . $history['model'] . '</div>';
     	                echo '<div class="clearfix"></div>';
     	                echo '<div class="bot-border"></div>';
     		        }
     		    }
 		    }else{
-		        echo "Sorry, there aren't car in this base";
+		        echo "Sorry, there aren't available car in this base";
 		    }
 		    echo '</div>';
 		}

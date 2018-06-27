@@ -20,7 +20,7 @@
 	
 
 	$user_arr = $history->create($json_input['idCar'], $json_input['user'], $json_input['idBasementStart'], $json_input['pickUpDay'], 
-	    $json_input['pickUpHour'], $json_input['idBasementEnd'], $json_input['deliveryDay'], $json_input['deliveryHour']);
+	    $json_input['idBasementEnd'], $json_input['deliveryDay']);
 
 	
 	// make JSON

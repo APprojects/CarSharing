@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS User (
-	id integer PRIMARY KEY AUTO_INCREMENT ON DELETE CASCADE, 
+	id integer PRIMARY KEY AUTO_INCREMENT, 
 	firstName varchar(50),
 	lastName varchar(50) ,
 	username varchar(50) UNIQUE,
@@ -20,27 +20,31 @@ CREATE TABLE IF NOT EXISTS Car (
 	model varchar(50),
 	maxSpeed integer,
 	numberOfPassengers integer,
-	seller integer REFERENCES User(id)
+	seller integer,
+	FOREIGN KEY(seller) REFERENCES User(id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS Basement (
 	id integer PRIMARY KEY AUTO_INCREMENT, 
 	name  varchar(50) UNIQUE,
 	address varchar(50),
-	seller integer REFERENCES User(id)
+	seller integer,
+	FOREIGN KEY(seller) REFERENCES User(id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS History (
 	idHistory integer PRIMARY KEY  AUTO_INCREMENT,
-	idCar integer REFERENCES Car(id),
-	customer integer REFERENCES User(id),
-	idBasementStart integer REFERENCES Basement(id),
-	pickUpDay date,
-	pickUpHour time,
-	idBasementEnd integer REFERENCES Basement(id),
-	deliveryDay date,
-	deliveryHour time,
-	CONSTRAINT UC_Person UNIQUE (idCar, deliveryDay, deliveryHour)
+	idCar integer,
+	customer integer,
+	idBasementStart integer,
+	pickUpDay datetime,
+	idBasementEnd integer,
+	deliveryDay datetime,
+	CONSTRAINT UC_Person UNIQUE (idCar, deliveryDay),
+	FOREIGN KEY(customer) REFERENCES User(id) ON DELETE CASCADE,
+	FOREIGN KEY(idBasementStart) REFERENCES Basement(id) ON DELETE CASCADE,
+	FOREIGN KEY(idBasementEnd) REFERENCES Basement(id) ON DELETE CASCADE,
+	FOREIGN KEY(idCar) REFERENCES Car(id) ON DELETE CASCADE
 );
 
 INSERT INTO User VALUES (1,'Luisa','Piersanti','admin','admin','via delle rose', 'parma','italy','F','+39','333333333','0');
@@ -60,5 +64,5 @@ INSERT INTO Basement VALUES (5,'Rathmines', 'Cambridge Road',2);
 INSERT INTO Basement VALUES (6,'St. Patricks Cathedral', 'Patrick Street',2);
 INSERT INTO Basement VALUES (7,'Docklands', 'Dame Street',2);
 
-INSERT INTO History VALUES (1, '123', 1, 1, '2018-12-22', '08:30:00', 2, '2018-12-23', '08:30:00');
-INSERT INTO History VALUES (2, '1234', 1, 1, '2018-12-22', '08:30:00', 2, '2018-12-23', '08:30:00');
+INSERT INTO History VALUES (1, '123', 1, 1, '2018-12-22 08:30:00', 2, '2018-12-23 08:30:00');
+INSERT INTO History VALUES (2, '1234', 1, 1, '2018-12-22 08:30:00', 2, '2018-12-23 08:30:00');

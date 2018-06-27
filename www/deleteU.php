@@ -117,11 +117,7 @@ curl_close($ch);
 		<div class="panel panel-default" id="userPanel">
   				<div class="panel-heading" id="panelH">  
       				
-      				<div class="row form-group">
-    					<div class="col-md-12">
-    					<h4 style="color:#00b1b1;"><?php echo $_SESSION['firstName'] . " " . $_SESSION['lastName'];?> </h4></span>
-             					 <span><p><?php echo $_SESSION['username'];?></p></span></div>
-    				</div>
+      				
     			</div>
    				<div class="panel-body" id="bodyP">
        					<p><?php echo $response['message'];

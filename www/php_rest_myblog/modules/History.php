@@ -28,16 +28,15 @@
 
 		
 		// get single History
-		public function read_single($idCar, $deliveryDay, $deliveryHour) {
+		public function read_single($idCar, $deliveryDay) {
 			// Create query
-			$query = 'SELECT * FROM ' . $this->table . ' WHERE idCar = :idCar AND deliveryDay = :deliveryDay AND deliveryHour = :deliveryHour';
+			$query = 'SELECT * FROM ' . $this->table . ' WHERE idCar = :idCar AND deliveryDay = :deliveryDay';
 			//Prepare statement
 			$stmt = $this->conn->prepare($query);
 			
 			// Bind values
 			$stmt->bindParam(':idCar', $idCar);
 			$stmt->bindParam(':deliveryDay', $deliveryDay);
-			$stmt->bindParam(':deliveryHour', $deliveryHour);
 			
 			// execute query
 			$stmt->execute();
@@ -51,10 +50,8 @@
 			    'customer'           => $row['customer'],
 			    'idBasementStart'    => $row['idBasementStart'],
 			    'pickUpDay' 	     => $row['pickUpDay'],
-			    'pickUpHour' 	     => $row['pickUpHour'],
 			    'idBasementEnd' 	 => $row['idBasementEnd'],
-			    'deliveryDay' 	     => $row['deliveryDay'],
-			    'deliveryHour'  	 => $row['deliveryHour']
+			    'deliveryDay' 	     => $row['deliveryDay']
 			);
 		}
 		
@@ -81,17 +78,15 @@
 		        'customer'           => $row['customer'],
 		        'idBasementStart'    => $row['idBasementStart'],
 		        'pickUpDay' 	     => $row['pickUpDay'],
-		        'pickUpHour' 	     => $row['pickUpHour'],
 		        'idBasementEnd' 	 => $row['idBasementEnd'],
-		        'deliveryDay' 	     => $row['deliveryDay'],
-		        'deliveryHour'  	 => $row['deliveryHour']
+		        'deliveryDay' 	     => $row['deliveryDay']
 		    );
 		}
 		
 
 		// Create a History
 
-		public function create($idCar, $customer, $idBasementStart, $pickUpDay, $pickUpHour, $idBasementEnd, $deliveryDay, $deliveryHour) {
+		public function create($idCar, $customer, $idBasementStart, $pickUpDay, $idBasementEnd, $deliveryDay) {
 			//create query
 			$query = 'INSERT INTO ' . $this->table . '
 				SET
@@ -99,10 +94,8 @@
 					customer 		= :customer,
 					idBasementStart = :basementStart,
 					pickUpDay 		= :pickUpDay,
-					pickUpHour		= :pickUpHour,
 					idBasementEnd 	= :idBasementEnd,
-					deliveryDay 	= :deliveryDay,
-					deliveryHour 	= :deliveryHour';
+					deliveryDay 	= :deliveryDay';
 
 			// prepare statement
 			$stmt = $this->conn->prepare($query);
@@ -111,25 +104,21 @@
 			$idCar           = htmlspecialchars(strip_tags($idCar));	
 			$customer        = htmlspecialchars(strip_tags($customer));	
 			$idBasementStart = htmlspecialchars(strip_tags($idBasementStart));
-			$pickUpDay       = htmlspecialchars(strip_tags($pickUpDay));	
-			$pickUpHour      = htmlspecialchars(strip_tags($pickUpHour));	
+			$pickUpDay       = htmlspecialchars(strip_tags($pickUpDay));		
 			$idBasementEnd   = htmlspecialchars(strip_tags($idBasementEnd));		
 			$deliveryDay     = htmlspecialchars(strip_tags($deliveryDay));	
-			$deliveryHour    = htmlspecialchars(strip_tags($deliveryHour));
 
 			// bind data
 			$stmt->bindParam(':idCar', 		    $idCar);
 			$stmt->bindParam(':customer', 		$customer);
 			$stmt->bindParam(':idBasementStart',$idBasementStart);
 			$stmt->bindParam(':pickUpDay', 		$pickUpDay);
-			$stmt->bindParam(':pickUpHour', 	$pickUpHour);
 			$stmt->bindParam(':idBasementEnd', 	$idBasementEnd);
 			$stmt->bindParam(':deliveryDay', 	$deliveryDay);
-			$stmt->bindParam(':deliveryHour', 	$deliveryHour);
 
 			// execute query
 			if($stmt->execute()) {
-			    return $this->read_single($idCar, $deliveryDay, $deliveryHour);
+			    return $this->read_single($idCar, $deliveryDay);
 			}
 
 			// print error if something goes wrong 
@@ -139,30 +128,15 @@
 
 		// Update a History
 		// Could Update a History only the customer or the seller of picked car
-		public function update($idHistory, $idCar, $user, $idBasementStart, $pickUpDay, $pickUpHour, $idBasementEnd, $deliveryDay, $deliveryHour) {
+		public function update($idHistory, $idCar, $user, $idBasementStart, $pickUpDay, $idBasementEnd, $deliveryDay) {
 			//create query
-		/*	$query = 'UPDATE ' . $this->table . ' as his
-				SET
-					idCar 		    = :idCar,
-					idBasementStart 	= :basementStart,
-					pickUpDay 		= :pickUpDay,
-					pickUpHour		= :pickUpHour,
-					idBasementEnd 	= :idBasementEnd,
-					deliveryDay 	= :deliveryDay,
-					deliveryHour 	= :deliveryHour
-				WHERE
-					idHistory = :idHistory AND (customer = :customer OR :seller = (SELECT seller FROM Car as c WHERE his.idCar = c.id))';
-*/
-		    
 		    $query = 'UPDATE ' . $this->table . ' as his
 				SET
 					idCar 		    = ?,
 					idBasementStart 	= ?,
 					pickUpDay 		= ?,
-					pickUpHour		= ?,
 					idBasementEnd 	= ?,
-					deliveryDay 	= ?,
-					deliveryHour 	= ?
+					deliveryDay 	= ?
 				WHERE
 					idHistory = ? AND (customer = ? OR ? = (SELECT seller FROM Car as c WHERE his.idCar = c.id))';
 			
@@ -175,33 +149,20 @@
 			$user            = htmlspecialchars(strip_tags($user));
 			$idBasementStart = htmlspecialchars(strip_tags($idBasementStart));
 			$pickUpDay       = htmlspecialchars(strip_tags($pickUpDay));
-			$pickUpHour      = htmlspecialchars(strip_tags($pickUpHour));
 			$idBasementEnd   = htmlspecialchars(strip_tags($idBasementEnd));
 			$deliveryDay     = htmlspecialchars(strip_tags($deliveryDay));
-			$deliveryHour    = htmlspecialchars(strip_tags($deliveryHour));
+			
 			
 			// bind data
-	/*		$stmt->bindParam(':idCar', 		    $idCar);
-			$stmt->bindParam(':idBasementStart',$idBasementStart);
-			$stmt->bindParam(':pickUpDay', 		$pickUpDay);
-			$stmt->bindParam(':pickUpHour', 	$pickUpHour);
-			$stmt->bindParam(':idBasementEnd', 	$idBasementEnd);
-			$stmt->bindParam(':deliveryDay', 	$deliveryDay);
-			$stmt->bindParam(':deliveryHour', 	$deliveryHour);
-			$stmt->bindParam(':idHistory', 		$idHistory);
-			$stmt->bindParam(':customer', 		$user);
-			$stmt->bindParam(':seller', 		$user);
-		*/
+	
 			$stmt->bindParam(1, 		    $idCar);
 			$stmt->bindParam(2,      $idBasementStart);
 			$stmt->bindParam(3, 		$pickUpDay);
-			$stmt->bindParam(4, 	$pickUpHour);
-			$stmt->bindParam(5, 	$idBasementEnd);
-			$stmt->bindParam(6, 	$deliveryDay);
-			$stmt->bindParam(7, 	$deliveryHour);
-			$stmt->bindParam(8, 		$idHistory);
-			$stmt->bindParam(9, 		$user);
-			$stmt->bindParam(10, 		$user);
+			$stmt->bindParam(4, 	$idBasementEnd);
+			$stmt->bindParam(5, 	$deliveryDay);
+			$stmt->bindParam(6, 		$idHistory);
+			$stmt->bindParam(7, 		$user);
+			$stmt->bindParam(8, 		$user);
 		
 
 			// execute query
@@ -241,5 +202,29 @@
 
 			printf("Error: %s. \n", $stmt->error);
 		}
+		
+		public function getAvailableCar($startBase, $startDate, $endDate){
+		    
+		    $query = '(SELECT id,model, maxSpeed, numberOfPassengers FROM Car) MINUS (SELECT DISTINCT Car.id, Car.model, Car.maxSpeed, Car.numberOfPassengers FROM '. $this->table . ' JOIN Car ON Car.id = ' . $this->table .'.idCar
+                        WHERE idBasementEnd == ? AND ((pickUpDay < ? AND deliveryDay> ?) OR (pickUpDay < ? AND deliveryDay> ?)))
+                    ';
+		    
+		    $stmt->bindParam(1, $startBase);
+		    $stmt->bindParam(2, $startDate);
+		    $stmt->bindParam(3, $startDate);
+		    $stmt->bindParam(4, $endDate);
+		    $stmt->bindParam(5, $endDate);
+		    
+		    
+		    //Prepare statement
+		    $stmt = $this->conn->prepare($query);
+		    
+		    //Execute query
+		    $stmt->execute();
+		    //echo "dopo";
+		    return $stmt;
+		}
+		
+		
 	}
 ?>

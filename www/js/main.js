@@ -279,7 +279,7 @@
 			    startDate: moment().startOf('hour'),
 			    endDate: moment().startOf('hour').add(32, 'hour'),
 			    locale: {
-			      format: ' M/DD/YY hh:mm '
+			      format: ' YYYY-MM-DD hh:mm '
 			    }
 			  });
 			});
