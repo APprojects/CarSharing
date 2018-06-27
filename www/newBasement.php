@@ -3,7 +3,72 @@ session_start();
 if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
     header('Location: login.php');
     exit();
-}?>
+}
+    
+
+    include_once("./utilityFunctions.php");
+    
+    //controllo se sono settate tutte le variabili post in caso affermativo faccio i controlli
+    if(!empty($_POST['name']) && !empty($_POST['address'])){
+        
+        $campi = array(
+            
+            'name'=>$_POST['name'], 
+            'address'=>$_POST['address'], 
+            'seller'=>$_SESSION['id']
+            
+        );
+             
+        // trasformo la mia array in JSON
+        $dati = json_encode($campi);
+        
+        // inizializzo curl
+        $ch = curl_init();
+        
+        // imposto la URl del web-service remoto
+        curl_setopt($ch, CURLOPT_URL, 'localhost/php_rest_myblog/api/basement/create.php');
+        
+        // preparo l'invio dei dati col metodo POST
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $dati);
+        
+        // imposto gli header correttamente
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        'Content-Type: application/json',
+        'Content-Length: ' . strlen($dati))
+        );
+        
+        // eseguo la chiamata
+        $response = json_decode(curl_exec($ch), true);
+        var_dump($response);
+        
+        
+        
+        // chiudo
+        curl_close($ch);    
+    }
+    
+    else{
+            $string_error ="";
+            if ((empty($_POST['name']))){
+                $string_error .= " name ";
+            }
+            if ((empty($_POST['address']))){
+                $string_error .= " address ";
+            }
+            
+                        
+            $string_error .= "not entered";
+            header ("location: newBasement.php?error_insertion_b=".urlencode($string_error));
+                                                    
+     
+   }
+    
+
+?>
+
+
 
 <!DOCTYPE HTML>
 <!--
@@ -45,9 +110,9 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
 	<link rel="stylesheet" href="css/owl.theme.default.min.css">
 
 	<!-- Theme style  -->
-	<link rel="stylesheet" href="css/style1.css">
+	
 	<link rel="stylesheet" href="css/style.css">
-
+<link rel="stylesheet" href="css/style1.css">
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
 	<!-- FOR IE9 below -->
@@ -57,12 +122,8 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
 
 	</head>
 	<body>
-	<?php
-		
-		include_once("./utilityFunctions.php");
-	?>
 	
-	<!-- NavBar -->
+    	<!-- NavBar -->
 	<nav class="gtco-nav" role="navigation">
 		<div class="gtco-container">
 			
@@ -72,6 +133,7 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
 				</div>
 				<div class="col-xs-8 text-right menu-1">
 					<ul>
+						<li><a href="goBasement.php">Basements</a></li>
 						<li><a href="goCar.php">Car</a></li>
 						<li><a href="welcomeSeller.php">Personal Page</a></li>
 					</ul>	
@@ -81,7 +143,6 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
 		</div>
 	</nav>
 	<!-- END NavBar -->
-    	
 	
 		<header id="gtco-header1" class="gtco-cover gtco-cover-md" role="banner" style="background-image: url(images/img_bg_2.jpg)">
 			<div class="overlay"></div>
@@ -98,84 +159,58 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
              					 <span><p><?php echo $_SESSION['username'];?></p></span></div>
     				</div>
     			</div>
-   				<div class="panel-body" id="bodyP">
-       
-    				<div class="box box-info">
-        
-            			<div class="box-body">
-                    	  <button onclick="addBasement()" class="btn btn-secondary"> + </button>
-            				<div class="clearfix"></div>
-            				
-    
-              
-							
-						<?php
-						$basements = getBasements()['basements'];
-						  if(!is_null($basements)){
-							foreach($basements as &$basement){
-								    
-								    if($basement['seller']==$_SESSION['id']){
-								        echo '<div>
-                                                <div class="col-sm-5 col-xs-6 tital">' 
-	                                               . $basement['name'] . 
-	                                           '</div>';
-										echo '<div class="col-sm-7">'; 
-                                        echo      '<button type="button"'.
-                                                    ' class="btn btn-info deleteB"'.
-                                                    ' onclick="delete_basement('.$basement["id"].','.$_SESSION["id"].')"'. 
-                                                      ' value="Delete Basement">Delete Basement</button>' ;
-								        echo       '<button type="button"'.
-												     'class="btn btn-info updateB"'.
-												     ' onclick="update_basement('.$basement["id"].',\''.$basement["name"].'\',\''.$basement["address"].'\','.$_SESSION["id"].')" '.
-												     ' value="idB   : \''.$basement["id"]      .'\','.
-												     'nameB: \''.$basement["name"]    .'\','.
-												     'addB : \''.$basement["address"] .'\','.
-												     'idU  : \''.$_SESSION["id"]      .'\'">Update Basement</button></div>';
-								        echo         '</div><div class="clearfix"></div><div class="bot-border"></div>';    
-								    }
-							}}
-							?>
-							
-							
+   				<div class="container">
+					<div  class="col-md-push-1  animate-box" data-animate-effect="fadeInRight">
+						<div class="form-wrap">
+							<div class="tab">
+								<div class="tab-content">
+									<div class="tab-content-inner active" id="baseInfo" data-content="signup">
+										<h3>Add a new Basement!</h3>
+											
+											<form action="newBasement.php" method="post">
+												<div id="error_insertion_b" class="errors">
+	                    								<?php
+	                    								  
+	                    								  if(isset($_GET['error_insertion_b'])){
+	                    								    echo "ERROR: " . $_GET['error_insertion_b'];
+	                    								  }
+	                    								?>
+												</div>
+						
+												<div class="form-group">
+													<div class="col-md-12">
+														<label for="name">Name </label>
+														<input class="form-control" id="name" placeholder="Enter name" name="name">
+    												</div>
+												</div>
+												<div class="form-group">
+													<div class="col-md-12">
+														<label for="address">Address </label>
+														<input class="form-control" id="address" placeholder="Enter address" name="address">
+    												</div>
+												</div>
+												
+									
+                								<div class="row form-group">
+                									<div class="col-md-12">
+                										<input type="submit" id ="newBasement" class="btn btn-primary btn-block" value="Submit">
+                									</div>
+                								</div>
+											</form>	
+									</div>
+								</div>
 							</div>
-     						
-                        <!-- /.box-body -->
-          			</div>
-          <!-- /.box -->
+						</div>
+					</div>
+				</div>
+		</div>
 
-        		</div>
-       		
-    </div>
-
-    
        
-       <script  type="text/javascript">
-       
-           function addBasement(){
-    			location.href = "newBasement.php";	
-           }
-       
-    		function delete_basement(idB,idU){
-    			
-    		    if (confirm("Are you sure you want to delete this basement?")) {
-    		    	location.href = "deleteB.php?idB="+idB+"&idU="+idU;
-    		    } else {
-    		        location.href = "goBasement.php";
-    		    }
-    			
-    		}
-	   
-    		function update_basement(idB,nameB,addB,idU){
-    			location.href = "updateB.php?idB="+idB+"&nameB="+nameB+"&addB="+addB+"&idU="+idU;
-    		}
-
-			
-    		function logout(){
-    			location.href = "logout.php";
-    		}
-
-		</script>
-
+     <script>
+		function logout(){
+			location.href = "logout.php";
+		}
+	</script>   
 
        
        
@@ -216,4 +251,4 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
 	<!-- Main -->
 	<script src="js/main.js"></script>
 	
-</body></html>
+	</body></html>
