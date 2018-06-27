@@ -1,9 +1,45 @@
 <?php
 session_start();
-if(!isset($_SESSION['role']) || $_SESSION['role']!=0){
+if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
     header('Location: login.php');
     exit();
 }
+$campi = array(
+    'id' => ($_GET['idO']),
+    'seller' => ($_GET['idU'])
+    
+);
+
+// trasformo la mia array in JSON
+$dati = json_encode($campi);
+
+// inizializzo curl
+$ch = curl_init();
+
+// imposto la URl del web-service remoto
+curl_setopt($ch, CURLOPT_URL, 'localhost/php_rest_myblog/api/history/delete.php');
+
+// preparo l'invio dei dati col metodo POST
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $dati);
+
+// imposto gli header correttamente
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+    'Content-Type: application/json',
+    'Content-Length: ' . strlen($dati))
+    );
+
+// eseguo la chiamata
+$response = json_decode(curl_exec($ch), true);
+
+
+
+
+// chiudo
+curl_close($ch);
+
+
 ?>
 
 <!DOCTYPE HTML>
@@ -12,7 +48,7 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=0){
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ESharing </title>
+	
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
 
@@ -41,7 +77,7 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=0){
 	<link rel="stylesheet" href="css/owl.theme.default.min.css">
 
 	<!-- Theme style  -->
-	
+	<link rel="stylesheet" href="css/style1.css">
 	<link rel="stylesheet" href="css/style.css">
 
 	<!-- Modernizr JS -->
@@ -50,34 +86,29 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=0){
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
-<link rel="stylesheet" href="css/style1.css">
+
 	</head>
 	<body>
-	
-	
-		<?php
-		
-		include_once("./utilityFunctions.php");
-	   ?>
-	<!-- NavBar -->
-	<nav class="gtco-nav" role="navigation">
-		<div class="gtco-container">
-			
-			<div class="row">
-				<div class="col-sm-4 col-xs-12">
-					<div id="gtco-logo"><a href="index.php">ESharing <em>.</em></a></div>
-				</div>
-				<div class="col-xs-8 text-right menu-1">
-					<ul>
-						<li><a href="welcomeCustomer.php">Book your car!</a></li>
-						<li><a href="welcomeCustomer0.php">Profile Page</a></li>
-					</ul>	
-				</div>
-			</div>
-			
-		</div>
-	</nav>
-	<!-- END NavBar -->
+		<!-- NavBar -->
+    	<nav class="gtco-nav" role="navigation">
+    		<div class="gtco-container">
+    			
+    			<div class="row">
+    				<div class="col-sm-4 col-xs-12">
+    					<div id="gtco-logo"><a href="index.php">ESharing <em>.</em></a></div>
+    				</div>
+    				<div class="col-xs-8 text-right menu-1">
+    					<ul>
+    						<li><a href="goBasement.php">Basements</a></li>
+    						<li><a href="goCar.php">Car</a></li>
+    						<li><a href="welcomeSeller.php">Personal Page</a></li>
+    					</ul>	
+    				</div>
+    			</div>
+    			
+    		</div>
+    	</nav>
+    	<!-- END -->
 	
 		<header id="gtco-header1" class="gtco-cover gtco-cover-md" role="banner" style="background-image: url(images/img_bg_2.jpg)">
 			<div class="overlay"></div>
@@ -95,90 +126,18 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=0){
     				</div>
     			</div>
    				<div class="panel-body" id="bodyP">
-       
-    				<div class="box box-info">
-        
-            			<div class="box-body">
-                    	  
-            				<div class="clearfix"></div>
-            				
-    
-              
-							
-						<?php
-						$histories = getHistories()['histories'];
-						  if(!is_null($histories)){
-							foreach($histories as &$history){
-								  if($history['customer']==$_SESSION['id']){
-								       echo '<div>
-                                                <div class="col-sm-5 col-xs-6 tital"><p>' 
-	    . $history['idHistory'] . " - " .$history['idCar'] . " - " . $history['idBasementStart'] . " - " . $history['pickUpDay'] . " - " .$history['idBasementEnd']. " - " .$history['deliveryDay'].
-	                                           '</p></div>';
-										echo '<div class="col-sm-7">'; 
-                                        echo      '<button type="button"'.
-                                                    ' class="btn btn-info deleteO"'.
-                                                    ' onclick="delete_order('.$history["idHistory"].','.$_SESSION["id"].')"'. 
-                                                      ' value="Delete Order">Delete Order</button>' ;
-								        echo         '</div><div class="clearfix"></div><div class="bot-border"></div>';    
-								  
-								  
-								  }
-							}}
-							?>
-							
-							
-							</div>
-     						
-                        <!-- /.box-body -->
-          			</div>
+       					<p>Order deleted.</p>
+    				
+       			</div> 
     </div>
-<<<<<<< HEAD
-	
-=======
-	<div class="col-sm-5 col-xs-6 " style="margin-top:50px;">
-		
-	 	<button type="button" id="deleteO" class="btn btn-info" onclick=<?php echo "delete=(\''.$history["id"].'\','.$_SESSION["id"].');"?> value="Delete Order">Delete Order</button>
-	</div>
->>>>>>> branch 'API-OK' of https://github.com/APprojects/CarSharing.git
+
 
        
      <script>
 		function logout(){
 			location.href = "logout.php";
 		}
-	
-		function add_order(){
-			location.href = "welcomeCustomer.php";
-		}
-	
-		function updateU(){
-			location.href = "updateU.php";
-			
-		}
-<<<<<<< HEAD
-	
-		function delete_order(){
-			
-		    if (confirm("Are you sure you want to delete your order?")) {
-		        location.href = "orderList.php";
-=======
-
-		function deleteO(idO,idU){
-			 if (confirm("Are you sure you want to delete this order?")) {
-				 location.href = "deleteO.php?idO="+idO+"&idU="+idU;
->>>>>>> branch 'API-OK' of https://github.com/APprojects/CarSharing.git
-		    } else {
-		        location.href = "orderList.php";
-		    }
-			
-		}
-	
-		
-
-	</script> 
-
-       
-       
+	</script>   
        
        
    
