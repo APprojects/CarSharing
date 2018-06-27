@@ -164,33 +164,11 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
     			location.href = "updateB.php?idB="+idB+"&nameB="+nameB+"&addB="+addB+"&idU="+idU;
     		}
 
-    		function updateU(){
-    			location.href = "updateU.php";
+			
+    		function logout(){
+    			location.href = "logout.php";
     		}
 
-    		
-		
-    		function go_car(){
-    			location.href = "goCar.php";
-    		}
-	
-    		function go_home(){
-    			location.href = "index.php";
-    		}
-
-    		/*$(document).ready(function(){
-    		    $('.updateB').click(function(){
-    		        var clickBtnValue = $(this).val();
-    		        var url = 'updateB.php',
-    		        data =  {clickBtnValue};
-		        	
-    		        $.post(url, {clickBtnValue}, function (response) {
-    		            // Response div goes here.
-    		            $('html').html(response);
-    		        });
-    		    });
-
-    		});*/
 		</script>
 
 
