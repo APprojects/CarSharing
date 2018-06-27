@@ -122,12 +122,12 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
 	                                            '</div>';
 	                                    echo '<div class="col-sm-7">';
 	                                    echo      '<button type="button"'.
-	   	                                          ' id="deleteC" class="btn btn-info"'.
-                                        	   	    ' onclick="delete_car('.$car["id"].','.$_SESSION["id"].')"'.
+	   	                                          ' class="btn btn-info"'.
+                                        	   	    ' onclick="delete_car('.$car["id"].','.$_SESSION["id"].');"'.
                                         	   	    ' value="Delete Car">Delete Car</button>' ;
                                 	    echo       '<button type="button"'.
-                                            	   	    ' id="updateC" class="btn btn-info"'.
-                                            	   	    ' onclick="update_car('.$car["id"].',\''.$car["model"].'\','.$car["maxSpeed"].','.$car["numberOfPassengers"].','.$_SESSION["id"].')" '.
+                                            	   	    ' class="btn btn-info"'.
+                                            	   	    ' onclick="update_car('.$car["id"].',\''.$car["model"].'\','.$car["maxSpeed"].','.$car["numberOfPassengers"].','.$_SESSION["id"].');" '.
                                             	   	    ' value="Update Car">Update Car</button></div>';
                                 	    echo         '
                                                <div class="clearfix"></div><div class="bot-border"></div>';

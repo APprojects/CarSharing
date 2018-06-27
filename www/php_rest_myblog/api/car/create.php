@@ -19,11 +19,11 @@
 	// Get value, user name and password 
 	$json_input = json_decode(file_get_contents('php://input'), true);
 	
-	//$car_arr = $car->create($json_input['id'], $json_input['model'], $json_input['maxSpeed'], $json_input['numberOfPassengers'], $json_input['seller']);
-	echo "ee";
-	$car_arr = $car->create($json_input['id'], $json_input['model'], $json_input['maxSpeed'], $json_input['numberOfPassengers'], 2);
-	//(new History($db))->create($json_input['id'], $json_input['seller'], $json_input['idBasementStart'],$json_input['pickUpDay'],$json_input['idBasementEnd'],$json_input['deliveryDay']);
-	(new History($db))->create($json_input['id'], 2, 1,'2018-05-20 08:12:00',1,'2018-05-20 08:12:00');
+	$car_arr = $car->create($json_input['id'], $json_input['model'], $json_input['maxSpeed'], $json_input['numberOfPassengers'], $json_input['seller']);
+	
+	
+	(new History($db))->create($json_input['id'], $json_input['seller'], $json_input['idBasementStart'],$json_input['pickUpDay'],$json_input['idBasementEnd'],$json_input['deliveryDay']);
+	
 	// make JSON
 	echo(json_encode($car_arr));
 ?>
