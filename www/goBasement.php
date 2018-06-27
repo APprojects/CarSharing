@@ -103,7 +103,7 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
     				<div class="box box-info">
         
             			<div class="box-body">
-                    		
+                    	  <button onclick="addBasement()" class="btn btn-secondary"> + </button>
             				<div class="clearfix"></div>
             				
     
@@ -150,6 +150,11 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
     
        
        <script  type="text/javascript">
+       
+           function addBasement(){
+    			location.href = "newBasement.php";	
+           }
+       
     		function delete_basement(idB,idU){
     			
     		    if (confirm("Are you sure you want to delete this basement?")) {

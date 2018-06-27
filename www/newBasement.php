@@ -9,13 +9,12 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
     include_once("./utilityFunctions.php");
     
     //controllo se sono settate tutte le variabili post in caso affermativo faccio i controlli
-    if(!empty($_POST['plate']) && !empty($_POST['model']) && !empty($_POST['maxs']) && !empty($_POST['noP'])){
+    if(!empty($_POST['name']) && !empty($_POST['address'])){
         
         $campi = array(
-            'id'=>$_POST['plate'],
-            'model'=>$_POST['model'], 
-            'maxSpeed'=>$_POST['maxs'], 
-            'numberOfPassengers'=> $_POST['noP'], 
+            
+            'name'=>$_POST['name'], 
+            'address'=>$_POST['address'], 
             'seller'=>$_SESSION['id']
             
         );
@@ -27,7 +26,7 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
         $ch = curl_init();
         
         // imposto la URl del web-service remoto
-        curl_setopt($ch, CURLOPT_URL, 'localhost/php_rest_myblog/api/car/create.php');
+        curl_setopt($ch, CURLOPT_URL, 'localhost/php_rest_myblog/api/basement/create.php');
         
         // preparo l'invio dei dati col metodo POST
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -52,21 +51,16 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
     
     else{
             $string_error ="";
-            if ((empty($_POST['plate']))){
-                $string_error .= " plate ";
+            if ((empty($_POST['name']))){
+                $string_error .= " name ";
             }
-            if ((empty($_POST['model']))){
-                $string_error .= " model ";
+            if ((empty($_POST['address']))){
+                $string_error .= " address ";
             }
-            if ((empty($_POST['maxs']))){
-                $string_error .= " max speed ";
-            }
-            if ((empty($_POST['noP']))){
-                $string_error .= " number of passengers ";
-            }
+            
                         
             $string_error .= "not entered";
-            header ("location: newCar.php?error_insertion_c=".urlencode($string_error));
+            header ("location: newBasement.php?error_insertion_b=".urlencode($string_error));
                                                     
      
    }
@@ -171,48 +165,35 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
 							<div class="tab">
 								<div class="tab-content">
 									<div class="tab-content-inner active" id="baseInfo" data-content="signup">
-										<h3>Add a new Car!</h3>
+										<h3>Add a new Basement!</h3>
 											
-											<form action="newCar.php" method="post">
-												<div id="error_insertion_c" class="errors">
+											<form action="newBasement.php" method="post">
+												<div id="error_insertion_b" class="errors">
 	                    								<?php
 	                    								  
-	                    								  if(isset($_GET['error_insertion_c'])){
-	                    								    echo "ERROR: " . $_GET['error_insertion_c'];
+	                    								  if(isset($_GET['error_insertion_b'])){
+	                    								    echo "ERROR: " . $_GET['error_insertion_b'];
 	                    								  }
 	                    								?>
 												</div>
 						
 												<div class="form-group">
 													<div class="col-md-12">
-														<label for="plate">Plate </label>
-														<input class="form-control" id="plate" placeholder="Enter plate" name="plate">
+														<label for="name">Name </label>
+														<input class="form-control" id="name" placeholder="Enter name" name="name">
     												</div>
 												</div>
 												<div class="form-group">
 													<div class="col-md-12">
-														<label for="model">Model </label>
-														<input class="form-control" id="model" placeholder="Enter model" name="model">
+														<label for="address">Address </label>
+														<input class="form-control" id="address" placeholder="Enter address" name="address">
     												</div>
 												</div>
-												<div class="form-group">
-													<div class="col-md-12">
-														<label for="maxSpeed">Max Speed</label>
-														<input class="form-control" id="maxSpeed" placeholder="Enter max speed" name="maxs">
-    												</div>
-												</div>
-
-            									<!-- Date input -->
-            									<div class="form-group"> 
-            									<div class="col-md-12">
-								       				<label for="noP" style=" ">Number of Passengers </label>
-								      				<input class="form-control" id="noP" placeholder="Enter number of passengers" name="noP"/>
-							      				</div>
-							      				</div>
+												
 									
                 								<div class="row form-group">
                 									<div class="col-md-12">
-                										<input type="submit" id ="newCar" class="btn btn-primary btn-block" value="Submit">
+                										<input type="submit" id ="newBasement" class="btn btn-primary btn-block" value="Submit">
                 									</div>
                 								</div>
 											</form>	
