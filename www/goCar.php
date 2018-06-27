@@ -102,7 +102,7 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
     				<div class="box box-info">
         
             			<div class="box-body">
-                    		
+                    		<button onclick="addCar()" class="btn btn-secondary"> + </button>
             				<div class="clearfix"></div>
             			
     
@@ -148,6 +148,11 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
 
     
       <script>
+      
+      	function addCar(){
+			location.href = "newCar.php";	
+        }	
+        
 		function logout(){
 			location.href = "logout.php";
 		}
