@@ -70,6 +70,7 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=0){
 				<div class="col-xs-8 text-right menu-1">
 					<ul>
 						<li><a href="welcomeCustomer.php">Book your car!</a></li>
+						<li><a href="orderList.php">See your orders</a></li>
 					</ul>	
 				</div>
 			</div>
