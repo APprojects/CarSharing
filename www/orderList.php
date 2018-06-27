@@ -132,14 +132,12 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=0){
                         <!-- /.box-body -->
           			</div>
     </div>
-<<<<<<< HEAD
-	
-=======
+
 	<div class="col-sm-5 col-xs-6 " style="margin-top:50px;">
 		
 	 	<button type="button" id="deleteO" class="btn btn-info" onclick="<?php echo 'delete=(\''.$history['id'].'\','.$_SESSION['id'].')';?>" value="Delete Order">Delete Order</button>
 	</div>
->>>>>>> branch 'API-OK' of https://github.com/APprojects/CarSharing.git
+
 
        
      <script>
@@ -155,18 +153,11 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=0){
 			location.href = "updateU.php";
 			
 		}
-<<<<<<< HEAD
-	
-		function delete_order(){
-			
-		    if (confirm("Are you sure you want to delete your order?")) {
-		        location.href = "orderList.php";
-=======
+
 
 		function deleteO(idO,idU){
 			 if (confirm("Are you sure you want to delete this order?")) {
 				 location.href = "deleteO.php?idO="+idO+"&idU="+idU;
->>>>>>> branch 'API-OK' of https://github.com/APprojects/CarSharing.git
 		    } else {
 		        location.href = "orderList.php";
 		    }
