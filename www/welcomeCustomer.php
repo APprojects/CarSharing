@@ -104,7 +104,7 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=0){
 									<div class="row form-group">
 										<div class="col-md-12">
 											<label for="sourceBasement">Source Basement</label>
-											<select id="sourceBasement" class="form-control" name="sbase">
+											<select id="sourceBasement" class="form-control" name="sbase" >
     											<?php
     												foreach(getBasements()['basements'] as &$basement){
     													echo "<option value='" . $basement['id'] . "'>" . $basement['name'] . "</option>\n";
@@ -146,13 +146,25 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=0){
 		
 		<?php 
 		
-		if(isset($_POST['sbase'])){
-		    //GET DATE AND TIME
-		    
-            
-            $dates = explode(' ', $_POST['date']);
+		    $dates = explode(' ', $_POST['date']);
             $startDate = new DateTime($dates[1] . $dates[2].":00");
             $endDate = new DateTime($dates[6] . $dates[7].":00");
+            
+            $SD = array(
+                'year' => intval($startDate->format("Y")),
+                'month'=> intval($startDate->format("m")),
+                'day'=> intval($startDate->format("d")),
+                'hour'=> intval($startDate->format("h")),
+                'minute'=> intval($startDate->format("i"))
+            );
+            
+            $ED = array(
+                'year' => intval($endDate->format("Y")),
+                'month'=> intval($endDate->format("m")),
+                'day'=> intval($endDate->format("d")),
+                'hour'=> intval($endDate->format("h")),
+                'minute'=> intval($endDate->format("i"))
+            );
             
             echo '<div class="box-body">';
 		    $histories = getHistories()['histories'];
@@ -160,11 +172,60 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=0){
 		        $unavailableCars = new ArrayObject();
 		        
 		        foreach ($histories as &$history){
-		            $hisStartDate = new DateTime($history['pickUpDay'] . $history['pickUpHour']);
-		            $hisEndDate = new DateTime($history['deliveryDate'] . $history['deliveryHour']);
-
-		            if(($hisStartDate < $startDate && $startDate < $hisEndDate) || ($hisStartDate < $endDate && $endDate < $hisEndDate)){
+		            if($_POST['sbase'] != $history['idBasementEnd']){
 		                $unavailableCars->append($history['idCar']);
+		            }else{
+		                
+		                $hisStartDate = new DateTime($history['pickUpDay']);
+    		            $hisEndDate = new DateTime($history['deliveryDay']);
+                        
+    		            $HSD = array(
+    		                'year' => intval($hisStartDate->format("Y")),
+    		                'month'=> intval($hisStartDate->format("m")),
+    		                'day'=> intval($hisStartDate->format("d")),
+    		                'hour'=> intval($hisStartDate->format("h")),
+    		                'minute'=> intval($hisStartDate->format("i"))
+    		            );
+    		            $HED = array(
+    		                'year' => intval($hisEndDate->format("Y")),
+    		                'month'=> intval($hisEndDate->format("m")),
+    		                'day'=> intval($hisEndDate->format("d")),
+    		                'hour'=> intval($hisEndDate->format("h")),
+    		                'minute'=> intval($hisEndDate->format("i"))
+    		            );
+    		            
+    		            
+    		            
+    		            
+    		            
+    		            if ($ED['year']<=$HSD['year']){
+    		                if ($ED['month']<=$HSD['month']){
+    		                    if ($ED['day']<=$HSD['day']){
+    		                        if ($ED['hour']<=$HSD['hour']){
+    		                            if ($ED['minute']<$HSD['minute']){
+    		                             
+    		                            }
+    		                        }
+    		                    }
+    		                }
+    		            }
+    		            else if ($SD['year']>=$HED['year']){
+    		                if ($SD['month']>=$HED['month']){
+    		                    if ($SD['day']>=$HED['day']){
+    		                        if ($SD['hour']>=$HED['hour']){
+    		                            if ($SD['minute']>$HED['minute']){
+    		                               
+    		                            }
+    		                        }
+    		                    }
+    		                }
+    		            }
+    		            else{
+    		                $unavailableCars->append($historie['idCar']);
+    		            }
+
+    		            
+    		            
 		            }
 		        }
 		        
@@ -172,7 +233,7 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=0){
 		        foreach ($cars as &$car){
 		            $isAvailable = true;
 		            foreach ($unavailableCars as &$ucar){
-		                if(strcmp($car, $ucar) == 0){
+		                if($car['id'] == $ucar){
 		                    $isAvailable = false;
 		                }
 		            }
@@ -180,9 +241,10 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=0){
 		                echo '<div class="col-sm-5 col-xs-6 tital " >' . $car['model'] . ', Max Speed: '. $car['maxSpeed'] . ', number of passengers: '. $car['numberOfPassengers'] . '</div>';
 		                echo '<div class="col-sm-7">';
 		                echo      '<button type="button"'.
-		  		                ' class="btn btn-info"'.
-		  		                ' onclick="bookCar(\''.$car["id"].'\','.$_SESSION["id"].', '. $_POST['sbase'] . ',\'' . $startDay .'\','. $_POST['dbase'].',\''. $endDate .'\');"'.
-		  		                ' value="Book Car">Book</button>' ;
+		  		                ' class="btn btn-info book"'.
+		  		               // ' onclick="bookCar(\''.$car["id"].'\','.$_SESSION["id"].', '. $_POST['sbase'] . ',\'' . $startDay .'\','. $_POST['dbase'].',\''. $endDate .'\');"'.
+		  		                //' value="Book Car">Book</button>' ;
+		                ' value="'.$car["id"].','.$_SESSION["id"].','. $_POST['sbase'] . ',' . $startDate->format("Y-m-d h:i:s") .','. $_POST['dbase'].','. $endDate->format("Y-m-d  h:i:s") .'">Book</button>' ;
 		                echo         '</div>
                                                <div class="clearfix"></div><div class="bot-border"></div>';
 		                echo '<div class="clearfix"></div>';
@@ -190,45 +252,12 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=0){
 		            }
 		        }
 		        
-				foreach ($histories as &$history){
-				    if(!strcmp($history['idBasementEnd'], $_POST['sbase'])){
-				        //casi delle date
-				        $hisStartDate = new DateTime($history['pickUpDay']);
-				        $hisEndDate = new DateTime($history['deliveryDate']);
-				        
-				        
-				        if($endDate < $hisStartDate){
-				            echo "1: ". $endDate->diff($hisStartDate)->format("%R%d days");
-				        }
-				        else if($startDate > $hisEndDate){
-				            echo "2: ".$startDate->diff($hisEndDate)->format("%R%d days");
-				        }
-				        else if($startDate ==$hisStartDate){
-				           echo "3";
-				            if($endTime<=$history['pickUpHour']){
-				                echo "time OK";
-				            }
-				            else if($startTime>=$history['deleryHour']){
-				                echo "time OK";
-				            }
-				        }
-				        /*
-				        if($endTime <= $history['deliveryHour']){
-				            
-				        }
-				        else if($startTime >= $history['deliveryHour']){
-				            
-				        }*/
-    		            echo '<div class="col-sm-5 col-xs-6 tital " >' . $history['model'] . '</div>';
-    	                echo '<div class="clearfix"></div>';
-    	                echo '<div class="bot-border"></div>';
-    		        }
-    		    }
+			
 		    }else{
 		        echo "Sorry, there aren't available car in this base";
 		    }
 		    echo '</div>';
-		}
+		
 		
 		?>
 
@@ -307,6 +336,29 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=0){
 		function bookCar(idCar, customer, sBase, startDay, eBase, endDay){
 			
 		}
+
+
+		$('.book').on('click', function(e) {
+			var data = this.value.split(",");
+			var dataP ={"idCar": data[0], "user": data[1],"idBasementStart": data[2],"pickUpDay": data[3],"idBasementEnd": data[4],"deliveryDay": data[5]};
+			
+			$.ajax({
+	            type: "POST",
+	            dataType: "json",
+	            url: "php_rest_myblog/api/history/create.php",
+	            data: JSON.stringify(dataP,1),
+	            contentType: "application/json; charset=utf-8",
+	            success: function(json) {
+	                console.log('/sayHello POST was successful.');
+	                console.log(json);
+	            },
+	            error: function(e){
+	                console.log(e.message);
+	            }
+	    	});
+			
+			
+		});
 	</script>	
 
 </body>	

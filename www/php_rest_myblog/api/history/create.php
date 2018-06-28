@@ -18,7 +18,7 @@
 	// Get value, user name and password 
 	$json_input = json_decode(file_get_contents('php://input'), true);
 	
-
+	var_dump($json_input);
 	$user_arr = $history->create($json_input['idCar'], $json_input['user'], $json_input['idBasementStart'], $json_input['pickUpDay'], 
 	    $json_input['idBasementEnd'], $json_input['deliveryDay']);
 
