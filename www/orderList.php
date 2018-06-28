@@ -117,7 +117,7 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=0){
 										echo '<div class="col-sm-7">'; 
                                         echo      '<button type="button"'.
                                                     ' class="btn btn-info deleteO"'.
-                                                    ' onclick="delete_order('.$history["idHistory"].','.$_SESSION["id"].')"'. 
+                                                    ' onclick="deleteO('.$history["idHistory"].','.$_SESSION["id"].')"'. 
                                                       ' value="Delete Order">Delete Order</button>' ;
 								        echo         '</div><div class="clearfix"></div><div class="bot-border"></div>';    
 								  
@@ -132,11 +132,6 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=0){
                         <!-- /.box-body -->
           			</div>
     </div>
-
-	<div class="col-sm-5 col-xs-6 " style="margin-top:50px;">
-		
-	 	<button type="button" id="deleteO" class="btn btn-info" onclick="<?php echo 'delete=(\''.$history['id'].'\','.$_SESSION['id'].')';?>" value="Delete Order">Delete Order</button>
-	</div>
 
 
        

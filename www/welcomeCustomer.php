@@ -145,7 +145,7 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=0){
 		</div>
 		
 		<?php 
-		
+		if(isset($_POST['date'])){
 		    $dates = explode(' ', $_POST['date']);
             $startDate = new DateTime($dates[1] . $dates[2].":00");
             $endDate = new DateTime($dates[6] . $dates[7].":00");
@@ -257,7 +257,7 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=0){
 		        echo "Sorry, there aren't available car in this base";
 		    }
 		    echo '</div>';
-		
+		}
 		
 		?>
 

@@ -1,12 +1,12 @@
 <?php
 session_start();
-if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
+if(!isset($_SESSION['role']) || $_SESSION['role']!=0){
     header('Location: login.php');
     exit();
 }
 $campi = array(
-    'id' => ($_GET['idO']),
-    'seller' => ($_GET['idU'])
+    'idHistory' => ($_GET['idO']),
+    'user' => ($_GET['idU'])
     
 );
 
@@ -99,9 +99,9 @@ curl_close($ch);
     				</div>
     				<div class="col-xs-8 text-right menu-1">
     					<ul>
-    						<li><a href="goBasement.php">Basements</a></li>
-    						<li><a href="goCar.php">Car</a></li>
-    						<li><a href="welcomeSeller.php">Personal Page</a></li>
+    						<li><a href="welcomeCustomer.php">Book your car!</a></li>
+    						<li><a href="orderList.php">See your orders</a></li>
+    						<li><a href="welcomeCustomer0.php">Personal Page</a></li>
     					</ul>	
     				</div>
     			</div>
