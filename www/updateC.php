@@ -41,7 +41,7 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=1){
         $ch = curl_init();
         
         // imposto la URl del web-service remoto
-        curl_setopt($ch, CURLOPT_URL, 'localhost/php_rest_myblog/api/car/update.php');
+        curl_setopt($ch, CURLOPT_URL, 'http://carsharingap.000webhostapp.com/server/api/car/update.php');
         
         // preparo l'invio dei dati col metodo POST
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);

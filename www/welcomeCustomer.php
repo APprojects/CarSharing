@@ -345,7 +345,7 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!=0){
 			$.ajax({
 	            type: "POST",
 	            dataType: "json",
-	            url: "php_rest_myblog/api/history/create.php",
+	            url: "server/api/history/create.php",
 	            data: JSON.stringify(dataP,1),
 	            contentType: "application/json; charset=utf-8",
 	            success: function(json) {

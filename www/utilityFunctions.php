@@ -4,7 +4,7 @@
 		$ch = curl_init();
 		$dati = array();
 		// imposto la URl del web-service remoto
-		curl_setopt($ch, CURLOPT_URL, 'localhost/php_rest_myblog/api/basement/read.php');
+		curl_setopt($ch, CURLOPT_URL, 'http://carsharingap.000webhostapp.com/server/api/basement/read.php');
 		
 		// Chiamo l'API  tramite PUT
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);	
@@ -28,7 +28,7 @@
 	    $ch = curl_init();
 	    $dati = array();
 	    // imposto la URl del web-service remoto
-	    curl_setopt($ch, CURLOPT_URL, 'localhost/php_rest_myblog/api/car/read.php');
+	    curl_setopt($ch, CURLOPT_URL, 'http://carsharingap.000webhostapp.com/server/api/car/read.php');
 	    
 	    // Chiamo l'API  tramite PUT
 	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -51,7 +51,7 @@
 	    $ch = curl_init();
 	    $dati = array();
 	    // imposto la URl del web-service remoto
-	    curl_setopt($ch, CURLOPT_URL, 'localhost/php_rest_myblog/api/history/read.php');
+	    curl_setopt($ch, CURLOPT_URL, 'http://carsharingap.000webhostapp.com/server/api/history/read.php');
 	    
 	    // Chiamo l'API  tramite PUT
 	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -74,7 +74,7 @@
 	    $ch = curl_init();
 	    $dati = array();
 	    // imposto la URl del web-service remoto
-	    curl_setopt($ch, CURLOPT_URL, 'localhost/php_rest_myblog/api/user/read.php');
+	    curl_setopt($ch, CURLOPT_URL, 'http://carsharingap.000webhostapp.com/server/api/user/read.php');
 	    
 	    // Chiamo l'API  tramite PUT
 	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
