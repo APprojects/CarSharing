@@ -82,7 +82,7 @@
 	    $ch = curl_init();
 	    $dati = array();
 	    // imposto la URl del web-service remoto
-	    curl_setopt($ch, CURLOPT_URL, 'http://carsharingap.000webhostapp.com/server/api/history/read.php');
+	   /* curl_setopt($ch, CURLOPT_URL, 'http://carsharingap.000webhostapp.com/server/api/history/read.php');
 	    
 	    // Chiamo l'API  tramite PUT
 	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -92,7 +92,22 @@
 	    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 	        'Content-Type: application/json')
 	        );
-	    
+	    */
+        curl_setopt($ch, CURLOPT_URL, 'http://carsharingap.000webhostapp.com/server/api/history/read.php');
+		
+		// preparo l'invio dei dati col metodo POST
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);	
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $dati);
+
+		// imposto gli header correttamente
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+		  'Content-Type: application/json',
+		  'Content-Length: ' . strlen($dati))
+		);
+        
+        
+        
 	    // eseguo la chiamata
 	    $response = json_decode(curl_exec($ch), true);
 	// var_dump($response);
